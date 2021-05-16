@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DLP.Core
 {
-	public static class DriverLicenseParser
+	public static class DriverLicenseParserOld
 	{
 
 		#region Constants
@@ -491,7 +491,7 @@ namespace DLP.Core
 					}
 				});
 
-		static DriverLicenseParser()
+		static DriverLicenseParserOld()
 		{
 			var orMap = BaseCodeToParseMap.ToDictionary(x => x.Key, x => x.Value);
 			orMap[FullNameCode] = (license, rest) => license.HandleOregonFullName(rest);
@@ -874,4 +874,4 @@ namespace DLP.Core
 		}
 
 	}
-}
+}*/

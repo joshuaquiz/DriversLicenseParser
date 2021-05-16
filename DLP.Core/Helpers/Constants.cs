@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DLP.Core.Helpers
 {
-    class Constants
+    public static class Constants
     {
+        public static readonly Uri ProjectWikiUri =
+            new("https://github.com/joshuaquiz/DriversLicenseParser/wiki", UriKind.Absolute);
     }
 }

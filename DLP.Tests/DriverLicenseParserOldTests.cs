@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using System.Web;
 using Xunit;
 
 namespace DLP.Tests
 {
-    public class DriverLicenseParserTests
+    public class DriverLicenseParserOldTests
     {
         public static IEnumerable<object[]> GetDataSets() =>
             new List<object[]>
@@ -821,4 +821,4 @@ namespace DLP.Tests
             Assert.AreEqual(result.DriversLicenseNumber, license.DriversLicenseNumber);
         }
     }
-}
+}*/
