@@ -1,8 +1,9 @@
-﻿using DLP.Core.Models;
+﻿using DLP.Core.Interfaces;
+using DLP.Core.Models;
 
 namespace DLP.Core.Parsers
 {
-    public sealed class StateDeptDiplomatic : IParseable
+    public sealed class StateDeptDiplomatic : IParseableLicense
     {
         public string FullName => "State Dept. (Diplomatic)";
 

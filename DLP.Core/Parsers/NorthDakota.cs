@@ -1,8 +1,9 @@
-﻿using DLP.Core.Models;
+﻿using DLP.Core.Interfaces;
+using DLP.Core.Models;
 
 namespace DLP.Core.Parsers
 {
-    public sealed class NorthDakota : IParseable
+    public sealed class NorthDakota : IParseableLicense
     {
         public string FullName => "North Dakota";
 

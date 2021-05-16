@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using Serilog;
@@ -7,7 +8,7 @@ using Serilog;
 namespace DLP.Core.Parsers
 {
 
-    public sealed class Alabama : IParseable
+    public sealed class Alabama : IParseableLicense
     {
         public string FullName => "Alabama";
 
