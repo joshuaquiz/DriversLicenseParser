@@ -6,5 +6,7 @@ namespace DLP.Core.Helpers
     {
         public static readonly Uri ProjectWikiUri =
             new("https://github.com/joshuaquiz/DriversLicenseParser/wiki", UriKind.Absolute);
+
+        public const double InchesPerCentimeter = 0.393701;
     }
 }
