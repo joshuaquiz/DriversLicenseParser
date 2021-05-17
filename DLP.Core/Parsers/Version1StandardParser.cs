@@ -14,9 +14,12 @@ namespace DLP.Core.Parsers
                 .ToDictionary(x => x.TrimToLength(3), x => x.Substring(2));
             return new DriversLicenseData
             {
-                FirstName = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameMarker),
-                LastName = splitUpData.TryGetValue(Version1StandardMarkers.LastNameMarker),
-                MiddleName = splitUpData.TryGetValue(Version1StandardMarkers.MiddleNameMarker),
+                FirstName = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameMarker)
+                            ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "firstName"),
+                LastName = splitUpData.TryGetValue(Version1StandardMarkers.LastNameMarker)
+                           ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "lastName"),
+                MiddleName = splitUpData.TryGetValue(Version1StandardMarkers.MiddleNameMarker)
+                             ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "middleName"),
                 ExpirationDate = splitUpData.TryGetValue(Version1StandardMarkers.ExpirationDateMarker).ParseDateTimeMonthDayYear(),
                 IssueDate = splitUpData.TryGetValue(Version1StandardMarkers.IssueDateMarker).ParseDateTimeMonthDayYear(),
                 DateOfBirth = splitUpData.TryGetValue(Version1StandardMarkers.DateOfBirthMarker).ParseDateTimeMonthDayYear(),
@@ -33,12 +36,14 @@ namespace DLP.Core.Parsers
                 LastNameAlias = splitUpData.TryGetValue(Version1StandardMarkers.LastNameAliasMarker),
                 FirstNameAlias = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameAliasMarker),
                 SuffixAlias = splitUpData.TryGetValue(Version1StandardMarkers.SuffixAliasMarker),
-                NameSuffix = splitUpData.TryGetValue(Version1StandardMarkers.NameSuffixMarker).ParseNameSuffix()
+                NameSuffix = (splitUpData.TryGetValue(Version1StandardMarkers.NameSuffixMarker)
+                             ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "suffix")).ParseNameSuffix()
             };
         }
 
         public static class Version1StandardMarkers
         {
+            public const string DriverLicenseName = "DAA";
             public const string FirstNameMarker = "DAC";
             public const string LastNameMarker = "DAB";
             public const string MiddleNameMarker = "DAD";

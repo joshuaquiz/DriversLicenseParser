@@ -19,6 +19,20 @@ namespace DLP.Core.Helpers
                 ? value
                 : null;
 
+        public static string ParseDriverLicenseName(this IReadOnlyDictionary<string, string> data, string dataKey, string namePart)
+        {
+            var driverLicenseName = data.TryGetValue(dataKey);
+            var nameParts = driverLicenseName.Split(',');
+            return namePart switch
+            {
+                "lastName" => nameParts.Length >= 1 ? nameParts[0] : null,
+                "firstName" => nameParts.Length >= 2 ? nameParts[1] : null,
+                "middleName" => nameParts.Length >= 3 ? nameParts[2] : null,
+                "suffix" => nameParts.Length >= 4 ? nameParts[3] : null,
+                _ => null
+            };
+        }
+
         /// <summary>
         /// Tries to parse the <see cref="LicenseVersion"/> from the license data provided.
         /// </summary>
