@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text.RegularExpressions;
 using DLP.Core.Models.Enums;
 
@@ -8,6 +8,17 @@ namespace DLP.Core.Helpers
 {
     public static class ParsingHelpers
     {
+        /// <summary>
+        /// Attempts to get the value of the record with the provided key
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string TryGetValue(this IReadOnlyDictionary<string, string> data, string key) =>
+            data.TryGetValue(key, out var value)
+                ? value
+                : null;
+
         /// <summary>
         /// Tries to parse the <see cref="LicenseVersion"/> from the license data provided.
         /// </summary>
@@ -33,11 +44,24 @@ namespace DLP.Core.Helpers
             }
         }
 
+        /// <summary>
+        /// Trims the string to the length specified.
+        /// If the length specified is longer than the string then the string value is returned.
+        /// </summary>
+        /// <param name="s">The string to trim.</param>
+        /// <param name="length">The length to trim to.</param>
+        /// <returns><see cref="string"/></returns>
         public static string TrimToLength(this string s, int length) =>
             s.Length <= length
                 ? s
                 : s.Substring(0, length);
 
+        /// <summary>
+        /// Removes the first occurrence of the value.
+        /// </summary>
+        /// <param name="haystack">Data to search in.</param>
+        /// <param name="needle">What to look for.</param>
+        /// <returns><see cref="string"/></returns>
         public static string RemoveFirstOccurrence(this string haystack, string needle)
         {
             var index = haystack.IndexOf(needle, StringComparison.InvariantCultureIgnoreCase);
@@ -46,6 +70,11 @@ namespace DLP.Core.Helpers
                 : haystack;
         }
 
+        /// <summary>
+        /// Tries to parse as a <see cref="DateTimeOffset"/> using the format MMddyyyy.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="DateTimeOffset"/></returns>
         public static DateTimeOffset ParseDateTimeMonthDayYear(this string s) =>
             DateTimeOffset.ParseExact(
                 s,
@@ -53,6 +82,11 @@ namespace DLP.Core.Helpers
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AdjustToUniversal);
 
+        /// <summary>
+        /// Tries to parse the issuing country.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="IssuingCountry"/></returns>
         public static IssuingCountry ParseIssuingCountry(this string s) =>
             s switch
             {
@@ -61,6 +95,11 @@ namespace DLP.Core.Helpers
                 _ => IssuingCountry.Unknown
             };
 
+        /// <summary>
+        /// Tries to parse the truncation.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="Truncation"/></returns>
         public static Truncation ParseTruncation(this string s) =>
             s switch
             {
@@ -69,6 +108,11 @@ namespace DLP.Core.Helpers
                 _ => Truncation.Unknown
             };
 
+        /// <summary>
+        /// Tries to parse the gender.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="Gender"/></returns>
         public static Gender ParseGender(this string s) =>
             s switch
             {
@@ -77,6 +121,11 @@ namespace DLP.Core.Helpers
                 _ => Gender.Unknown
             };
 
+        /// <summary>
+        /// Tries to parse the eye color.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="EyeColor"/></returns>
         public static EyeColor ParseEyeColor(this string s) =>
             s switch
             {
@@ -92,6 +141,11 @@ namespace DLP.Core.Helpers
                 _ => EyeColor.Unknown
             };
 
+        /// <summary>
+        /// Tries to parse the name suffix.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="NameSuffix"/></returns>
         public static NameSuffix ParseNameSuffix(this string s) =>
             s switch
             {
@@ -117,5 +171,48 @@ namespace DLP.Core.Helpers
                 "iX" => NameSuffix.Ninth,
                 _ => NameSuffix.Unknown
             };
+
+        /// <summary>
+        /// Tries to parse the hair color.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="HairColor"/></returns>
+        public static HairColor ParseHairColor(this string s) =>
+            s switch
+            {
+                "BAL" => HairColor.Bald,
+                "BLK" => HairColor.Black,
+                "BLN" => HairColor.Blond,
+                "BRO" => HairColor.Brown,
+                "GRY" => HairColor.Grey,
+                "RED" => HairColor.Red,
+                "SDY" => HairColor.Sandy,
+                "WHI" => HairColor.White,
+                _ => HairColor.Unknown
+            };
+
+        /// <summary>
+        /// Tries to parse the height in inches.
+        /// Returns 0 if unable.
+        /// </summary>
+        /// <param name="s">The text to attempt to parse.</param>
+        /// <returns><see cref="double"/></returns>
+        public static double ParseHeightInInches(this string s)
+        {
+            try
+            {
+                if (!s.Contains("cm"))
+                {
+                    return int.Parse(s);
+                }
+                
+                return int.Parse(s.RemoveFirstOccurrence("cm")) * Constants.InchesPerCentimeter;
+            }
+            catch (Exception e)
+                when (e is ArgumentNullException or FormatException)
+            {
+                return 0;
+            }
+        }
     }
 }
