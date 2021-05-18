@@ -1,8 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Joshua Galloway</Authors>
+    <Company>G3Software</Company>
+    <Product>DriversLicenseParser</Product>
+    <Description>Parses drivers licenses data scanned from barcode</Description>
+    <Copyright />
+    <PackageProjectUrl>https://github.com/joshuaquiz/DriversLicenseParser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/joshuaquiz/DriversLicenseParser</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>aamva drivers-licenses</PackageTags>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>\DLP.Core\DLP.Core.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>\DLP.Core\DLP.Core.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <ItemGroup>
