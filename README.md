@@ -1,3 +1,4 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/joshuaquiz/DriversLicenseParser/blob/main/LICENSE)
 [![.NET](https://github.com/joshuaquiz/DriversLicenseParser/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/joshuaquiz/DriversLicenseParser/actions/workflows/dotnet.yml)
 
 # Drivers License Parser
