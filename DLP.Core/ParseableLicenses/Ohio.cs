@@ -23,7 +23,7 @@ namespace DLP.Core.ParseableLicenses
             return null;
         }
 
-		private static DriversLicenseData ParseOhioLicense(string licenseData)
+		/*private static DriversLicenseData ParseOhioLicense(string licenseData)
 		{
 			var license = new DriversLicenseData();
 			if (!licenseData.Contains("^") || !licenseData.StartsWith("OH"))
@@ -113,6 +113,6 @@ namespace DLP.Core.ParseableLicenses
 			}
 			license.Eyes = licenseData.Substring(10, 3).Trim();
 			return license;
-		}
+		}*/
 	}
 }
