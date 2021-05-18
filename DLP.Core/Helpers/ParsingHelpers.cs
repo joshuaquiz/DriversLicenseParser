@@ -6,29 +6,42 @@ using DLP.Core.Models.Enums;
 
 namespace DLP.Core.Helpers
 {
+    /// <summary>
+    /// Helper/extension methods.
+    /// </summary>
     public static class ParsingHelpers
     {
         /// <summary>
-        /// Attempts to get the value of the record with the provided key
+        /// Attempts to get the value of the record with the provided key.
+        /// Returns null if nothing is found.
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="data">The dictionary to look through.</param>
+        /// <param name="key">The key to check the dictionary for.</param>
+        /// <returns><see cref="string"/></returns>
         public static string TryGetValue(this IReadOnlyDictionary<string, string> data, string key) =>
             data.TryGetValue(key, out var value)
                 ? value
                 : null;
 
+        /// <summary>
+        /// Attempts to parse the part of the name defined.
+        /// Returns null if unable to extract the data.
+        /// </summary>
+        /// <param name="data">The dictionary to look through.</param>
+        /// <param name="dataKey">The key to check the dictionary for.</param>
+        /// <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
+        /// <returns><see cref="string"/></returns>
+        /// <returns></returns>
         public static string ParseDriverLicenseName(this IReadOnlyDictionary<string, string> data, string dataKey, string namePart)
         {
             var driverLicenseName = data.TryGetValue(dataKey);
-            var nameParts = driverLicenseName.Split(',');
+            var nameParts = driverLicenseName?.Split(',');
             return namePart switch
             {
-                "lastName" => nameParts.Length >= 1 ? nameParts[0] : null,
-                "firstName" => nameParts.Length >= 2 ? nameParts[1] : null,
-                "middleName" => nameParts.Length >= 3 ? nameParts[2] : null,
-                "suffix" => nameParts.Length >= 4 ? nameParts[3] : null,
+                "firstName" => nameParts?.Length >= 2 ? nameParts[1] : null,
+                "middleName" => nameParts?.Length >= 3 ? nameParts[2] : null,
+                "lastName" => nameParts?.Length >= 1 ? nameParts[0] : null,
+                "suffix" => nameParts?.Length >= 4 ? nameParts[3] : null,
                 _ => null
             };
         }
@@ -215,15 +228,19 @@ namespace DLP.Core.Helpers
         {
             try
             {
-                if (!s.Contains("cm"))
+                if (s.Contains("cm"))
                 {
-                    return int.Parse(s);
+                    return int.Parse(s.RemoveFirstOccurrence("cm")) * Constants.InchesPerCentimeter;
                 }
-                
-                return int.Parse(s.RemoveFirstOccurrence("cm")) * Constants.InchesPerCentimeter;
+
+                var matches = Regex.Match(s, "^(\\d{1})(\\d{3})?$");
+                return matches.Success
+                    ? (int.Parse(matches.Captures[0].Value) * 12)
+                      + (matches.Captures.Count == 2 ? int.Parse(matches.Captures[1].Value) : 0)
+                    : int.Parse(s);
             }
             catch (Exception e)
-                when (e is ArgumentNullException or FormatException)
+                when (e is ArgumentException or ArgumentNullException or FormatException or RegexMatchTimeoutException)
             {
                 return 0;
             }

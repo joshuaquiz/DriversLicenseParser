@@ -6,16 +6,16 @@ namespace DLP.Core.Exceptions
     [Serializable]
     public sealed class LicenseFormatException : Exception
     {
-        public const string ErrorMessage =
-            "The provided data could not be matched to a known format.";
-
         public string LicenseData { get; }
 
         public LicenseFormatException(string data)
-            : base(ErrorMessage)
+            : base(Constants.ErrorMessages.LicenseFormatExceptionMessage)
         {
             LicenseData = data;
-            HelpLink = Constants.ProjectWikiUri.ToString();
+            HelpLink = Constants.LicenseFormatExceptionHelpUrl.ToString();
         }
+
+        public override string ToString() =>
+            $"{Message}{Environment.NewLine}License Data: {LicenseData}{Environment.NewLine}{StackTrace}";
     }
 }

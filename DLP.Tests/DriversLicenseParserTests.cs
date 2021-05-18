@@ -40,9 +40,9 @@ namespace DLP.Tests
                 () => driversLicenseParser.Parse(data));
 
             // Assert.
-            Assert.Equal(LicenseFormatException.ErrorMessage, exception.Message);
+            Assert.Equal(Constants.ErrorMessages.LicenseFormatExceptionMessage, exception.Message);
             Assert.Equal(data, exception.LicenseData);
-            Assert.Equal(Constants.ProjectWikiUri.ToString(), exception.HelpLink);
+            Assert.Equal(Constants.LicenseFormatExceptionHelpUrl.ToString(), exception.HelpLink);
         }
 
         [Fact]
@@ -52,14 +52,14 @@ namespace DLP.Tests
             var data = Guid.NewGuid().ToString();
             var id = Guid.NewGuid().ToString();
             var notTheParser = new Mock<IParseableLicense>(MockBehavior.Strict);
-            notTheParser
+            _ = notTheParser
                 .Setup(x => x.IsDataFromEntity(data))
                 .Returns(false);
             var theParser = new Mock<IParseableLicense>(MockBehavior.Strict);
-            theParser
+            _ = theParser
                 .Setup(x => x.IsDataFromEntity(data))
                 .Returns(true);
-            theParser
+            _ = theParser
                 .Setup(x => x.ParseData(data))
                 .Returns(
                     new DriversLicenseData
