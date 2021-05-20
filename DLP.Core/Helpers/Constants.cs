@@ -16,7 +16,7 @@ namespace DLP.Core.Helpers
         /// <summary>
         /// A double that represents how man inches are in a centimeter.
         /// </summary>
-        public const double InchesPerCentimeter = 0.393701;
+        public const decimal InchesPerCentimeter = 0.393701M;
 
         /// <summary>
         /// All Error messages should be here.

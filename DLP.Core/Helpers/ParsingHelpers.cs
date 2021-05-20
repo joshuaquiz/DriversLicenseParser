@@ -55,7 +55,7 @@ namespace DLP.Core.Helpers
         {
             try
             {
-                var versionInt = int.Parse(Regex.Match(data, "\\d{6}(\\d{2})\\w+").Captures[0].Value);
+                var versionInt = int.Parse(Regex.Match(data, "\\d{6}(\\d{2})\\w+").Groups[1].Value);
                 return (LicenseVersion) Enum.Parse(typeof(LicenseVersion), $"Version{versionInt}");
             }
             catch (Exception e)
@@ -81,7 +81,7 @@ namespace DLP.Core.Helpers
         public static string TrimToLength(this string s, int length) =>
             s.Length <= length
                 ? s
-                : s.Substring(0, length);
+                : s[..length];
 
         /// <summary>
         /// Removes the first occurrence of the value.
@@ -99,15 +99,19 @@ namespace DLP.Core.Helpers
 
         /// <summary>
         /// Tries to parse as a <see cref="DateTimeOffset"/> using the format MMddyyyy.
+        /// Returns null if unable to parse.
         /// </summary>
         /// <param name="s">The text to attempt to parse.</param>
         /// <returns><see cref="DateTimeOffset"/></returns>
-        public static DateTimeOffset ParseDateTimeMonthDayYear(this string s) =>
-            DateTimeOffset.ParseExact(
+        public static DateTimeOffset? ParseDateTimeMonthDayYear(this string s) =>
+            DateTimeOffset.TryParseExact(
                 s,
                 "MMddyyyy",
                 CultureInfo.InvariantCulture,
-                DateTimeStyles.AdjustToUniversal);
+                DateTimeStyles.AssumeUniversal,
+                out var result)
+                ? result
+                : null;
 
         /// <summary>
         /// Tries to parse the issuing country.
@@ -178,7 +182,7 @@ namespace DLP.Core.Helpers
             {
                 "JR" => NameSuffix.Junior,
                 "SR" => NameSuffix.Senior,
-                "1ST"=> NameSuffix.First,
+                "1ST" => NameSuffix.First,
                 "I" => NameSuffix.First,
                 "2ND" => NameSuffix.Second,
                 "II" => NameSuffix.Second,
@@ -223,26 +227,39 @@ namespace DLP.Core.Helpers
         /// Returns 0 if unable.
         /// </summary>
         /// <param name="s">The text to attempt to parse.</param>
-        /// <returns><see cref="double"/></returns>
-        public static double ParseHeightInInches(this string s)
+        /// <returns><see cref="decimal"/></returns>
+        public static decimal? ParseHeightInInches(this string s)
         {
             try
             {
-                if (s.Contains("cm"))
+                s = s.ToUpperInvariant().Trim();
+                if (s.Contains("CM"))
                 {
-                    return int.Parse(s.RemoveFirstOccurrence("cm")) * Constants.InchesPerCentimeter;
+                    return (decimal?)(decimal.Parse(s.RemoveFirstOccurrence("CM").Trim()) * Constants.InchesPerCentimeter);
                 }
 
-                var matches = Regex.Match(s, "^(\\d{1})(\\d{3})?$");
-                return matches.Success
-                    ? (int.Parse(matches.Captures[0].Value) * 12)
-                      + (matches.Captures.Count == 2 ? int.Parse(matches.Captures[1].Value) : 0)
-                    : int.Parse(s);
+                if (s.Contains("IN"))
+                {
+                    return decimal.Parse(s.RemoveFirstOccurrence("IN").Trim());
+                }
+
+                var matches = Regex.Match(s, "^([1-9]{1})((?:0[0-9])|(?:1[012]))$");
+                if (matches.Groups.Count != 3)
+                {
+                    return Regex.IsMatch(s, "^\\d{1,3}$")
+                        ? decimal.Parse(s)
+                        : null;
+                }
+
+                var inchesFromFeet = decimal.Parse(matches.Groups[1].Value) * 12;
+                var inches = decimal.Parse(matches.Groups[2].Value);
+                return inchesFromFeet + inches;
+
             }
             catch (Exception e)
-                when (e is ArgumentException or ArgumentNullException or FormatException or RegexMatchTimeoutException)
+                when (e is NullReferenceException or ArgumentException or ArgumentNullException or FormatException or RegexMatchTimeoutException)
             {
-                return 0;
+                return null;
             }
         }
     }

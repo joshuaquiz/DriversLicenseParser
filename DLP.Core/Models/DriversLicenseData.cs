@@ -3,6 +3,9 @@ using DLP.Core.Models.Enums;
 
 namespace DLP.Core.Models
 {
+    /// <summary>
+    /// Represents data parsed from a drivers license.
+    /// </summary>
     public sealed class DriversLicenseData
     {
         /// <summary>
@@ -23,17 +26,17 @@ namespace DLP.Core.Models
         /// <summary>
         /// Document Expiration Date
         /// </summary>
-        public DateTimeOffset ExpirationDate { get; set; }
+        public DateTimeOffset? ExpirationDate { get; set; }
 
         /// <summary>
         /// Document Issue Date
         /// </summary>
-        public DateTimeOffset IssueDate { get; set; }
+        public DateTimeOffset? IssueDate { get; set; }
 
         /// <summary>
         /// Customer Date of Birth
         /// </summary>
-        public DateTimeOffset DateOfBirth { get; set; }
+        public DateTimeOffset? DateOfBirth { get; set; }
 
         /// <summary>
         /// Customer Gender
@@ -53,7 +56,7 @@ namespace DLP.Core.Models
         /// <summary>
         /// Customer Height (in inches)
         /// </summary>
-        public double Height { get; set; }
+        public decimal? Height { get; set; }
 
         /// <summary>
         /// Customer Street Address

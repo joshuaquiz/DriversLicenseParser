@@ -14,7 +14,7 @@ namespace DLP.Tests.Helpers
         [Fact]
         public static void InchesPerCentimeterIsCorrect() =>
             Assert.Equal(
-                0.393701,
+                0.393701M,
                 Constants.InchesPerCentimeter);
 
         [Fact]

@@ -11,7 +11,7 @@ namespace DLP.Core.Parsers
             var splitUpData = data
                 .Split('\r', '\n')
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToDictionary(x => x.TrimToLength(3), x => x.Substring(2));
+                .ToDictionary(x => x.TrimToLength(3), x => x[2..]);
             return new DriversLicenseData
             {
                 FirstName = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameMarker)

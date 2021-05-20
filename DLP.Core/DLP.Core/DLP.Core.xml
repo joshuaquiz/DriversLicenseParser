@@ -1,0 +1,671 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DLP.Core</name>
+    </assembly>
+    <members>
+        <member name="M:DLP.Core.DriversLicenseParser.Parse(System.String)">
+            <summary>
+            Attempts to parse the license data.
+            </summary>
+            <param name="data">The license data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if the provided data is empty or null.</exception>
+            <exception cref="T:DLP.Core.Exceptions.LicenseFormatException">Thrown if the data could not be matched to any known format.</exception>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
+        </member>
+        <member name="T:DLP.Core.Helpers.Constants">
+            <summary>
+            Constants for this project.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Helpers.Constants.LicenseFormatExceptionHelpUrl">
+            <summary>
+            The project wiki URL.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Helpers.Constants.InchesPerCentimeter">
+            <summary>
+            A double that represents how man inches are in a centimeter.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Helpers.Constants.ErrorMessages">
+            <summary>
+            All Error messages should be here.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Helpers.Constants.ErrorMessages.LicenseFormatExceptionMessage">
+            <summary>
+            The provided data could not be matched to a known format.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Helpers.ParsingHelpers">
+            <summary>
+            Helper/extension methods.
+            </summary>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.TryGetValue(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.String)">
+            <summary>
+            Attempts to get the value of the record with the provided key.
+            Returns null if nothing is found.
+            </summary>
+            <param name="data">The dictionary to look through.</param>
+            <param name="key">The key to check the dictionary for.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDriverLicenseName(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            Attempts to parse the part of the name defined.
+            Returns null if unable to extract the data.
+            </summary>
+            <param name="data">The dictionary to look through.</param>
+            <param name="dataKey">The key to check the dictionary for.</param>
+            <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
+            <returns><see cref="T:System.String"/></returns>
+            <returns></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.GetLicenseVersion(System.String)">
+            <summary>
+            Tries to parse the <see cref="T:DLP.Core.Models.Enums.LicenseVersion"/> from the license data provided.
+            </summary>
+            <param name="data">The license data.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.LicenseVersion"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.TrimToLength(System.String,System.Int32)">
+            <summary>
+            Trims the string to the length specified.
+            If the length specified is longer than the string then the string value is returned.
+            </summary>
+            <param name="s">The string to trim.</param>
+            <param name="length">The length to trim to.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.RemoveFirstOccurrence(System.String,System.String)">
+            <summary>
+            Removes the first occurrence of the value.
+            </summary>
+            <param name="haystack">Data to search in.</param>
+            <param name="needle">What to look for.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDateTimeMonthDayYear(System.String)">
+            <summary>
+            Tries to parse as a <see cref="T:System.DateTimeOffset"/> using the format MMddyyyy.
+            Returns null if unable to parse.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:System.DateTimeOffset"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseIssuingCountry(System.String)">
+            <summary>
+            Tries to parse the issuing country.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.IssuingCountry"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseTruncation(System.String)">
+            <summary>
+            Tries to parse the truncation.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.Truncation"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseGender(System.String)">
+            <summary>
+            Tries to parse the gender.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.Gender"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseEyeColor(System.String)">
+            <summary>
+            Tries to parse the eye color.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.EyeColor"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseNameSuffix(System.String)">
+            <summary>
+            Tries to parse the name suffix.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.NameSuffix"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseHairColor(System.String)">
+            <summary>
+            Tries to parse the hair color.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:DLP.Core.Models.Enums.HairColor"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseHeightInInches(System.String)">
+            <summary>
+            Tries to parse the height in inches.
+            Returns 0 if unable.
+            </summary>
+            <param name="s">The text to attempt to parse.</param>
+            <returns><see cref="T:System.Decimal"/></returns>
+        </member>
+        <member name="T:DLP.Core.Interfaces.IParseableLicense">
+            <summary>
+            Represents a entity with a parseable license.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Interfaces.IParseableLicense.FullName">
+            <summary>
+            The friendly name of the state, provence, or other locality that issued the license.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Interfaces.IParseableLicense.Abbreviation">
+            <summary>
+            The abbreviation of the state, provence, or other locality that issued the license.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Interfaces.IParseableLicense.Country">
+            <summary>
+            The country that issued the license.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Interfaces.IParseableLicense.IssuerIdentificationNumber">
+            <summary>
+            Drivers License Issuer Identification Number.
+            </summary>
+            <remarks>
+            This list can be found (as of the time of this writing) at https://www.aamva.org/IIN-and-RID/
+            </remarks>
+        </member>
+        <member name="M:DLP.Core.Interfaces.IParseableLicense.IsDataFromEntity(System.String)">
+            <summary>
+            Is this data from this entity.
+            </summary>
+            <param name="data">The license data.</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:DLP.Core.Interfaces.IParseableLicense.ParseData(System.String)">
+            <summary>
+            Parses the string into a <see cref="T:DLP.Core.Models.DriversLicenseData"/>.
+            </summary>
+            <param name="data">The license data.</param>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
+        </member>
+        <member name="T:DLP.Core.Models.DriversLicenseData">
+            <summary>
+            Represents data parsed from a drivers license.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.FirstName">
+            <summary>
+            Customer First Name
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.LastName">
+            <summary>
+            Customer Last Name
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.MiddleName">
+            <summary>
+            Customer Middle Name
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.ExpirationDate">
+            <summary>
+            Document Expiration Date
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.IssueDate">
+            <summary>
+            Document Issue Date
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.DateOfBirth">
+            <summary>
+            Customer Date of Birth
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.Gender">
+            <summary>
+            Customer Gender
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.EyeColor">
+            <summary>
+            Customer Eye Color
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.HairColor">
+            <summary>
+            Customer Hair Color
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.Height">
+            <summary>
+            Customer Height (in inches)
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.StreetAddress">
+            <summary>
+            Customer Street Address
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.SecondStreetAddress">
+            <summary>
+            Customer Street Address Line 2
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.City">
+            <summary>
+            Customer City
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.State">
+            <summary>
+            Customer State
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.PostalCode">
+            <summary>
+            Customer Postal Code
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.CustomerId">
+            <summary>
+            Unique Customer ID Number
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.DocumentId">
+            <summary>
+            Unique Document ID Number
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.IssuingCountry">
+            <summary>
+            Issuing Country
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.MiddleNameTruncated">
+            <summary>
+            Was Middle Name truncated?
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.FirstNameTruncated">
+            <summary>
+            Was First Name truncated?
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.LastNameTruncated">
+            <summary>
+            Was Last Name truncated?
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.PlaceOfBirth">
+            <summary>
+            Country and municipality and/or state/province.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.AuditInformation">
+            <summary>
+            A string of letters and/or numbers that identifies when, where, and by whom a driver license/ID card was made.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.InventoryControl">
+            <summary>
+            A string of letters and/or numbers that is affixed to the raw materials (card stock, laminate, etc.) used in producing driver licenses and ID cards.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.LastNameAlias">
+            <summary>
+            Other Last Name by which cardholder is known.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.FirstNameAlias">
+            <summary>
+            Other First Name by which the cardholder is known.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.SuffixAlias">
+            <summary>
+            Other suffix by which cardholder is known.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.NameSuffix">
+            <summary>
+            Name Suffix.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.EyeColor">
+            <summary>
+            AAMVA Eye Colors:<br />
+            - Unknown: Unknown eye color<br />
+            - Black: Black eyes<br />
+            - Blue: Blue eyes<br />
+            - Brown: Brown eyes<br />
+            - Gray: Gray eyes<br />
+            - Green: Green eyes<br />
+            - Hazel: Hazel eyes<br />
+            - Maroon: Maroon eyes<br />
+            - Pink: Pink eyes<br />
+            - Dichromatic: Dichromatic eyes<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Unknown">
+            <summary>
+            Unknown eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Black">
+            <summary>
+            Black eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Blue">
+            <summary>
+            Blue eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Brown">
+            <summary>
+            Brown eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Gray">
+            <summary>
+            Gray eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Green">
+            <summary>
+            Green eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Hazel">
+            <summary>
+            Hazel eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Maroon">
+            <summary>
+            Maroon eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Pink">
+            <summary>
+            Pink eye color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.EyeColor.Dichromatic">
+            <summary>
+            Dichromatic eye color.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.Gender">
+            <summary>
+            AAMVA Genders:<br />
+            - Unknown: When the gender cannot be determined<br />
+            - Male: Male<br />
+            - Female: Female<br />
+            - Other: Not yet part of the AAMVA spec<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Gender.Unknown">
+            <summary>
+            Unknown Gender.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Gender.Male">
+            <summary>
+            Male.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Gender.Female">
+            <summary>
+            Female.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Gender.Other">
+            <summary>
+            Other.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.HairColor">
+            <summary>
+            AAMVA hair colors:<br />
+            - Unknown: Unknown hair color<br />
+            - Bald: Bald hair<br />
+            - Black: Black hair<br />
+            - Blond: Blond hair<br />
+            - Brown: Brown hair<br />
+            - Grey: Grey hair<br />
+            - Red: Red hair<br />
+            - Sandy: Sandy hair<br />
+            - White: White hair<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Unknown">
+            <summary>
+            Unknown hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Bald">
+            <summary>
+            Bald hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Black">
+            <summary>
+            Black hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Blond">
+            <summary>
+            Blond hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Brown">
+            <summary>
+            Brown hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Grey">
+            <summary>
+            Grey hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Red">
+            <summary>
+            Red hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.Sandy">
+            <summary>
+            Sandy hair color.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.HairColor.White">
+            <summary>
+            White hair color.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.IssuingCountry">
+            <summary>
+            AAMVA Issuing Countries:<br />
+            - Unknown: When the issuing country is not available<br />
+            - UnitedStates: The USA<br />
+            - Canada: Canada, eh?<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.IssuingCountry.Unknown">
+            <summary>
+            Unknown Issuing Country.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.IssuingCountry.UnitedStates">
+            <summary>
+            The United States.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.IssuingCountry.Canada">
+            <summary>
+            Canada, eh?
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.LicenseVersion">
+            <summary>
+            The AAMVA versions:<br />
+            - Unknown Version<br />
+            - Version 1<br />
+            - Version 2<br />
+            - Version 3<br />
+            - Version 4<br />
+            - Version 5<br />
+            - Version 6<br />
+            - Version 7<br />
+            - Version 8<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.UnknownVersion">
+            <summary>
+            Unknown Version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version1">
+            <summary>
+            Version 1.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version2">
+            <summary>
+            Version 2.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version3">
+            <summary>
+            Version 3.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version4">
+            <summary>
+            Version 4.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version5">
+            <summary>
+            Version 5.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version6">
+            <summary>
+            Version 6.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version7">
+            <summary>
+            Version 7.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version8">
+            <summary>
+            Version 8.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.NameSuffix">
+            <summary>
+            AAMVA Name Suffixes:<br />
+            - Unknown: When the name suffix is unknown<br />
+            - Junior: Junior, Jr.<br />
+            - Senior: Senior, Sr.<br />
+            - First: First, I, 1st<br />
+            - Second: Second, II, 2nd<br />
+            - Third: Third, III, 3rd<br />
+            - Fourth: Fourth, IV, 4th<br />
+            - Fifth: Fifth, V, 5th<br />
+            - Sixth: Sixth, VI, 6th<br />
+            - Seventh: Seventh, VII, 7th<br />
+            - Eighth: Eighth, VIII, 8th<br />
+            - Ninth: Ninth, IX, 9th<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Unknown">
+            <summary>
+            When the name suffix is unknown.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Junior">
+            <summary>
+            Junior, Jr.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Senior">
+            <summary>
+            Senior, Sr.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.First">
+            <summary>
+            First, I, 1st.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Second">
+            <summary>
+            Second, II, 2nd.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Third">
+            <summary>
+            Third, III, 3rd.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Fourth">
+            <summary>
+            Fourth, IV, 4th.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Fifth">
+            <summary>
+            Fifth, V, 5th.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Sixth">
+            <summary>
+            Sixth, VI, 6th.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Seventh">
+            <summary>
+            Seventh, VII, 7th.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Eighth">
+            <summary>
+            Eighth, VIII, 8th.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NameSuffix.Ninth">
+            <summary>
+            Ninth, IX, 9th.
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Models.Enums.Truncation">
+            <summary>
+            AAMVA Name Truncations:<br />
+            - Unknown: When the truncation cannot be determined<br />
+            - Truncated: The name was truncated<br />
+            - None: The name was not truncated<br />
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Truncation.Unknown">
+            <summary>
+            Unknown Truncation.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Truncation.Truncated">
+            <summary>
+            Truncated Name.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.Truncation.None">
+            <summary>
+            Not Truncated.
+            </summary>
+        </member>
+    </members>
+</doc>
