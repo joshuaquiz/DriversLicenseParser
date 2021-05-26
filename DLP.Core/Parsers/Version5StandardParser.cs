@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using DLP.Core.Helpers;
 using DLP.Core.Models;
+using DLP.Core.Models.Enums;
 
 namespace DLP.Core.Parsers
 {
@@ -11,7 +12,7 @@ namespace DLP.Core.Parsers
             var splitUpData = data
                 .Split('\r', '\n')
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToDictionary(x => x.TrimToLength(3), x => x);
+                .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
             return new DriversLicenseData
             {
                 FirstName = splitUpData.TryGetValue(Version5StandardMarkers.FirstNameMarker),
@@ -41,7 +42,8 @@ namespace DLP.Core.Parsers
                 LastNameAlias = splitUpData.TryGetValue(Version5StandardMarkers.LastNameAliasMarker),
                 FirstNameAlias = splitUpData.TryGetValue(Version5StandardMarkers.FirstNameAliasMarker),
                 SuffixAlias = splitUpData.TryGetValue(Version5StandardMarkers.SuffixAliasMarker),
-                NameSuffix = splitUpData.TryGetValue(Version5StandardMarkers.NameSuffixMarker).ParseNameSuffix()
+                NameSuffix = splitUpData.TryGetValue(Version5StandardMarkers.NameSuffixMarker).ParseNameSuffix(),
+                LicenseVersion = LicenseVersion.Version5
             };
         }
 

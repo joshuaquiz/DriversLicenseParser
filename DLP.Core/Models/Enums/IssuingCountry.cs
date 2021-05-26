@@ -5,6 +5,7 @@
     /// - Unknown: When the issuing country is not available<br />
     /// - UnitedStates: The USA<br />
     /// - Canada: Canada, eh?<br />
+    /// - Mexico: Unknown AAMVA status<br />
     /// </summary>
     public enum IssuingCountry
     {
@@ -21,6 +22,11 @@
         /// <summary>
         /// Canada, eh?
         /// </summary>
-        Canada
+        Canada,
+
+        /// <summary>
+        /// Mexico: Unknown AAMVA status
+        /// </summary>
+        Mexico
     }
 }

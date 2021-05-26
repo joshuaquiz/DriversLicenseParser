@@ -147,5 +147,10 @@ namespace DLP.Core.Models
         /// Name Suffix.
         /// </summary>
         public NameSuffix NameSuffix { get; set; }
+
+        /// <summary>
+        /// The version of license.
+        /// </summary>
+        public LicenseVersion LicenseVersion{ get; set; }
     }
 }

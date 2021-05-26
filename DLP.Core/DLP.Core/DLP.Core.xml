@@ -332,6 +332,11 @@
             Name Suffix.
             </summary>
         </member>
+        <member name="P:DLP.Core.Models.DriversLicenseData.LicenseVersion">
+            <summary>
+            The version of license.
+            </summary>
+        </member>
         <member name="T:DLP.Core.Models.Enums.EyeColor">
             <summary>
             AAMVA Eye Colors:<br />
@@ -491,6 +496,7 @@
             - Unknown: When the issuing country is not available<br />
             - UnitedStates: The USA<br />
             - Canada: Canada, eh?<br />
+            - Mexico: Unknown AAMVA status<br />
             </summary>
         </member>
         <member name="F:DLP.Core.Models.Enums.IssuingCountry.Unknown">
@@ -506,6 +512,11 @@
         <member name="F:DLP.Core.Models.Enums.IssuingCountry.Canada">
             <summary>
             Canada, eh?
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.IssuingCountry.Mexico">
+            <summary>
+            Mexico: Unknown AAMVA status
             </summary>
         </member>
         <member name="T:DLP.Core.Models.Enums.LicenseVersion">
@@ -666,6 +677,444 @@
             <summary>
             Not Truncated.
             </summary>
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alabama.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alabama.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alaska.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alaska.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alberta.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alberta.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.AmericanSamoa.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.AmericanSamoa.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arizona.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arizona.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arkansas.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arkansas.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.BritishColumbia.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.BritishColumbia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.California.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.California.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Coahuila.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Coahuila.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Colorado.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Colorado.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Connecticut.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Connecticut.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Delaware.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Delaware.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.DistrictOfColumbia.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.DistrictOfColumbia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Florida.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Florida.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Georgia.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Georgia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Guam.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Guam.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hawaii.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hawaii.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hidalgo.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hidalgo.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Idaho.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Idaho.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Illinois.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Illinois.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Indiana.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Indiana.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Iowa.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Iowa.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kansas.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kansas.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kentucky.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kentucky.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Louisiana.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Louisiana.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maine.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maine.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Manitoba.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Manitoba.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maryland.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maryland.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Massachusetts.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Massachusetts.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Michigan.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Michigan.Abbreviation">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Michigan.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Michigan.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Michigan.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Michigan.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Minnesota.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Minnesota.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Mississippi.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Mississippi.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Missouri.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Missouri.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Montana.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Montana.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nebraska.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nebraska.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nevada.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nevada.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewBrunswick.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewBrunswick.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewHampshire.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewHampshire.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewJersey.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewJersey.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewMexico.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewMexico.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewYork.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewYork.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthCarolina.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthCarolina.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthDakota.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthDakota.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthernMariannaIslands.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthernMariannaIslands.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NovaScotia.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NovaScotia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nunavut.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nunavut.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ohio.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ohio.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oklahoma.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oklahoma.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ontario.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ontario.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oregon.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oregon.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PrinceEdwardIsland.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PrinceEdwardIsland.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PuertoRico.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PuertoRico.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Quebec.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Quebec.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.RhodeIsland.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.RhodeIsland.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Saskatchewan.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Saskatchewan.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthCarolina.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthCarolina.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthDakota.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthDakota.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.StateDeptDiplomatic.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.StateDeptDiplomatic.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Tennessee.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Tennessee.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Texas.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Texas.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Utah.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Utah.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Vermont.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Vermont.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Virginia.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Virginia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.VirginIslands.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.VirginIslands.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Washington.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Washington.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.WestVirginia.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.WestVirginia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wisconsin.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wisconsin.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wyoming.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wyoming.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Yukon.Country">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Yukon.IssuerIdentificationNumber">
+            <inheritdoc />
         </member>
     </members>
 </doc>

@@ -642,42 +642,6 @@ namespace DLP.Tests
                 },
                 new object[]
                 {
-                    "%40%0A%1E%0DANSI+636032030002DL00410201ZM02420027DLDCA%0ADCB%0ADCD%0ADBA08082020%0ADCSDOE%0ADCTJOHNCHESTER%0ADBD08082016%0ADBB04282010%0ADBC1%0ADAY%0ADAU%0ADAG1234+FAKE+BLVD%0ADAIMYCITY%0ADAJMI%0ADAK442241601++%0ADAQW+123+456+789+012%0ADCF%0ADCG%0ADCH%0ADAH%0ADCKW123456789012198308082020%0A%0DZMZMARev+01-21-2011%0AZMB01%0A%0D",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHNCHESTER",
-                        PrimaryMiddleName = null,
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "04/28/2010",
-                        Address1 = "1234 FAKE BLVD",
-                        Address2 = null,
-                        City = "MYCITY",
-                        State = "MI",
-                        Zip = "44224",
-                        County = string.Empty,
-                        DriversLicenseNumber = "W 123 456 789 012"
-                    }
-                },
-                new object[]
-                {
-                    "%40%0A%0DANSI%20636032030002DL00410201ZM02420027DLDCA%0ADCB%0ADCD%0ADBA08082020%0ADCSDOE%0ADCTJOHNCHESTER%0ADBD08082016%0ADBB04282010%0ADBC1%0ADAY%0ADAU%0ADAG1234%20FAKE%20BLVD%0ADAIMYCITY%0ADAJMI%0ADAK442241601%20%20%0ADAQW%20123%20456%20789%20012%0ADCF%0ADCG%0ADCH%0ADAH%0ADCKW123456789012198308082020%0A%0DZMZMARev%2001-21-2011%0AZMB01%0A%0D",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHNCHESTER",
-                        PrimaryMiddleName = null,
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "04/28/2010",
-                        Address1 = "1234 FAKE BLVD",
-                        Address2 = null,
-                        City = "MYCITY",
-                        State = "MI",
-                        Zip = "44224",
-                        County = string.Empty,
-                        DriversLicenseNumber = "W 123 456 789 012"
-                    }
-                },
-                new object[]
-                {
                     "%40%0A%1E%0DANSI+6360290102DL00390183ZO02220025DLDAQW+123+456+789+012%0ADAADOE%2C+JOHN%0ADAG%0ADAL1234+FAKE+BLVD%0ADAIMYCITY%0ADAJOR%0ADAK44224++++++%0ADARC+++%0ADASD+++++++++%0ADAT++++++%0ADAU508%0ADAW160%0ADBA20251227%0ADBB20100428%0ADBC1%0ADBD20171214%0AZOZOARECORD+CREATED+1995%0A",
                     new CustomerShell
                     {

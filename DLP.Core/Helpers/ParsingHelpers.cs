@@ -20,7 +20,7 @@ namespace DLP.Core.Helpers
         /// <returns><see cref="string"/></returns>
         public static string TryGetValue(this IReadOnlyDictionary<string, string> data, string key) =>
             data.TryGetValue(key, out var value)
-                ? value
+                ? value.Trim()
                 : null;
 
         /// <summary>

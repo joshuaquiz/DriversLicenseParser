@@ -1,5 +1,6 @@
 ﻿using DLP.Core.Interfaces;
 using DLP.Core.Models;
+using DLP.Core.Models.Enums;
 
 namespace DLP.Core.ParseableLicenses
 {
@@ -9,8 +10,10 @@ namespace DLP.Core.ParseableLicenses
 
         public string Abbreviation => "MP";
 
-        public string Country => "USA";
+        /// <inheritdoc />
+        public IssuingCountry Country => IssuingCountry.UnitedStates;
 
+        /// <inheritdoc />
         public int IssuerIdentificationNumber => 604430;
 
         public bool IsDataFromEntity(string data) =>

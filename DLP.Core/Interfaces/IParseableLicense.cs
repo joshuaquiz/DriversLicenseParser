@@ -1,4 +1,5 @@
 ﻿using DLP.Core.Models;
+using DLP.Core.Models.Enums;
 
 namespace DLP.Core.Interfaces
 {
@@ -20,7 +21,7 @@ namespace DLP.Core.Interfaces
         /// <summary>
         /// The country that issued the license.
         /// </summary>
-        public string Country { get; }
+        public IssuingCountry Country { get; }
 
         /// <summary>
         /// Drivers License Issuer Identification Number.
