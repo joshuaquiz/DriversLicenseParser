@@ -40,6 +40,7 @@ namespace DLP.Tests.Models
             var firstNameAlias = Guid.NewGuid().ToString();
             var suffixAlias = Guid.NewGuid().ToString();
             const NameSuffix nameSuffix = NameSuffix.Junior;
+            const LicenseVersion licenseVersion = LicenseVersion.Version6;
 
             // Act.
             var driversLicenseData = new DriversLicenseData
@@ -71,7 +72,8 @@ namespace DLP.Tests.Models
                 LastNameAlias = lastNameAlias,
                 FirstNameAlias = firstNameAlias,
                 SuffixAlias = suffixAlias,
-                NameSuffix = nameSuffix
+                NameSuffix = nameSuffix,
+                LicenseVersion = licenseVersion
             };
 
             // Assert.
@@ -159,6 +161,9 @@ namespace DLP.Tests.Models
             Assert.Equal(
                 nameSuffix,
                 driversLicenseData.NameSuffix);
+            Assert.Equal(
+                licenseVersion,
+                driversLicenseData.LicenseVersion);
         }
 
         [Fact]
@@ -192,6 +197,7 @@ namespace DLP.Tests.Models
             var firstNameAlias = Guid.NewGuid().ToString();
             var suffixAlias = Guid.NewGuid().ToString();
             const NameSuffix nameSuffix = NameSuffix.Junior;
+            const LicenseVersion licenseVersion = LicenseVersion.Version6;
             var driversLicenseData = new DriversLicenseData
             {
                 FirstName = firstName,
@@ -221,7 +227,8 @@ namespace DLP.Tests.Models
                 LastNameAlias = lastNameAlias,
                 FirstNameAlias = firstNameAlias,
                 SuffixAlias = suffixAlias,
-                NameSuffix = nameSuffix
+                NameSuffix = nameSuffix,
+                LicenseVersion = licenseVersion
             };
 
             // Act.
@@ -229,7 +236,7 @@ namespace DLP.Tests.Models
 
             // Assert.
             Assert.Equal(
-                $"{{\"FirstName\":\"{firstName}\",\"LastName\":\"{lastName}\",\"MiddleName\":\"{middleName}\",\"ExpirationDate\":\"{expirationDate:O}\",\"IssueDate\":\"{issueDate:O}\",\"DateOfBirth\":\"{dateOfBirth:O}\",\"Gender\":{gender:D},\"EyeColor\":{eyeColor:D},\"HairColor\":{hairColor:D},\"Height\":{height},\"StreetAddress\":\"{streetAddress}\",\"SecondStreetAddress\":\"{secondStreetAddress}\",\"City\":\"{city}\",\"State\":\"{state}\",\"PostalCode\":\"{postalCode}\",\"CustomerId\":\"{customerId}\",\"DocumentId\":\"{documentId}\",\"IssuingCountry\":{issuingCountry:D},\"MiddleNameTruncated\":{middleNameTruncated:D},\"FirstNameTruncated\":{firstNameTruncated:D},\"LastNameTruncated\":{lastNameTruncated:D},\"PlaceOfBirth\":\"{placeOfBirth}\",\"AuditInformation\":\"{auditInformation}\",\"InventoryControl\":\"{inventoryControl}\",\"LastNameAlias\":\"{lastNameAlias}\",\"FirstNameAlias\":\"{firstNameAlias}\",\"SuffixAlias\":\"{suffixAlias}\",\"NameSuffix\":{nameSuffix:D}}}",
+                $"{{\"FirstName\":\"{firstName}\",\"LastName\":\"{lastName}\",\"MiddleName\":\"{middleName}\",\"ExpirationDate\":\"{expirationDate:O}\",\"IssueDate\":\"{issueDate:O}\",\"DateOfBirth\":\"{dateOfBirth:O}\",\"Gender\":{gender:D},\"EyeColor\":{eyeColor:D},\"HairColor\":{hairColor:D},\"Height\":{height},\"StreetAddress\":\"{streetAddress}\",\"SecondStreetAddress\":\"{secondStreetAddress}\",\"City\":\"{city}\",\"State\":\"{state}\",\"PostalCode\":\"{postalCode}\",\"CustomerId\":\"{customerId}\",\"DocumentId\":\"{documentId}\",\"IssuingCountry\":{issuingCountry:D},\"MiddleNameTruncated\":{middleNameTruncated:D},\"FirstNameTruncated\":{firstNameTruncated:D},\"LastNameTruncated\":{lastNameTruncated:D},\"PlaceOfBirth\":\"{placeOfBirth}\",\"AuditInformation\":\"{auditInformation}\",\"InventoryControl\":\"{inventoryControl}\",\"LastNameAlias\":\"{lastNameAlias}\",\"FirstNameAlias\":\"{firstNameAlias}\",\"SuffixAlias\":\"{suffixAlias}\",\"NameSuffix\":{nameSuffix:D},\"LicenseVersion\":{licenseVersion:D}}}",
                 json);
         }
 
@@ -265,7 +272,8 @@ namespace DLP.Tests.Models
             var firstNameAlias = Guid.NewGuid().ToString();
             var suffixAlias = Guid.NewGuid().ToString();
             const NameSuffix nameSuffix = NameSuffix.Junior;
-            var json = $"{{\"FirstName\":\"{firstName}\",\"LastName\":\"{lastName}\",\"MiddleName\":\"{middleName}\",\"ExpirationDate\":\"{expirationDate:O}\",\"IssueDate\":\"{issueDate:O}\",\"DateOfBirth\":\"{dateOfBirth:O}\",\"Gender\":{gender:D},\"EyeColor\":{eyeColor:D},\"HairColor\":{hairColor:D},\"Height\":{height},\"StreetAddress\":\"{streetAddress}\",\"SecondStreetAddress\":\"{secondStreetAddress}\",\"City\":\"{city}\",\"State\":\"{state}\",\"PostalCode\":\"{postalCode}\",\"CustomerId\":\"{customerId}\",\"DocumentId\":\"{documentId}\",\"IssuingCountry\":{issuingCountry:D},\"MiddleNameTruncated\":{middleNameTruncated:D},\"FirstNameTruncated\":{firstNameTruncated:D},\"LastNameTruncated\":{lastNameTruncated:D},\"PlaceOfBirth\":\"{placeOfBirth}\",\"AuditInformation\":\"{auditInformation}\",\"InventoryControl\":\"{inventoryControl}\",\"LastNameAlias\":\"{lastNameAlias}\",\"FirstNameAlias\":\"{firstNameAlias}\",\"SuffixAlias\":\"{suffixAlias}\",\"NameSuffix\":{nameSuffix:D}}}";
+            const LicenseVersion licenseVersion = LicenseVersion.Version6;
+            var json = $"{{\"FirstName\":\"{firstName}\",\"LastName\":\"{lastName}\",\"MiddleName\":\"{middleName}\",\"ExpirationDate\":\"{expirationDate:O}\",\"IssueDate\":\"{issueDate:O}\",\"DateOfBirth\":\"{dateOfBirth:O}\",\"Gender\":{gender:D},\"EyeColor\":{eyeColor:D},\"HairColor\":{hairColor:D},\"Height\":{height},\"StreetAddress\":\"{streetAddress}\",\"SecondStreetAddress\":\"{secondStreetAddress}\",\"City\":\"{city}\",\"State\":\"{state}\",\"PostalCode\":\"{postalCode}\",\"CustomerId\":\"{customerId}\",\"DocumentId\":\"{documentId}\",\"IssuingCountry\":{issuingCountry:D},\"MiddleNameTruncated\":{middleNameTruncated:D},\"FirstNameTruncated\":{firstNameTruncated:D},\"LastNameTruncated\":{lastNameTruncated:D},\"PlaceOfBirth\":\"{placeOfBirth}\",\"AuditInformation\":\"{auditInformation}\",\"InventoryControl\":\"{inventoryControl}\",\"LastNameAlias\":\"{lastNameAlias}\",\"FirstNameAlias\":\"{firstNameAlias}\",\"SuffixAlias\":\"{suffixAlias}\",\"NameSuffix\":{nameSuffix:D},\"LicenseVersion\":{licenseVersion:D}}}";
 
             // Act.
             var driversLicenseData = JsonConvert.DeserializeObject<DriversLicenseData>(json);
@@ -355,6 +363,9 @@ namespace DLP.Tests.Models
             Assert.Equal(
                 nameSuffix,
                 driversLicenseData.NameSuffix);
+            Assert.Equal(
+                licenseVersion,
+                driversLicenseData.LicenseVersion);
         }
     }
 }

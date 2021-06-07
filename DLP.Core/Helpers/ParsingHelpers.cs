@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DLP.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using DLP.Core.Models.Enums;
+using DLP.Core.Parsers;
 
 namespace DLP.Core.Helpers
 {
@@ -84,6 +86,19 @@ namespace DLP.Core.Helpers
                 : s[..length];
 
         /// <summary>
+        /// Returns a substring with the length specified.
+        /// If the length specified is longer than the string then the string value for as much as there is will be returned.
+        /// </summary>
+        /// <param name="s">The string to trim.</param>
+        /// <param name="startingIndex">The index to start at.</param>
+        /// <param name="length">The length to trim to.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string SubstringSafe(this string s, int startingIndex, int length) =>
+            s.Length <= startingIndex + length
+                ? s[startingIndex..]
+                : s.Substring(startingIndex, length);
+
+        /// <summary>
         /// Removes the first occurrence of the value.
         /// </summary>
         /// <param name="haystack">Data to search in.</param>
@@ -91,6 +106,11 @@ namespace DLP.Core.Helpers
         /// <returns><see cref="string"/></returns>
         public static string RemoveFirstOccurrence(this string haystack, string needle)
         {
+            if (string.IsNullOrEmpty(needle))
+            {
+                return haystack;
+            }
+
             var index = haystack.IndexOf(needle, StringComparison.InvariantCultureIgnoreCase);
             return index > -1
                 ? haystack.Remove(index, needle.Length)
@@ -235,7 +255,7 @@ namespace DLP.Core.Helpers
                 s = s.ToUpperInvariant().Trim();
                 if (s.Contains("CM"))
                 {
-                    return (decimal?)(decimal.Parse(s.RemoveFirstOccurrence("CM").Trim()) * Constants.InchesPerCentimeter);
+                    return decimal.Parse(s.RemoveFirstOccurrence("CM").Trim()) * Constants.InchesPerCentimeter;
                 }
 
                 if (s.Contains("IN"))
@@ -261,6 +281,31 @@ namespace DLP.Core.Helpers
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Parses the string into a <see cref="DriversLicenseData"/>.
+        /// </summary>
+        /// <param name="data">The license data.</param>
+        /// <param name="defaultIssuingCountry">The default country to populate.</param>
+        /// <returns><see cref="DriversLicenseData"/></returns>
+        public static DriversLicenseData BasicDriversLicenseParser(string data, IssuingCountry defaultIssuingCountry)
+        {
+            var driversLicenseData = GetLicenseVersion(data) switch
+            {
+                LicenseVersion.Version2 => Version2StandardParser.ParseDriversLicenseData(data),
+                LicenseVersion.Version3 => Version3StandardParser.ParseDriversLicenseData(data),
+                LicenseVersion.Version4 => Version4StandardParser.ParseDriversLicenseData(data),
+                LicenseVersion.Version5 => Version5StandardParser.ParseDriversLicenseData(data),
+                LicenseVersion.Version6 => Version6StandardParser.ParseDriversLicenseData(data),
+                LicenseVersion.Version7 => Version7StandardParser.ParseDriversLicenseData(data),
+                LicenseVersion.Version8 => Version8StandardParser.ParseDriversLicenseData(data),
+                _ => Version1StandardParser.ParseDriversLicenseData(data)
+            };
+            driversLicenseData.IssuingCountry = driversLicenseData.IssuingCountry == IssuingCountry.Unknown
+                ? defaultIssuingCountry
+                : driversLicenseData.IssuingCountry;
+            return driversLicenseData;
         }
     }
 }

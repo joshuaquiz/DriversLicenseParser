@@ -1,4 +1,5 @@
-﻿using DLP.Core.Interfaces;
+﻿using DLP.Core.Helpers;
+using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 
@@ -6,8 +7,10 @@ namespace DLP.Core.ParseableLicenses
 {
     public sealed class Nunavut : IParseableLicense
     {
+        /// <inheritdoc />
         public string FullName => "Nunavut";
 
+        /// <inheritdoc />
         public string Abbreviation => "NU";
 
         /// <inheritdoc />
@@ -16,12 +19,12 @@ namespace DLP.Core.ParseableLicenses
         /// <inheritdoc />
         public int IssuerIdentificationNumber => 604433;
 
+        /// <inheritdoc />
         public bool IsDataFromEntity(string data) =>
             data.Contains(IssuerIdentificationNumber.ToString());
 
-        public DriversLicenseData ParseData(string data)
-        {
-            return null;
-        }
+        /// <inheritdoc />
+        public DriversLicenseData ParseData(string data) =>
+            ParsingHelpers.BasicDriversLicenseParser(data, Country);
     }
 }

@@ -1,4 +1,5 @@
-﻿using DLP.Core.Interfaces;
+﻿using DLP.Core.Helpers;
+using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 
@@ -6,9 +7,11 @@ namespace DLP.Core.ParseableLicenses
 {
     public sealed class StateDeptDiplomatic : IParseableLicense
     {
+        /// <inheritdoc />
         public string FullName => "State Dept. (Diplomatic)";
 
-        public string Abbreviation => "";
+        /// <inheritdoc />
+        public string Abbreviation => string.Empty;
 
         /// <inheritdoc />
         public IssuingCountry Country => IssuingCountry.UnitedStates;
@@ -16,12 +19,12 @@ namespace DLP.Core.ParseableLicenses
         /// <inheritdoc />
         public int IssuerIdentificationNumber => 636027;
 
+        /// <inheritdoc />
         public bool IsDataFromEntity(string data) =>
             data.Contains(IssuerIdentificationNumber.ToString());
 
-        public DriversLicenseData ParseData(string data)
-        {
-            return null;
-        }
+        /// <inheritdoc />
+        public DriversLicenseData ParseData(string data) =>
+            ParsingHelpers.BasicDriversLicenseParser(data, Country);
     }
 }

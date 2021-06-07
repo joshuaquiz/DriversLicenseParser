@@ -79,6 +79,16 @@
             <param name="length">The length to trim to.</param>
             <returns><see cref="T:System.String"/></returns>
         </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.SubstringSafe(System.String,System.Int32,System.Int32)">
+            <summary>
+            Returns a substring with the length specified.
+            If the length specified is longer than the string then the string value for as much as there is will be returned.
+            </summary>
+            <param name="s">The string to trim.</param>
+            <param name="startingIndex">The index to start at.</param>
+            <param name="length">The length to trim to.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
         <member name="M:DLP.Core.Helpers.ParsingHelpers.RemoveFirstOccurrence(System.String,System.String)">
             <summary>
             Removes the first occurrence of the value.
@@ -144,6 +154,14 @@
             </summary>
             <param name="s">The text to attempt to parse.</param>
             <returns><see cref="T:System.Decimal"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.BasicDriversLicenseParser(System.String,DLP.Core.Models.Enums.IssuingCountry)">
+            <summary>
+            Parses the string into a <see cref="T:DLP.Core.Models.DriversLicenseData"/>.
+            </summary>
+            <param name="data">The license data.</param>
+            <param name="defaultIssuingCountry">The default country to populate.</param>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
         </member>
         <member name="T:DLP.Core.Interfaces.IParseableLicense">
             <summary>
@@ -678,10 +696,28 @@
             Not Truncated.
             </summary>
         </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alabama.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alabama.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Alabama.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Alabama.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Alabama.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Alabama.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alaska.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alaska.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Alaska.Country">
@@ -690,10 +726,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Alaska.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Alaska.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Alaska.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alberta.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Alberta.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Alberta.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Alberta.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Alberta.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Alberta.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.AmericanSamoa.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.AmericanSamoa.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.AmericanSamoa.Country">
@@ -702,10 +762,34 @@
         <member name="P:DLP.Core.ParseableLicenses.AmericanSamoa.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.AmericanSamoa.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.AmericanSamoa.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arizona.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arizona.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Arizona.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Arizona.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Arizona.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Arizona.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arkansas.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Arkansas.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Arkansas.Country">
@@ -714,10 +798,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Arkansas.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Arkansas.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Arkansas.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.BritishColumbia.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.BritishColumbia.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.BritishColumbia.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.BritishColumbia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.BritishColumbia.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.BritishColumbia.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.California.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.California.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.California.Country">
@@ -726,10 +834,34 @@
         <member name="P:DLP.Core.ParseableLicenses.California.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.California.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.California.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Coahuila.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Coahuila.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Coahuila.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Coahuila.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Coahuila.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Coahuila.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Colorado.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Colorado.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Colorado.Country">
@@ -738,10 +870,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Colorado.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Colorado.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Colorado.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Connecticut.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Connecticut.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Connecticut.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Connecticut.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Connecticut.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Connecticut.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Delaware.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Delaware.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Delaware.Country">
@@ -750,10 +906,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Delaware.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Delaware.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Delaware.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.DistrictOfColumbia.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.DistrictOfColumbia.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.DistrictOfColumbia.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.DistrictOfColumbia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.DistrictOfColumbia.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.DistrictOfColumbia.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Florida.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Florida.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Florida.Country">
@@ -762,10 +942,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Florida.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Florida.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Florida.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Georgia.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Georgia.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Georgia.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Georgia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Georgia.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Georgia.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Guam.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Guam.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Guam.Country">
@@ -774,10 +978,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Guam.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Guam.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Guam.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hawaii.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hawaii.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Hawaii.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Hawaii.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Hawaii.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Hawaii.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hidalgo.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Hidalgo.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Hidalgo.Country">
@@ -786,10 +1014,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Hidalgo.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Hidalgo.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Hidalgo.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Idaho.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Idaho.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Idaho.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Idaho.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Idaho.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Idaho.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Illinois.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Illinois.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Illinois.Country">
@@ -798,10 +1050,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Illinois.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Illinois.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Illinois.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Indiana.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Indiana.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Indiana.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Indiana.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Indiana.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Indiana.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Iowa.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Iowa.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Iowa.Country">
@@ -810,10 +1086,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Iowa.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Iowa.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Iowa.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kansas.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kansas.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Kansas.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Kansas.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Kansas.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Kansas.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kentucky.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Kentucky.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Kentucky.Country">
@@ -822,10 +1122,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Kentucky.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Kentucky.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Kentucky.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Louisiana.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Louisiana.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Louisiana.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Louisiana.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Louisiana.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Louisiana.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maine.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maine.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Maine.Country">
@@ -834,10 +1158,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Maine.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Maine.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Maine.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Manitoba.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Manitoba.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Manitoba.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Manitoba.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Manitoba.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Manitoba.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maryland.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Maryland.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Maryland.Country">
@@ -846,11 +1194,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Maryland.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Maryland.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Maryland.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Massachusetts.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Massachusetts.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Massachusetts.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Massachusetts.IssuerIdentificationNumber">
             <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Massachusetts.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Massachusetts.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:DLP.Core.ParseableLicenses.Michigan">
+            <summary>
+            Represents a license from the US state of Michigan.
+            </summary>
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Michigan.FullName">
             <inheritdoc />
@@ -870,10 +1241,28 @@
         <member name="M:DLP.Core.ParseableLicenses.Michigan.ParseData(System.String)">
             <inheritdoc />
         </member>
+        <member name="P:DLP.Core.ParseableLicenses.Minnesota.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Minnesota.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Minnesota.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Minnesota.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Minnesota.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Minnesota.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Mississippi.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Mississippi.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Mississippi.Country">
@@ -882,10 +1271,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Mississippi.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Mississippi.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Mississippi.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Missouri.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Missouri.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Missouri.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Missouri.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Missouri.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Missouri.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Montana.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Montana.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Montana.Country">
@@ -894,10 +1307,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Montana.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Montana.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Montana.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nebraska.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nebraska.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Nebraska.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Nebraska.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Nebraska.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Nebraska.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nevada.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nevada.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Nevada.Country">
@@ -906,10 +1343,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Nevada.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Nevada.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Nevada.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewBrunswick.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewBrunswick.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.NewBrunswick.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NewBrunswick.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewBrunswick.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewBrunswick.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.Country">
@@ -918,10 +1379,34 @@
         <member name="P:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewfoundlandAndLabrador.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewHampshire.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewHampshire.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.NewHampshire.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NewHampshire.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewHampshire.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewHampshire.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewJersey.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewJersey.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NewJersey.Country">
@@ -930,10 +1415,34 @@
         <member name="P:DLP.Core.ParseableLicenses.NewJersey.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewJersey.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewJersey.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewMexico.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewMexico.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.NewMexico.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NewMexico.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewMexico.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewMexico.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewYork.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NewYork.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NewYork.Country">
@@ -942,10 +1451,34 @@
         <member name="P:DLP.Core.ParseableLicenses.NewYork.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewYork.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NewYork.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthCarolina.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthCarolina.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.NorthCarolina.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NorthCarolina.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NorthCarolina.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NorthCarolina.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthDakota.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthDakota.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NorthDakota.Country">
@@ -954,10 +1487,34 @@
         <member name="P:DLP.Core.ParseableLicenses.NorthDakota.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.NorthDakota.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NorthDakota.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthernMariannaIslands.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NorthernMariannaIslands.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.NorthernMariannaIslands.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NorthernMariannaIslands.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NorthernMariannaIslands.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NorthernMariannaIslands.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NovaScotia.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.NovaScotia.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.NovaScotia.Country">
@@ -966,10 +1523,39 @@
         <member name="P:DLP.Core.ParseableLicenses.NovaScotia.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.NovaScotia.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.NovaScotia.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nunavut.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Nunavut.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Nunavut.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Nunavut.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Nunavut.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Nunavut.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:DLP.Core.ParseableLicenses.Ohio">
+            <summary>
+            Represents a license from the US state of Ohio.
+            </summary>
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ohio.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ohio.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Ohio.Country">
@@ -978,10 +1564,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Ohio.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Ohio.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Ohio.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oklahoma.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oklahoma.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Oklahoma.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Oklahoma.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Oklahoma.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Oklahoma.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ontario.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Ontario.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Ontario.Country">
@@ -990,10 +1600,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Ontario.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Ontario.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Ontario.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oregon.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Oregon.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Oregon.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Oregon.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Oregon.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Oregon.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.Country">
@@ -1002,10 +1636,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Pennsylvania.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Pennsylvania.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PrinceEdwardIsland.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PrinceEdwardIsland.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.PrinceEdwardIsland.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.PrinceEdwardIsland.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.PrinceEdwardIsland.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.PrinceEdwardIsland.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PuertoRico.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.PuertoRico.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.PuertoRico.Country">
@@ -1014,10 +1672,34 @@
         <member name="P:DLP.Core.ParseableLicenses.PuertoRico.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.PuertoRico.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.PuertoRico.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Quebec.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Quebec.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Quebec.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Quebec.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Quebec.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Quebec.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.RhodeIsland.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.RhodeIsland.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.RhodeIsland.Country">
@@ -1026,10 +1708,34 @@
         <member name="P:DLP.Core.ParseableLicenses.RhodeIsland.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.RhodeIsland.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.RhodeIsland.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Saskatchewan.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Saskatchewan.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Saskatchewan.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Saskatchewan.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Saskatchewan.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Saskatchewan.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthCarolina.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthCarolina.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.SouthCarolina.Country">
@@ -1038,10 +1744,34 @@
         <member name="P:DLP.Core.ParseableLicenses.SouthCarolina.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.SouthCarolina.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.SouthCarolina.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthDakota.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.SouthDakota.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.SouthDakota.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.SouthDakota.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.SouthDakota.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.SouthDakota.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.StateDeptDiplomatic.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.StateDeptDiplomatic.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.StateDeptDiplomatic.Country">
@@ -1050,10 +1780,34 @@
         <member name="P:DLP.Core.ParseableLicenses.StateDeptDiplomatic.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.StateDeptDiplomatic.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.StateDeptDiplomatic.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Tennessee.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Tennessee.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Tennessee.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Tennessee.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Tennessee.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Tennessee.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Texas.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Texas.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Texas.Country">
@@ -1062,10 +1816,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Texas.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Texas.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Texas.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Utah.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Utah.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Utah.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Utah.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Utah.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Utah.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Vermont.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Vermont.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Vermont.Country">
@@ -1074,10 +1852,34 @@
         <member name="P:DLP.Core.ParseableLicenses.Vermont.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Vermont.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Vermont.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Virginia.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Virginia.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Virginia.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Virginia.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Virginia.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Virginia.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.VirginIslands.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.VirginIslands.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.VirginIslands.Country">
@@ -1086,10 +1888,34 @@
         <member name="P:DLP.Core.ParseableLicenses.VirginIslands.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.VirginIslands.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.VirginIslands.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Washington.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Washington.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Washington.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Washington.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Washington.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Washington.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.WestVirginia.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.WestVirginia.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.WestVirginia.Country">
@@ -1098,10 +1924,34 @@
         <member name="P:DLP.Core.ParseableLicenses.WestVirginia.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.WestVirginia.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.WestVirginia.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wisconsin.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wisconsin.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Wisconsin.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Wisconsin.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Wisconsin.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Wisconsin.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wyoming.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Wyoming.Abbreviation">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Wyoming.Country">
@@ -1110,10 +1960,28 @@
         <member name="P:DLP.Core.ParseableLicenses.Wyoming.IssuerIdentificationNumber">
             <inheritdoc />
         </member>
+        <member name="M:DLP.Core.ParseableLicenses.Wyoming.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Wyoming.ParseData(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Yukon.FullName">
+            <inheritdoc />
+        </member>
+        <member name="P:DLP.Core.ParseableLicenses.Yukon.Abbreviation">
+            <inheritdoc />
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Yukon.Country">
             <inheritdoc />
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Yukon.IssuerIdentificationNumber">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Yukon.IsDataFromEntity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DLP.Core.ParseableLicenses.Yukon.ParseData(System.String)">
             <inheritdoc />
         </member>
     </members>

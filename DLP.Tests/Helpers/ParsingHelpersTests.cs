@@ -312,6 +312,32 @@ namespace DLP.Tests.Helpers
         }
 
         [Fact]
+        public static void RemoveFirstOccurrenceWorksCorrectlyWhenNullIsProvided()
+        {
+            // Setup.
+            const string data = "data";
+
+            // Act.
+            var result = data.RemoveFirstOccurrence(null);
+
+            // Assert.
+            Assert.Equal(data, result);
+        }
+
+        [Fact]
+        public static void RemoveFirstOccurrenceWorksCorrectlyWhenEmptyStringIsProvided()
+        {
+            // Setup.
+            const string data = "data";
+
+            // Act.
+            var result = data.RemoveFirstOccurrence(string.Empty);
+
+            // Assert.
+            Assert.Equal(data, result);
+        }
+
+        [Fact]
         public static void RemoveFirstOccurrenceWorksCorrectlyWhenThereAreNoOccurrences()
         {
             // Setup.
