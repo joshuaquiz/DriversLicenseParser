@@ -29,24 +29,6 @@ namespace DLP.Tests
                 },
                 new object[]
                 {
-                    "OHMYCITY%5EDOE%24JOHN%24D%24%5E1234%20FAKE%20AVE%5E6360232017123456789%3D16122010122310452273804%20%20D%20A%20%20%20%20%20%20%20%20%20%20%20%20%202503130BROHAZ",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHN",
-                        PrimaryMiddleName = "D",
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "12/23/2010",
-                        Address1 = "1234 FAKE AVE",
-                        Address2 = null,
-                        City = "MYCITY",
-                        State = "OH",
-                        Zip = "45227-3804",
-                        County = string.Empty,
-                        DriversLicenseNumber = "123456789"
-                    }
-                },
-                new object[]
-                {
                     "%40%0A%1E%0DAAMVA36004001DL00280195DLDABDOE%0ADACJOHN%0ADADD%0ADAE%0ADAL1234%20FAKE%20CT%0ADAM%0ADANMYCITY%0ADAONC%0ADAP28451-7030%0ADAQ123456789%0ADARC%0ADASNone%0ADATNone%0ADAV5-10%0ADAYBLU%0ADAZBRO%0ADBA06-19-2023%0ADBB06-19-2010%0ADBCM%0ADBD06-22-2015%0ADBHY%0D&",
                     new CustomerShell
                     {
@@ -59,42 +41,6 @@ namespace DLP.Tests
                         City = "MYCITY",
                         State = "NC",
                         Zip = "28451",
-                        County = string.Empty,
-                        DriversLicenseNumber = "123456789"
-                    }
-                },
-                new object[]
-                {
-                    "OHMYCITY%5EDOE%24JOHN%24M%24%5E1234%20FAKE%20BLVD%5E6360231820123456789%3D18032010030810442242452%20%20D%20A",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHN",
-                        PrimaryMiddleName = "M",
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "03/08/2010",
-                        Address1 = "1234 FAKE BLVD",
-                        Address2 = null,
-                        City = "MYCITY",
-                        State = "OH",
-                        Zip = "44224-2452",
-                        County = string.Empty,
-                        DriversLicenseNumber = "123456789"
-                    }
-                },
-                new object[]
-                {
-                    "OHMYCITY%5EDOE%24JOHN%24M%24%5E1234%20FAKE%20BLVD%5E6360231820123456789%3D18032010030810442242452%20%20D%20A%20%20%20%20%20%20%20%20%20%20%20%20%201601205BROHAZ&",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHN",
-                        PrimaryMiddleName = "M",
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "03/08/2010",
-                        Address1 = "1234 FAKE BLVD",
-                        Address2 = null,
-                        City = "MYCITY",
-                        State = "OH",
-                        Zip = "44224-2452",
                         County = string.Empty,
                         DriversLicenseNumber = "123456789"
                     }

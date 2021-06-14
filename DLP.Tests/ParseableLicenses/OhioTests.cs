@@ -187,6 +187,114 @@ namespace DLP.Tests.ParseableLicenses
                         LicenseVersion = LicenseVersion.UnknownVersion
                     }
                 },
+                new object[]
+                {
+                    "OHMYCITY%5EDOE%24JOHN%24D%24%5E1234%20FAKE%20AVE%5E6360232017123456789%3D16122010122310452273804%20%20D%20A%20%20%20%20%20%20%20%20%20%20%20%20%202503130BROHAZ",
+                    new DriversLicenseData
+                    {
+                        FirstName = "JOHN",
+                        MiddleName = "D",
+                        LastName = "DOE",
+                        DateOfBirth = new DateTimeOffset(2010, 12, 23, 0, 0, 0, TimeSpan.Zero),
+                        StreetAddress = "1234 FAKE AVE",
+                        SecondStreetAddress = null,
+                        City = "MYCITY",
+                        State = "OH",
+                        PostalCode = "45227-3804",
+                        IssuingCountry = IssuingCountry.UnitedStates,
+                        DocumentId = null,
+                        AuditInformation = null,
+                        FirstNameAlias = null,
+                        LastNameAlias = null,
+                        SuffixAlias = null,
+                        PlaceOfBirth = null,
+                        CustomerId = "2017123456789",
+                        EyeColor = EyeColor.Hazel,
+                        ExpirationDate = new DateTimeOffset(2016, 12, 01, 0, 0, 0, TimeSpan.Zero),
+                        IssueDate = null,
+                        HairColor = HairColor.Brown,
+                        InventoryControl = "6360232017123456789",
+                        FirstNameTruncated = Truncation.Unknown,
+                        LastNameTruncated = Truncation.Unknown,
+                        MiddleNameTruncated = Truncation.Unknown,
+                        Gender = Gender.Female,
+                        Height = 63,
+                        NameSuffix = NameSuffix.Unknown,
+                        LicenseVersion = LicenseVersion.UnknownVersion
+                    }
+                },
+                new object[]
+                {
+                    "OHMYCITY%5EDOE%24JOHN%24M%24%5E1234%20FAKE%20BLVD%5E6360231820123456789%3D18032010030810442242452%20%20D%20A",
+                    new DriversLicenseData
+                    {
+                        FirstName = "JOHN",
+                        MiddleName = "M",
+                        LastName = "DOE",
+                        DateOfBirth = new DateTimeOffset(2010, 3, 8, 0, 0, 0, TimeSpan.Zero),
+                        StreetAddress = "1234 FAKE BLVD",
+                        SecondStreetAddress = null,
+                        City = "MYCITY",
+                        State = "OH",
+                        PostalCode = "44224-2452",
+                        IssuingCountry = IssuingCountry.UnitedStates,
+                        DocumentId = null,
+                        AuditInformation = null,
+                        FirstNameAlias = null,
+                        LastNameAlias = null,
+                        SuffixAlias = null,
+                        PlaceOfBirth = null,
+                        CustomerId = "1820123456789",
+                        EyeColor = EyeColor.Unknown,
+                        ExpirationDate = new DateTimeOffset(2018, 3, 1, 0, 0, 0, TimeSpan.Zero),
+                        IssueDate = null,
+                        HairColor = HairColor.Unknown,
+                        InventoryControl = "6360231820123456789",
+                        FirstNameTruncated = Truncation.Unknown,
+                        LastNameTruncated = Truncation.Unknown,
+                        MiddleNameTruncated = Truncation.Unknown,
+                        Gender = Gender.Unknown,
+                        Height = null,
+                        NameSuffix = NameSuffix.Unknown,
+                        LicenseVersion = LicenseVersion.UnknownVersion
+                    }
+                },
+                new object[]
+                {
+                    "OHMYCITY%5EDOE%24JOHN%24M%24%5E1234%20FAKE%20BLVD%5E6360231820123456789%3D18032010030810442242452%20%20D%20A%20%20%20%20%20%20%20%20%20%20%20%20%201601205BROHAZ&",
+                    new DriversLicenseData
+                    {
+                        FirstName = "JOHN",
+                        MiddleName = "M",
+                        LastName = "DOE",
+                        DateOfBirth = new DateTimeOffset(2010, 3, 8, 0, 0, 0, TimeSpan.Zero),
+                        StreetAddress = "1234 FAKE BLVD",
+                        SecondStreetAddress = null,
+                        City = "MYCITY",
+                        State = "OH",
+                        PostalCode = "44224-2452",
+                        IssuingCountry = IssuingCountry.UnitedStates,
+                        DocumentId = null,
+                        AuditInformation = null,
+                        FirstNameAlias = null,
+                        LastNameAlias = null,
+                        SuffixAlias = null,
+                        PlaceOfBirth = null,
+                        CustomerId = "1820123456789",
+                        EyeColor = EyeColor.Hazel,
+                        ExpirationDate = new DateTimeOffset(2018, 3, 1, 0, 0, 0, TimeSpan.Zero),
+                        IssueDate = null,
+                        HairColor = HairColor.Brown,
+                        InventoryControl = "6360231820123456789",
+                        FirstNameTruncated = Truncation.Unknown,
+                        LastNameTruncated = Truncation.Unknown,
+                        MiddleNameTruncated = Truncation.Unknown,
+                        Gender = Gender.Male,
+                        Height = 73,
+                        NameSuffix = NameSuffix.Unknown,
+                        LicenseVersion = LicenseVersion.UnknownVersion
+                    }
+                }
             };
 
         [Theory, MemberData(nameof(GetDataSets))]
