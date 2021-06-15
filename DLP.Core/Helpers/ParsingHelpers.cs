@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using DLP.Core.Models.Enums;
 using DLP.Core.Parsers;
+using System.Linq;
 
 namespace DLP.Core.Helpers
 {
@@ -37,15 +38,57 @@ namespace DLP.Core.Helpers
         public static string ParseDriverLicenseName(this IReadOnlyDictionary<string, string> data, string dataKey, string namePart)
         {
             var driverLicenseName = data.TryGetValue(dataKey);
-            var nameParts = driverLicenseName?.Split(',');
-            return namePart switch
+            if (!string.IsNullOrWhiteSpace(driverLicenseName) && driverLicenseName.Contains(' ') && !driverLicenseName.Contains(','))
             {
-                "firstName" => nameParts?.Length >= 2 ? nameParts[1] : null,
-                "middleName" => nameParts?.Length >= 3 ? nameParts[2] : null,
-                "lastName" => nameParts?.Length >= 1 ? nameParts[0] : null,
-                "suffix" => nameParts?.Length >= 4 ? nameParts[3] : null,
-                _ => null
-            };
+                var nameParts = driverLicenseName.Split(' ');
+                return namePart switch
+                {
+                    "firstName" => nameParts?.Length >= 1 ? nameParts[0] : null,
+                    "middleName" => nameParts?.Length switch
+                    {
+                        3 =>
+                            nameParts[1],
+                        >= 4 when nameParts.LastOrDefault()?.ParseNameSuffix() == NameSuffix.Unknown =>
+                            string.Join(" ", nameParts[1..^1]),
+                        >= 4 when nameParts.LastOrDefault()?.ParseNameSuffix() != NameSuffix.Unknown =>
+                            string.Join(" ", nameParts[1..^2]),
+                        _ => null
+                    },
+                    "lastName" => nameParts?.Length switch
+                    {
+                        2 =>
+                            nameParts[1],
+                        3 when nameParts.LastOrDefault()?.ParseNameSuffix() == NameSuffix.Unknown =>
+                            nameParts[2],
+                        3 when nameParts.LastOrDefault()?.ParseNameSuffix() != NameSuffix.Unknown =>
+                            nameParts[1],
+                        >= 3 when nameParts.LastOrDefault()?.ParseNameSuffix() == NameSuffix.Unknown =>
+                            nameParts.LastOrDefault(),
+                        >= 3 when nameParts.LastOrDefault()?.ParseNameSuffix() != NameSuffix.Unknown =>
+                            nameParts[^2],
+                        _ => null
+                    },
+                    "suffix" => nameParts?.Length switch
+                    {
+                        >= 3 when nameParts.LastOrDefault()?.ParseNameSuffix() != NameSuffix.Unknown =>
+                            nameParts.Last(),
+                        _ => null
+                    },
+                    _ => null
+                };
+            }
+            else
+            {
+                var nameParts = driverLicenseName?.Split(',');
+                return namePart switch
+                {
+                    "firstName" => nameParts?.Length >= 2 ? nameParts[1] : null,
+                    "middleName" => nameParts?.Length >= 3 ? nameParts[2] : null,
+                    "lastName" => nameParts?.Length >= 1 ? nameParts[0] : null,
+                    "suffix" => nameParts?.Length >= 4 ? nameParts[3] : null,
+                    _ => null
+                };
+            }
         }
 
         /// <summary>
@@ -119,19 +162,27 @@ namespace DLP.Core.Helpers
 
         /// <summary>
         /// Tries to parse as a <see cref="DateTimeOffset"/> using the format MMddyyyy.
+        /// If the first attempt does not parse correctly, we try to parse using the format yyyyMMdd.
         /// Returns null if unable to parse.
         /// </summary>
         /// <param name="s">The text to attempt to parse.</param>
         /// <returns><see cref="DateTimeOffset"/></returns>
-        public static DateTimeOffset? ParseDateTimeMonthDayYear(this string s) =>
+        public static DateTimeOffset? ParseDateTimeMdyThenYmd(this string s) =>
             DateTimeOffset.TryParseExact(
                 s,
                 "MMddyyyy",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AssumeUniversal,
-                out var result)
-                ? result
-                : null;
+                out var mdyResult)
+                ? mdyResult
+                : DateTimeOffset.TryParseExact(
+                    s,
+                    "yyyyMMdd",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.AssumeUniversal,
+                    out var ymdResult)
+                    ? ymdResult
+                    : null;
 
         /// <summary>
         /// Tries to parse the issuing country.

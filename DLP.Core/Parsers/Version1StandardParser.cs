@@ -21,9 +21,9 @@ namespace DLP.Core.Parsers
                            ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "lastName"),
                 MiddleName = splitUpData.TryGetValue(Version1StandardMarkers.MiddleNameMarker)
                              ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "middleName"),
-                ExpirationDate = splitUpData.TryGetValue(Version1StandardMarkers.ExpirationDateMarker).ParseDateTimeMonthDayYear(),
-                IssueDate = splitUpData.TryGetValue(Version1StandardMarkers.IssueDateMarker).ParseDateTimeMonthDayYear(),
-                DateOfBirth = splitUpData.TryGetValue(Version1StandardMarkers.DateOfBirthMarker).ParseDateTimeMonthDayYear(),
+                ExpirationDate = splitUpData.TryGetValue(Version1StandardMarkers.ExpirationDateMarker).ParseDateTimeMdyThenYmd(),
+                IssueDate = splitUpData.TryGetValue(Version1StandardMarkers.IssueDateMarker).ParseDateTimeMdyThenYmd(),
+                DateOfBirth = splitUpData.TryGetValue(Version1StandardMarkers.DateOfBirthMarker).ParseDateTimeMdyThenYmd(),
                 Gender = splitUpData.TryGetValue(Version1StandardMarkers.GenderMarker).ParseGender(),
                 EyeColor = splitUpData.TryGetValue(Version1StandardMarkers.EyeColorMarker).ParseEyeColor(),
                 Height = splitUpData.TryGetValue(Version1StandardMarkers.HeightMarker).ParseHeightInInches(),

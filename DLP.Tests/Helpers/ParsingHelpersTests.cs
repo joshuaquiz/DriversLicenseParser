@@ -383,7 +383,7 @@ namespace DLP.Tests.Helpers
             var data = Guid.NewGuid().ToString();
 
             // Act.
-            var result = data.ParseDateTimeMonthDayYear();
+            var result = data.ParseDateTimeMdyThenYmd();
 
             // Assert.
             Assert.Null(result);
@@ -396,7 +396,7 @@ namespace DLP.Tests.Helpers
             const string data = "31012020";
 
             // Act.
-            var result = data.ParseDateTimeMonthDayYear();
+            var result = data.ParseDateTimeMdyThenYmd();
 
             // Assert.
             Assert.Null(result);
@@ -409,7 +409,7 @@ namespace DLP.Tests.Helpers
             const string data = "05202021";
 
             // Act.
-            var result = data.ParseDateTimeMonthDayYear();
+            var result = data.ParseDateTimeMdyThenYmd();
 
             // Assert.
             Assert.Equal(new DateTimeOffset(2021, 05, 20,0, 0, 0, new TimeSpan()), result);

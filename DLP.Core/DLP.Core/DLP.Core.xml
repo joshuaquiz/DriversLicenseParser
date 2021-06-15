@@ -97,9 +97,10 @@
             <param name="needle">What to look for.</param>
             <returns><see cref="T:System.String"/></returns>
         </member>
-        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDateTimeMonthDayYear(System.String)">
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDateTimeMdyThenYmd(System.String)">
             <summary>
             Tries to parse as a <see cref="T:System.DateTimeOffset"/> using the format MMddyyyy.
+            If the first attempt does not parse correctly, we try to parse using the format yyyyMMdd.
             Returns null if unable to parse.
             </summary>
             <param name="s">The text to attempt to parse.</param>
@@ -1623,6 +1624,11 @@
         </member>
         <member name="M:DLP.Core.ParseableLicenses.Oregon.ParseData(System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:DLP.Core.ParseableLicenses.Pennsylvania">
+            <summary>
+            Represents a license from the US state of Pennsylvania.
+            </summary>
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Pennsylvania.FullName">
             <inheritdoc />
