@@ -11,24 +11,6 @@ namespace DLP.Tests
             {
                 new object[]
                 {
-                    "%40%0A%1E%0DANSI%20636040030002DL00410223ZU02640008DLDCAD%0ADCBB%0ADCD%0ADBA10162017%0ADCSDOE%0ADCTJOHN%2CD%2C%0ADBD10152012%0ADBB10162010%0ADBC1%0ADAYBRO%0ADAU%2070%20in%0ADAG1234 FAKE AVE%0ADAISALT%20LAKE%20CITY%0ADAJUT%0ADAK84115%20%20%20%20%20%20%0ADAQ123456789%0ADCF0123456789_108425421%0ADCGUSA%0ADCHNONE%0ADAZBROWN%0A%0DZUZUAY%0A%0D&",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHN",
-                        PrimaryMiddleName = "D",
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "10/16/2010",
-                        Address1 = "1234 FAKE AVE",
-                        Address2 = null,
-                        City = "SALT LAKE CITY",
-                        State = "UT",
-                        Zip = "84115",
-                        County = string.Empty,
-                        DriversLicenseNumber = "123456789"
-                    }
-                },
-                new object[]
-                {
                     "%40%0A%1E%0DAAMVA36004001DL00280195DLDABDOE%0ADACJOHN%0ADADD%0ADAE%0ADAL1234%20FAKE%20CT%0ADAM%0ADANMYCITY%0ADAONC%0ADAP28451-7030%0ADAQ123456789%0ADARC%0ADASNone%0ADATNone%0ADAV5-10%0ADAYBLU%0ADAZBRO%0ADBA06-19-2023%0ADBB06-19-2010%0ADBCM%0ADBD06-22-2015%0ADBHY%0D&",
                     new CustomerShell
                     {

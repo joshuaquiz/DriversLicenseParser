@@ -15,9 +15,11 @@ namespace DLP.Core.Parsers
                 .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
             return new DriversLicenseData
             {
-                FirstName = splitUpData.TryGetValue(Version3StandardMarkers.FirstNameMarker),
+                // Pulling the "Last" name because the first name is where the last name should be.
+                FirstName = splitUpData.ParseDriverLicenseName(Version3StandardMarkers.FirstNameMarker, "lastName"),
                 LastName = splitUpData.TryGetValue(Version3StandardMarkers.LastNameMarker),
-                MiddleName = splitUpData.TryGetValue(Version3StandardMarkers.MiddleNameMarker),
+                MiddleName = splitUpData.TryGetValue(Version3StandardMarkers.MiddleNameMarker)
+                             ?? splitUpData.ParseDriverLicenseName(Version3StandardMarkers.FirstNameMarker, "shortMiddleName"),
                 ExpirationDate = splitUpData.TryGetValue(Version3StandardMarkers.ExpirationDateMarker).ParseDateTimeMdyThenYmd(),
                 IssueDate = splitUpData.TryGetValue(Version3StandardMarkers.IssueDateMarker).ParseDateTimeMdyThenYmd(),
                 DateOfBirth = splitUpData.TryGetValue(Version3StandardMarkers.DateOfBirthMarker).ParseDateTimeMdyThenYmd(),

@@ -84,7 +84,7 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Equal(string.Empty, result);
+            Assert.Null(result);
         }
 
         [Fact]

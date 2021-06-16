@@ -40,7 +40,7 @@ namespace DLP.Core.Helpers
             var driverLicenseName = data.TryGetValue(dataKey);
             if (!string.IsNullOrWhiteSpace(driverLicenseName) && driverLicenseName.Contains(' ') && !driverLicenseName.Contains(','))
             {
-                var nameParts = driverLicenseName.Split(' ');
+                var nameParts = driverLicenseName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 return namePart switch
                 {
                     "firstName" => nameParts?.Length >= 1 ? nameParts[0] : null,
@@ -79,10 +79,11 @@ namespace DLP.Core.Helpers
             }
             else
             {
-                var nameParts = driverLicenseName?.Split(',');
+                var nameParts = driverLicenseName?.Split(',', StringSplitOptions.RemoveEmptyEntries);
                 return namePart switch
                 {
                     "firstName" => nameParts?.Length >= 2 ? nameParts[1] : null,
+                    "shortMiddleName" => nameParts?.Length >= 2 ? nameParts[1] : null,
                     "middleName" => nameParts?.Length >= 3 ? nameParts[2] : null,
                     "lastName" => nameParts?.Length >= 1 ? nameParts[0] : null,
                     "suffix" => nameParts?.Length >= 4 ? nameParts[3] : null,

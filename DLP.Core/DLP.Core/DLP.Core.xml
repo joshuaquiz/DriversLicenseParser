@@ -1828,6 +1828,11 @@
         <member name="M:DLP.Core.ParseableLicenses.Texas.ParseData(System.String)">
             <inheritdoc />
         </member>
+        <member name="T:DLP.Core.ParseableLicenses.Utah">
+            <summary>
+            Represents a license from the US state of Utah.
+            </summary>
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Utah.FullName">
             <inheritdoc />
         </member>
