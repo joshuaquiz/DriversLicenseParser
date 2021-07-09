@@ -26,7 +26,7 @@ namespace DLP.Core.ParseableLicenses
 
         /// <inheritdoc />
         public DriversLicenseData ParseData(string data) =>
-            ParsingHelpers.BasicDriversLicenseParser(data, Country);
+            ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
     }
 
 }

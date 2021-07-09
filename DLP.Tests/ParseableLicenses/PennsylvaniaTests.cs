@@ -8,27 +8,27 @@ using Xunit;
 
 namespace DLP.Tests.ParseableLicenses
 {
-    public static class PennsylvaniaTests
+    public static class ValidateStateLicenseData
     {
         [Fact]
         public static void ValidateOhioLicenseData()
         {
             // Setup.
-            var ohio = new Pennsylvania();
+            var state = new Pennsylvania();
 
             // Assert.
             Assert.Equal(
                 "Pennsylvania",
-                ohio.FullName);
+                state.FullName);
             Assert.Equal(
                 "PA",
-                ohio.Abbreviation);
+                state.Abbreviation);
             Assert.Equal(
                 IssuingCountry.UnitedStates,
-                ohio.Country);
+                state.Country);
             Assert.Equal(
                 636025,
-                ohio.IssuerIdentificationNumber);
+                state.IssuerIdentificationNumber);
         }
 
         [Theory]

@@ -171,19 +171,17 @@ namespace DLP.Core.Helpers
         public static DateTimeOffset? ParseDateTimeMdyThenYmd(this string s) =>
             DateTimeOffset.TryParseExact(
                 s,
-                "MMddyyyy",
+                new []
+                {
+                    "MMddyyyy",
+                    "MM-dd-yyyy",
+                    "yyyyMMdd"
+                },
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AssumeUniversal,
                 out var mdyResult)
                 ? mdyResult
-                : DateTimeOffset.TryParseExact(
-                    s,
-                    "yyyyMMdd",
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.AssumeUniversal,
-                    out var ymdResult)
-                    ? ymdResult
-                    : null;
+                : null;
 
         /// <summary>
         /// Tries to parse the issuing country.
@@ -304,6 +302,11 @@ namespace DLP.Core.Helpers
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(s))
+                {
+                    return null;
+                }
+
                 s = s.ToUpperInvariant().Trim();
                 if (s.Contains("CM"))
                 {
@@ -315,7 +318,7 @@ namespace DLP.Core.Helpers
                     return decimal.Parse(s.RemoveFirstOccurrence("IN").Trim());
                 }
 
-                var matches = Regex.Match(s, "^([1-9]{1})((?:0[0-9])|(?:1[012]))$");
+                var matches = Regex.Match(s, "^([1-9]{1})-?((?:0[0-9])|(?:1[012]))$");
                 if (matches.Groups.Count != 3)
                 {
                     return Regex.IsMatch(s, "^\\d{1,3}$")
@@ -329,7 +332,11 @@ namespace DLP.Core.Helpers
 
             }
             catch (Exception e)
-                when (e is NullReferenceException or ArgumentException or ArgumentNullException or FormatException or RegexMatchTimeoutException)
+                when (e is NullReferenceException
+                        or ArgumentException
+                        or ArgumentNullException
+                        or FormatException
+                        or RegexMatchTimeoutException)
             {
                 return null;
             }
@@ -340,19 +347,23 @@ namespace DLP.Core.Helpers
         /// </summary>
         /// <param name="data">The license data.</param>
         /// <param name="defaultIssuingCountry">The default country to populate.</param>
+        /// <param name="splitUpData">The raw data split per this versions rules.</param>
         /// <returns><see cref="DriversLicenseData"/></returns>
-        public static DriversLicenseData BasicDriversLicenseParser(string data, IssuingCountry defaultIssuingCountry)
+        public static DriversLicenseData BasicDriversLicenseParser(
+            string data,
+            IssuingCountry defaultIssuingCountry,
+            out IReadOnlyDictionary<string, string> splitUpData)
         {
             var driversLicenseData = GetLicenseVersion(data) switch
             {
-                LicenseVersion.Version2 => Version2StandardParser.ParseDriversLicenseData(data),
-                LicenseVersion.Version3 => Version3StandardParser.ParseDriversLicenseData(data),
-                LicenseVersion.Version4 => Version4StandardParser.ParseDriversLicenseData(data),
-                LicenseVersion.Version5 => Version5StandardParser.ParseDriversLicenseData(data),
-                LicenseVersion.Version6 => Version6StandardParser.ParseDriversLicenseData(data),
-                LicenseVersion.Version7 => Version7StandardParser.ParseDriversLicenseData(data),
-                LicenseVersion.Version8 => Version8StandardParser.ParseDriversLicenseData(data),
-                _ => Version1StandardParser.ParseDriversLicenseData(data)
+                LicenseVersion.Version2 => Version2StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                LicenseVersion.Version3 => Version3StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                LicenseVersion.Version4 => Version4StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                LicenseVersion.Version5 => Version5StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                LicenseVersion.Version6 => Version6StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                LicenseVersion.Version7 => Version7StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                LicenseVersion.Version8 => Version8StandardParser.ParseDriversLicenseData(data, out splitUpData),
+                _ => Version1StandardParser.ParseDriversLicenseData(data, out splitUpData)
             };
             driversLicenseData.IssuingCountry = driversLicenseData.IssuingCountry == IssuingCountry.Unknown
                 ? defaultIssuingCountry

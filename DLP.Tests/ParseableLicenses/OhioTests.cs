@@ -11,24 +11,24 @@ namespace DLP.Tests.ParseableLicenses
     public static class OhioTests
     {
         [Fact]
-        public static void ValidateOhioLicenseData()
+        public static void ValidateStateLicenseData()
         {
             // Setup.
-            var ohio = new Ohio();
+            var state = new Ohio();
 
             // Assert.
             Assert.Equal(
                 "Ohio",
-                ohio.FullName);
+                state.FullName);
             Assert.Equal(
                 "OH",
-                ohio.Abbreviation);
+                state.Abbreviation);
             Assert.Equal(
                 IssuingCountry.UnitedStates,
-                ohio.Country);
+                state.Country);
             Assert.Equal(
                 636023,
-                ohio.IssuerIdentificationNumber);
+                state.IssuerIdentificationNumber);
         }
 
         [Theory]

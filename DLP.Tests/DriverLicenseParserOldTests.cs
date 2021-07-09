@@ -11,24 +11,6 @@ namespace DLP.Tests
             {
                 new object[]
                 {
-                    "%40%0A%1E%0DAAMVA36004001DL00280195DLDABDOE%0ADACJOHN%0ADADD%0ADAE%0ADAL1234%20FAKE%20CT%0ADAM%0ADANMYCITY%0ADAONC%0ADAP28451-7030%0ADAQ123456789%0ADARC%0ADASNone%0ADATNone%0ADAV5-10%0ADAYBLU%0ADAZBRO%0ADBA06-19-2023%0ADBB06-19-2010%0ADBCM%0ADBD06-22-2015%0ADBHY%0D&",
-                    new CustomerShell
-                    {
-                        PrimaryFirstName = "JOHN",
-                        PrimaryMiddleName = "D",
-                        PrimaryLastName = "DOE",
-                        PrimaryDOB = "06/19/2010",
-                        Address1 = "1234 FAKE CT",
-                        Address2 = null,
-                        City = "MYCITY",
-                        State = "NC",
-                        Zip = "28451",
-                        County = string.Empty,
-                        DriversLicenseNumber = "123456789"
-                    }
-                },
-                new object[]
-                {
                     "%40%0A%0DANSI%20636060040002DL00410263ZW03040037DCAC%0ADCBNONE%0ADCDNONE%0ADBA20201215%0ADCSDOE%0ADACJOHN%20CHESTER%0ADAD%0ADBD20160929%0ADBB20100428%0ADBC1%0ADAYBLU%0ADAU073%20IN%0ADAG1234%20FAKE%20BLVD%0ADAIMYCITY%0ADAJWY%0ADAK44224-2452%20%20%20%20%20%20%0ADAQ123456789%0ADCF54576301%0ADCGUSA%0ADDEU%0ADDFU%0ADDGU%0ADAHLARAMIE,%20WY%20%2082072%0ADAZBRO%0ADCJ20161010_003008_4_471%0AZWZWA%0AZWBY%0AZWC%0AZWD%0AZWE%0AZWF0060-57020%0A",
                     new CustomerShell
                     {

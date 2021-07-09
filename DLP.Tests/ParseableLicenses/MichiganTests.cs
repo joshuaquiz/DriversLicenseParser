@@ -11,24 +11,24 @@ namespace DLP.Tests.ParseableLicenses
     public static class MichiganTests
     {
         [Fact]
-        public static void ValidateMichiganLicenseData()
+        public static void ValidateStateLicenseData()
         {
             // Setup.
-            var michigan = new Michigan();
+            var state = new Michigan();
 
             // Assert.
             Assert.Equal(
                 "Michigan",
-                michigan.FullName);
+                state.FullName);
             Assert.Equal(
                 "MI",
-                michigan.Abbreviation);
+                state.Abbreviation);
             Assert.Equal(
                 IssuingCountry.UnitedStates,
-                michigan.Country);
+                state.Country);
             Assert.Equal(
                 636032,
-                michigan.IssuerIdentificationNumber);
+                state.IssuerIdentificationNumber);
         }
 
         [Theory]

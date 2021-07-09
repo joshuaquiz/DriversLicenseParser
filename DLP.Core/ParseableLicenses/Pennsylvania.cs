@@ -3,7 +3,6 @@ using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using System;
-using System.Linq;
 
 namespace DLP.Core.ParseableLicenses
 {
@@ -31,11 +30,10 @@ namespace DLP.Core.ParseableLicenses
         /// <inheritdoc />
         public DriversLicenseData ParseData(string data)
         {
-            var licenseData = ParsingHelpers.BasicDriversLicenseParser(data, Country);
-            var splitUpData = data
-                .Split('\r', '\n')
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
+            var licenseData = ParsingHelpers.BasicDriversLicenseParser(
+                data,
+                Country,
+                out var splitUpData);
             if (splitUpData.TryGetValue("ANS", out var ansiData))
             {
                 var indexOfDl = ansiData.IndexOf("DL", StringComparison.InvariantCultureIgnoreCase);

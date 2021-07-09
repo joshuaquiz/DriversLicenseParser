@@ -523,6 +523,7 @@ namespace DLP.Tests.Helpers
         [InlineData("80cm", 31.49608)]
         [InlineData("80 CM", 31.49608)]
         [InlineData("506", 66)]
+        [InlineData("5-10", 70)]
         public static void ParseHeightInInchesWorksCorrectly(string input, double? expectedResult) =>
             Assert.Equal(
                 expectedResult == null

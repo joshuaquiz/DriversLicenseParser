@@ -33,7 +33,7 @@ namespace DLP.Core.ParseableLicenses
         public DriversLicenseData ParseData(string data) =>
             data.Contains("^")
                 ? ParseFlatOhioLicense(data)
-                : ParsingHelpers.BasicDriversLicenseParser(data, Country);
+                : ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
 
         private DriversLicenseData ParseFlatOhioLicense(string data)
         {
