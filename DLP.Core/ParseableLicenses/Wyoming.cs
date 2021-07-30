@@ -2,9 +2,13 @@
 using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
+using System;
 
 namespace DLP.Core.ParseableLicenses
 {
+    /// <summary>
+    /// Represents a license from the US state of Wyoming.
+    /// </summary>
     public sealed class Wyoming : IParseableLicense
     {
         /// <inheritdoc />
@@ -24,7 +28,24 @@ namespace DLP.Core.ParseableLicenses
             data.Contains(IssuerIdentificationNumber.ToString());
 
         /// <inheritdoc />
-        public DriversLicenseData ParseData(string data) =>
-            ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
+        public DriversLicenseData ParseData(string data)
+        {
+            var driversLicenseData = ParsingHelpers.BasicDriversLicenseParser(
+                data,
+                Country,
+                out _);
+            if (driversLicenseData.LicenseVersion == LicenseVersion.Version4)
+            {
+                if (driversLicenseData.FirstName.Contains(" ")
+                    && string.IsNullOrWhiteSpace(driversLicenseData.MiddleName))
+                {
+                    var firstSpaceIndex = driversLicenseData.FirstName.IndexOf(" ", StringComparison.InvariantCultureIgnoreCase);
+                    driversLicenseData.MiddleName = driversLicenseData.FirstName[firstSpaceIndex..].Trim();
+                    driversLicenseData.FirstName = driversLicenseData.FirstName.Remove(firstSpaceIndex);
+                }
+            }
+
+            return driversLicenseData;
+        }
     }
 }

@@ -6,8 +6,17 @@ using System.Collections.Generic;
 
 namespace DLP.Core.Parsers
 {
+    /// <summary>
+    /// Represents an AAMVA Version 4 license.
+    /// </summary>
     public static class Version4StandardParser
     {
+        /// <summary>
+        /// Parses an AAMVA Version 4 license.
+        /// </summary>
+        /// <param name="data">The incoming raw data.</param>
+        /// <param name="splitUpData">The raw data split per this versions rules.</param>
+        /// <returns><see cref="DriversLicenseData"/></returns>
         public static DriversLicenseData ParseDriversLicenseData(
             string data,
             out IReadOnlyDictionary<string, string> splitUpData)
@@ -30,7 +39,7 @@ namespace DLP.Core.Parsers
                 StreetAddress = splitUpData.TryGetValue(Version4StandardMarkers.StreetAddressMarker),
                 City = splitUpData.TryGetValue(Version4StandardMarkers.CityMarker),
                 State = splitUpData.TryGetValue(Version4StandardMarkers.StateMarker),
-                PostalCode = splitUpData.TryGetValue(Version4StandardMarkers.PostalCodeMarker),
+                PostalCode = splitUpData.TryGetValue(Version4StandardMarkers.PostalCodeMarker).Trim(),
                 CustomerId = splitUpData.TryGetValue(Version4StandardMarkers.CustomerIdMarker),
                 DocumentId = splitUpData.TryGetValue(Version4StandardMarkers.DocumentIdMarker),
                 IssuingCountry = splitUpData.TryGetValue(Version4StandardMarkers.IssuingCountryMarker).ParseIssuingCountry(),
@@ -50,6 +59,12 @@ namespace DLP.Core.Parsers
             };
         }
 
+        /// <summary>
+        /// AAMVA Version 4 license data codes
+        /// </summary>
+        /// <remarks>
+        /// These codes are used to mark where in the text data a certain field starts.
+        /// </remarks>
         public static class Version4StandardMarkers
         {
             public const string FirstNameMarker = "DAC";

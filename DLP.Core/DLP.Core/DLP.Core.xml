@@ -1965,6 +1965,11 @@
         <member name="M:DLP.Core.ParseableLicenses.Wisconsin.ParseData(System.String)">
             <inheritdoc />
         </member>
+        <member name="T:DLP.Core.ParseableLicenses.Wyoming">
+            <summary>
+            Represents a license from the US state of Wyoming.
+            </summary>
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Wyoming.FullName">
             <inheritdoc />
         </member>
@@ -2166,6 +2171,27 @@
             <summary>
             DBN
             </summary>
+        </member>
+        <member name="T:DLP.Core.Parsers.Version4StandardParser">
+            <summary>
+            Represents an AAMVA Version 4 license.
+            </summary>
+        </member>
+        <member name="M:DLP.Core.Parsers.Version4StandardParser.ParseDriversLicenseData(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}@)">
+            <summary>
+            Parses an AAMVA Version 4 license.
+            </summary>
+            <param name="data">The incoming raw data.</param>
+            <param name="splitUpData">The raw data split per this versions rules.</param>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
+        </member>
+        <member name="T:DLP.Core.Parsers.Version4StandardParser.Version4StandardMarkers">
+            <summary>
+            AAMVA Version 4 license data codes
+            </summary>
+            <remarks>
+            These codes are used to mark where in the text data a certain field starts.
+            </remarks>
         </member>
     </members>
 </doc>
