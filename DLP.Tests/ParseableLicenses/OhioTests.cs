@@ -122,7 +122,7 @@ namespace DLP.Tests.ParseableLicenses
                     {
                         FirstName = null,
                         MiddleName = null,
-                        LastName = "DOE JOHN D D",
+                        LastName = "DOE$JOHN$D$D$",
                         DateOfBirth = new DateTimeOffset(2010, 12, 15, 0, 0, 0, TimeSpan.Zero),
                         StreetAddress = "1234 FAKE WAY",
                         SecondStreetAddress = null,
