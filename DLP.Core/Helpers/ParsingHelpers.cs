@@ -35,16 +35,26 @@ namespace DLP.Core.Helpers
         /// <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
         /// <returns><see cref="string"/></returns>
         /// <returns></returns>
-        public static string ParseDriverLicenseName(this IReadOnlyDictionary<string, string> data, string dataKey, string namePart)
+        public static string ParseDriverLicenseName(this IReadOnlyDictionary<string, string> data, string dataKey, NamePart namePart) =>
+            ParseDriverLicenseName(data.TryGetValue(dataKey), namePart);
+
+        /// <summary>
+        /// Attempts to parse the part of the name defined.
+        /// Returns null if unable to extract the data.
+        /// </summary>
+        /// <param name="driverLicenseName">The name to try parsing.</param>
+        /// <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
+        /// <returns><see cref="string"/></returns>
+        /// <returns></returns>
+        public static string ParseDriverLicenseName(this string driverLicenseName, NamePart namePart)
         {
-            var driverLicenseName = data.TryGetValue(dataKey);
             if (!string.IsNullOrWhiteSpace(driverLicenseName) && driverLicenseName.Contains(' ') && !driverLicenseName.Contains(','))
             {
                 var nameParts = driverLicenseName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 return namePart switch
                 {
-                    "firstName" => nameParts?.Length >= 1 ? nameParts[0] : null,
-                    "middleName" => nameParts?.Length switch
+                    NamePart.FirstName => nameParts?.Length >= 1 ? nameParts[0] : null,
+                    NamePart.MiddleName => nameParts?.Length switch
                     {
                         3 =>
                             nameParts[1],
@@ -54,7 +64,7 @@ namespace DLP.Core.Helpers
                             string.Join(" ", nameParts[1..^2]),
                         _ => null
                     },
-                    "lastName" => nameParts?.Length switch
+                    NamePart.LastName => nameParts?.Length switch
                     {
                         2 =>
                             nameParts[1],
@@ -68,7 +78,7 @@ namespace DLP.Core.Helpers
                             nameParts[^2],
                         _ => null
                     },
-                    "suffix" => nameParts?.Length switch
+                    NamePart.Suffix => nameParts?.Length switch
                     {
                         >= 3 when nameParts.LastOrDefault()?.ParseNameSuffix() != NameSuffix.Unknown =>
                             nameParts.Last(),
@@ -82,11 +92,11 @@ namespace DLP.Core.Helpers
                 var nameParts = driverLicenseName?.Split(',', StringSplitOptions.RemoveEmptyEntries);
                 return namePart switch
                 {
-                    "firstName" => nameParts?.Length >= 2 ? nameParts[1] : null,
-                    "shortMiddleName" => nameParts?.Length >= 2 ? nameParts[1] : null,
-                    "middleName" => nameParts?.Length >= 3 ? nameParts[2] : null,
-                    "lastName" => nameParts?.Length >= 1 ? nameParts[0] : null,
-                    "suffix" => nameParts?.Length >= 4 ? nameParts[3] : null,
+                    NamePart.FirstName => nameParts?.Length >= 2 ? nameParts[1] : null,
+                    NamePart.ShortMiddleName => nameParts?.Length >= 2 ? nameParts[1] : null,
+                    NamePart.MiddleName => nameParts?.Length >= 3 ? nameParts[2] : null,
+                    NamePart.LastName => nameParts?.Length >= 1 ? nameParts[0] : null,
+                    NamePart.Suffix => nameParts?.Length >= 4 ? nameParts[3] : null,
                     _ => null
                 };
             }
@@ -160,6 +170,20 @@ namespace DLP.Core.Helpers
                 ? haystack.Remove(index, needle.Length)
                 : haystack;
         }
+
+        /// <summary>
+        /// Trims extra 0s from the end of the zip code.
+        /// </summary>
+        /// <remarks>
+        /// This method will return "46789" from "467890000" and "46780" from "467800000".
+        /// "00000" will remain "00000" and "000000001" will remain "000000001".
+        /// </remarks>
+        /// <param name="zip">The zip with possible trailing 0s.</param>
+        /// <returns>string</returns>
+        public static string TrimTrailingZerosFromZipCode(this string zip) =>
+            zip is { Length: 9 } && zip.EndsWith("0000")
+                ? zip[..5]
+                : zip;
 
         /// <summary>
         /// Tries to parse as a <see cref="DateTimeOffset"/> using the format MMddyyyy.
@@ -319,7 +343,7 @@ namespace DLP.Core.Helpers
                 }
 
                 var matches = Regex.Match(s, "^([1-9]{1})-?((?:0[0-9])|(?:1[012]))$");
-                if (matches.Groups.Count != 3)
+                if (!matches.Success && matches.Groups.Count != 3)
                 {
                     return Regex.IsMatch(s, "^\\d{1,3}$")
                         ? decimal.Parse(s)
@@ -329,7 +353,6 @@ namespace DLP.Core.Helpers
                 var inchesFromFeet = decimal.Parse(matches.Groups[1].Value) * 12;
                 var inches = decimal.Parse(matches.Groups[2].Value);
                 return inchesFromFeet + inches;
-
             }
             catch (Exception e)
                 when (e is NullReferenceException

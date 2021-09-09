@@ -39,7 +39,7 @@ namespace DLP.Core.Parsers
                 StreetAddress = splitUpData.TryGetValue(Version4StandardMarkers.StreetAddressMarker),
                 City = splitUpData.TryGetValue(Version4StandardMarkers.CityMarker),
                 State = splitUpData.TryGetValue(Version4StandardMarkers.StateMarker),
-                PostalCode = splitUpData.TryGetValue(Version4StandardMarkers.PostalCodeMarker).Trim(),
+                PostalCode = splitUpData.TryGetValue(Version4StandardMarkers.PostalCodeMarker).TrimTrailingZerosFromZipCode(),
                 CustomerId = splitUpData.TryGetValue(Version4StandardMarkers.CustomerIdMarker),
                 DocumentId = splitUpData.TryGetValue(Version4StandardMarkers.DocumentIdMarker),
                 IssuingCountry = splitUpData.TryGetValue(Version4StandardMarkers.IssuingCountryMarker).ParseIssuingCountry(),

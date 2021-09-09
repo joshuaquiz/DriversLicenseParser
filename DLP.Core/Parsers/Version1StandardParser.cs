@@ -29,11 +29,11 @@ namespace DLP.Core.Parsers
             return new DriversLicenseData
             {
                 FirstName = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameMarker)
-                            ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "firstName"),
+                            ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseNameMarker, NamePart.FirstName),
                 LastName = splitUpData.TryGetValue(Version1StandardMarkers.LastNameMarker)
-                           ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "lastName"),
+                           ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseNameMarker, NamePart.LastName),
                 MiddleName = splitUpData.TryGetValue(Version1StandardMarkers.MiddleNameMarker)
-                             ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "middleName"),
+                             ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseNameMarker, NamePart.MiddleName),
                 ExpirationDate = splitUpData.TryGetValue(Version1StandardMarkers.ExpirationDateMarker).ParseDateTimeMdyThenYmd(),
                 IssueDate = splitUpData.TryGetValue(Version1StandardMarkers.IssueDateMarker).ParseDateTimeMdyThenYmd(),
                 DateOfBirth = splitUpData.TryGetValue(Version1StandardMarkers.DateOfBirthMarker).ParseDateTimeMdyThenYmd(),
@@ -43,7 +43,7 @@ namespace DLP.Core.Parsers
                 StreetAddress = splitUpData.TryGetValue(Version1StandardMarkers.StreetAddressMarker),
                 City = splitUpData.TryGetValue(Version1StandardMarkers.CityMarker),
                 State = splitUpData.TryGetValue(Version1StandardMarkers.StateMarker),
-                PostalCode = splitUpData.TryGetValue(Version1StandardMarkers.PostalCodeMarker),
+                PostalCode = splitUpData.TryGetValue(Version1StandardMarkers.PostalCodeMarker).TrimTrailingZerosFromZipCode(),
                 CustomerId = splitUpData.TryGetValue(Version1StandardMarkers.CustomerIdMarker),
                 SecondStreetAddress = splitUpData.TryGetValue(Version1StandardMarkers.SecondStreetAddressMarker),
                 HairColor = splitUpData.TryGetValue(Version1StandardMarkers.HairColorMarker).ParseHairColor(),
@@ -51,7 +51,7 @@ namespace DLP.Core.Parsers
                 FirstNameAlias = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameAliasMarker),
                 SuffixAlias = splitUpData.TryGetValue(Version1StandardMarkers.SuffixAliasMarker),
                 NameSuffix = (splitUpData.TryGetValue(Version1StandardMarkers.NameSuffixMarker)
-                              ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseName, "suffix")).ParseNameSuffix(),
+                              ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseNameMarker, NamePart.Suffix)).ParseNameSuffix(),
                 LicenseVersion = LicenseVersion.Version1
             };
         }
@@ -67,7 +67,7 @@ namespace DLP.Core.Parsers
             /// <summary>
             /// DAA
             /// </summary>
-            public const string DriverLicenseName = "DAA";
+            public const string DriverLicenseNameMarker = "DAA";
 
             /// <summary>
             /// DAC

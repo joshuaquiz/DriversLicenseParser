@@ -117,6 +117,78 @@ namespace DLP.Tests.ParseableLicenses
                 },
                 new object[]
                 {
+                    "OHMYCITY%20TWP%5EDOE%24JOHN%24D%24D%24%5E1234%20FAKE%20WAY%5E6360231820123456789%3D17122010121510450115913%20%20D%20A%20%20%20%20%20%20%20%20%20%20%20%20%201509210BROBRO&",
+                    new DriversLicenseData
+                    {
+                        FirstName = null,
+                        MiddleName = null,
+                        LastName = "DOE JOHN D D",
+                        DateOfBirth = new DateTimeOffset(2010, 12, 15, 0, 0, 0, TimeSpan.Zero),
+                        StreetAddress = "1234 FAKE WAY",
+                        SecondStreetAddress = null,
+                        City = "MYCITY TWP",
+                        State = "OH",
+                        PostalCode = "45011-5913",
+                        IssuingCountry = IssuingCountry.UnitedStates,
+                        DocumentId = null,
+                        AuditInformation = null,
+                        FirstNameAlias = null,
+                        LastNameAlias = null,
+                        SuffixAlias = null,
+                        PlaceOfBirth = null,
+                        CustomerId = "1820123456789",
+                        EyeColor = EyeColor.Brown,
+                        ExpirationDate = new DateTimeOffset(2017, 12, 01, 0, 0, 0, TimeSpan.Zero),
+                        IssueDate = null,
+                        HairColor = HairColor.Brown,
+                        InventoryControl = "6360231820123456789",
+                        FirstNameTruncated = Truncation.Unknown,
+                        LastNameTruncated = Truncation.Unknown,
+                        MiddleNameTruncated = Truncation.Unknown,
+                        Gender = Gender.Male,
+                        Height = 69,
+                        NameSuffix = NameSuffix.Unknown,
+                        LicenseVersion = LicenseVersion.UnknownVersion
+                    }
+                },
+                new object[]
+                {
+                    "OHMYCITY%20TWP%5EDOE%24%5E1234%20FAKE%20WAY%5E6360231820123456789%3D17122010121510450115913%20%20D%20A%20%20%20%20%20%20%20%20%20%20%20%20%201509210BROBRO&",
+                    new DriversLicenseData
+                    {
+                        FirstName = null,
+                        MiddleName = null,
+                        LastName = "DOE",
+                        DateOfBirth = new DateTimeOffset(2010, 12, 15, 0, 0, 0, TimeSpan.Zero),
+                        StreetAddress = "1234 FAKE WAY",
+                        SecondStreetAddress = null,
+                        City = "MYCITY TWP",
+                        State = "OH",
+                        PostalCode = "45011-5913",
+                        IssuingCountry = IssuingCountry.UnitedStates,
+                        DocumentId = null,
+                        AuditInformation = null,
+                        FirstNameAlias = null,
+                        LastNameAlias = null,
+                        SuffixAlias = null,
+                        PlaceOfBirth = null,
+                        CustomerId = "1820123456789",
+                        EyeColor = EyeColor.Brown,
+                        ExpirationDate = new DateTimeOffset(2017, 12, 01, 0, 0, 0, TimeSpan.Zero),
+                        IssueDate = null,
+                        HairColor = HairColor.Brown,
+                        InventoryControl = "6360231820123456789",
+                        FirstNameTruncated = Truncation.Unknown,
+                        LastNameTruncated = Truncation.Unknown,
+                        MiddleNameTruncated = Truncation.Unknown,
+                        Gender = Gender.Male,
+                        Height = 69,
+                        NameSuffix = NameSuffix.Unknown,
+                        LicenseVersion = LicenseVersion.UnknownVersion
+                    }
+                },
+                new object[]
+                {
                     "OHMYCITY%5EDOE%24JOHN%24%24D%5E1234%20N%20FAKE%20ST%5E6360231803123456789%3D1805201005311045066%20%20%20%20%20%20D%20A%20%20%20%20%20%20%20%20%20M%20%20%201511175REDBLU&",
                     new DriversLicenseData
                     {

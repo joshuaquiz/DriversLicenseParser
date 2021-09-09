@@ -19,10 +19,10 @@ namespace DLP.Core.Parsers
             return new DriversLicenseData
             {
                 // Pulling the "Last" name because the first name is where the last name should be.
-                FirstName = splitUpData.ParseDriverLicenseName(Version3StandardMarkers.FirstNameMarker, "lastName"),
+                FirstName = splitUpData.ParseDriverLicenseName(Version3StandardMarkers.FirstNameMarker, NamePart.LastName),
                 LastName = splitUpData.TryGetValue(Version3StandardMarkers.LastNameMarker),
                 MiddleName = splitUpData.TryGetValue(Version3StandardMarkers.MiddleNameMarker)
-                             ?? splitUpData.ParseDriverLicenseName(Version3StandardMarkers.FirstNameMarker, "shortMiddleName"),
+                             ?? splitUpData.ParseDriverLicenseName(Version3StandardMarkers.FirstNameMarker, NamePart.ShortMiddleName),
                 ExpirationDate = splitUpData.TryGetValue(Version3StandardMarkers.ExpirationDateMarker).ParseDateTimeMdyThenYmd(),
                 IssueDate = splitUpData.TryGetValue(Version3StandardMarkers.IssueDateMarker).ParseDateTimeMdyThenYmd(),
                 DateOfBirth = splitUpData.TryGetValue(Version3StandardMarkers.DateOfBirthMarker).ParseDateTimeMdyThenYmd(),
@@ -32,7 +32,7 @@ namespace DLP.Core.Parsers
                 StreetAddress = splitUpData.TryGetValue(Version3StandardMarkers.StreetAddressMarker),
                 City = splitUpData.TryGetValue(Version3StandardMarkers.CityMarker),
                 State = splitUpData.TryGetValue(Version3StandardMarkers.StateMarker),
-                PostalCode = splitUpData.TryGetValue(Version3StandardMarkers.PostalCodeMarker),
+                PostalCode = splitUpData.TryGetValue(Version3StandardMarkers.PostalCodeMarker).TrimTrailingZerosFromZipCode(),
                 CustomerId = splitUpData.TryGetValue(Version3StandardMarkers.CustomerIdMarker),
                 DocumentId = splitUpData.TryGetValue(Version3StandardMarkers.DocumentIdMarker),
                 IssuingCountry = splitUpData.TryGetValue(Version3StandardMarkers.IssuingCountryMarker).ParseIssuingCountry(),

@@ -52,13 +52,23 @@
             <param name="key">The key to check the dictionary for.</param>
             <returns><see cref="T:System.String"/></returns>
         </member>
-        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDriverLicenseName(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.String,System.String)">
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDriverLicenseName(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.String,DLP.Core.Models.Enums.NamePart)">
             <summary>
             Attempts to parse the part of the name defined.
             Returns null if unable to extract the data.
             </summary>
             <param name="data">The dictionary to look through.</param>
             <param name="dataKey">The key to check the dictionary for.</param>
+            <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
+            <returns><see cref="T:System.String"/></returns>
+            <returns></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDriverLicenseName(System.String,DLP.Core.Models.Enums.NamePart)">
+            <summary>
+            Attempts to parse the part of the name defined.
+            Returns null if unable to extract the data.
+            </summary>
+            <param name="driverLicenseName">The name to try parsing.</param>
             <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
             <returns><see cref="T:System.String"/></returns>
             <returns></returns>
@@ -96,6 +106,17 @@
             <param name="haystack">Data to search in.</param>
             <param name="needle">What to look for.</param>
             <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:DLP.Core.Helpers.ParsingHelpers.TrimTrailingZerosFromZipCode(System.String)">
+            <summary>
+            Trims extra 0s from the end of the zip code.
+            </summary>
+            <remarks>
+            This method will return "46789" from "467890000" and "46780" from "467800000".
+            "00000" will remain "00000" and "000000001" will remain "000000001".
+            </remarks>
+            <param name="zip">The zip with possible trailing 0s.</param>
+            <returns>string</returns>
         </member>
         <member name="M:DLP.Core.Helpers.ParsingHelpers.ParseDateTimeMdyThenYmd(System.String)">
             <summary>
@@ -598,6 +619,41 @@
             Version 8.
             </summary>
         </member>
+        <member name="T:DLP.Core.Models.Enums.NamePart">
+            <summary>
+            Represents the different parts of a name that can be parsed.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NamePart.Undefined">
+            <summary>
+            Unknown name type.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NamePart.FirstName">
+            <summary>
+            Used to try to extract the first name.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NamePart.MiddleName">
+            <summary>
+            Used to try to extract the middle name.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NamePart.ShortMiddleName">
+            <summary>
+            Used to try to extract a short middle name.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NamePart.LastName">
+            <summary>
+            Used to try to extract the last name.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.NamePart.Suffix">
+            <summary>
+            Used to try to extract the suffix.
+            </summary>
+        </member>
         <member name="T:DLP.Core.Models.Enums.NameSuffix">
             <summary>
             AAMVA Name Suffixes:<br />
@@ -1039,6 +1095,11 @@
         </member>
         <member name="M:DLP.Core.ParseableLicenses.Idaho.ParseData(System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:DLP.Core.ParseableLicenses.Illinois">
+            <summary>
+            Represents a license from the US state of Illinois.
+            </summary>
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Illinois.FullName">
             <inheritdoc />
@@ -2027,7 +2088,7 @@
             These codes are used to mark where in the text data a certain field starts.
             </remarks>
         </member>
-        <member name="F:DLP.Core.Parsers.Version1StandardParser.Version1StandardMarkers.DriverLicenseName">
+        <member name="F:DLP.Core.Parsers.Version1StandardParser.Version1StandardMarkers.DriverLicenseNameMarker">
             <summary>
             DAA
             </summary>
@@ -2170,6 +2231,172 @@
         <member name="F:DLP.Core.Parsers.Version1StandardParser.Version1StandardMarkers.NameSuffixMarker">
             <summary>
             DBN
+            </summary>
+        </member>
+        <member name="T:DLP.Core.Parsers.Version2StandardParser">
+            <summary>
+            Represents an AAMVA Version 2 license.
+            </summary>
+        </member>
+        <member name="M:DLP.Core.Parsers.Version2StandardParser.ParseDriversLicenseData(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}@)">
+            <summary>
+            Parses an AAMVA Version 2 license.
+            </summary>
+            <param name="data">The incoming raw data.</param>
+            <param name="splitUpData">The raw data split per this versions rules.</param>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
+        </member>
+        <member name="T:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers">
+            <summary>
+            AAMVA Version 2 license data codes
+            </summary>
+            <remarks>
+            These codes are used to mark where in the text data a certain field starts.
+            </remarks>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.DriverLicenseNameMarker">
+            <summary>
+            DAA
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.FirstNameMarker">
+            <summary>
+            DCT
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.LastNameMarker">
+            <summary>
+            DCS
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.MiddleNameMarker">
+            <summary>
+            DAD
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.ExpirationDateMarker">
+            <summary>
+            DBA
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.IssueDateMarker">
+            <summary>
+            DBD
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.DateOfBirthMarker">
+            <summary>
+            DBB
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.GenderMarker">
+            <summary>
+            DBC
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.EyeColorMarker">
+            <summary>
+            DAY
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.HeightMarker">
+            <summary>
+            DAU
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.StreetAddressMarker">
+            <summary>
+            DAG
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.CityMarker">
+            <summary>
+            DAI
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.StateMarker">
+            <summary>
+            DAJ
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.PostalCodeMarker">
+            <summary>
+            DAK
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.CustomerIdMarker">
+            <summary>
+            DAQ
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.DocumentIdMarker">
+            <summary>
+            DCF
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.IssuingCountryMarker">
+            <summary>
+            DCG
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.MiddleNameTruncatedMarker">
+            <summary>
+            DDG
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.FirstNameTruncatedMarker">
+            <summary>
+            DDF
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.LastNameTruncatedMarker">
+            <summary>
+            DDE
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.SecondStreetAddressMarker">
+            <summary>
+            DAH
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.HairColorMarker">
+            <summary>
+            DAZ
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.PlaceOfBirthMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.AuditInformationMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.InventoryControlMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.LastNameAliasMarker">
+            <summary>
+            DBN
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.FirstNameAliasMarker">
+            <summary>
+            DBG
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.SuffixAliasMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.Version2StandardParser.Version2StandardMarkers.NameSuffixMarker">
+            <summary>
+            DCU
             </summary>
         </member>
         <member name="T:DLP.Core.Parsers.Version4StandardParser">

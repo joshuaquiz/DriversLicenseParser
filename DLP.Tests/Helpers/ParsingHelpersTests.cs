@@ -45,11 +45,39 @@ namespace DLP.Tests.Helpers
         }
 
         [Fact]
+        public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueHasSpaceInvalidNameTypeProvided()
+        {
+            // Setup.
+            const NamePart namePart = NamePart.Undefined;
+            const string value = "Jones ";
+
+            // Act.
+            var result = value.ParseDriverLicenseName(namePart);
+
+            // Assert.
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueHasCommaInvalidNameTypeProvided()
+        {
+            // Setup.
+            const NamePart namePart = NamePart.Undefined;
+            const string value = "Jones,";
+
+            // Act.
+            var result = value.ParseDriverLicenseName(namePart);
+
+            // Assert.
+            Assert.Null(result);
+        }
+
+        [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndLastNameIsThere()
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "lastName";
+            const NamePart namePart = NamePart.LastName;
             var value = Guid.NewGuid().ToString();
             var data = new Dictionary<string, string>
             {
@@ -67,11 +95,48 @@ namespace DLP.Tests.Helpers
         }
 
         [Fact]
+        public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndLastNameIsThereAndSuffixExists()
+        {
+            // Setup.
+            var dataKey = Guid.NewGuid().ToString();
+            const NamePart namePart = NamePart.LastName;
+            const string lastName = "Jones";
+            const string value = "Jim " + lastName + " II";
+            var data = new Dictionary<string, string>
+            {
+                {
+                    dataKey,
+                    value
+                }
+            };
+
+            // Act.
+            var result = data.ParseDriverLicenseName(dataKey, namePart);
+
+            // Assert.
+            Assert.Equal(lastName, result);
+        }
+
+        [Fact]
+        public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndOnlyLastNameIsThere()
+        {
+            // Setup.
+            const NamePart namePart = NamePart.LastName;
+            const string value = "Jones ";
+
+            // Act.
+            var result = value.ParseDriverLicenseName(namePart);
+
+            // Assert.
+            Assert.Null(result);
+        }
+
+        [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndLastNameIsNotThere()
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "lastName";
+            const NamePart namePart = NamePart.LastName;
             var data = new Dictionary<string, string>
             {
                 {
@@ -92,7 +157,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "firstName";
+            const NamePart namePart = NamePart.FirstName;
             var value = Guid.NewGuid().ToString();
             var data = new Dictionary<string, string>
             {
@@ -114,7 +179,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "firstName";
+            const NamePart namePart = NamePart.FirstName;
             var data = new Dictionary<string, string>
             {
                 {
@@ -135,7 +200,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "middleName";
+            const NamePart namePart = NamePart.MiddleName;
             var value = Guid.NewGuid().ToString();
             var data = new Dictionary<string, string>
             {
@@ -157,7 +222,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "middleName";
+            const NamePart namePart = NamePart.MiddleName;
             var data = new Dictionary<string, string>
             {
                 {
@@ -178,7 +243,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "suffix";
+            const NamePart namePart = NamePart.Suffix;
             var value = Guid.NewGuid().ToString();
             var data = new Dictionary<string, string>
             {
@@ -200,7 +265,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "suffix";
+            const NamePart namePart = NamePart.Suffix;
             var data = new Dictionary<string, string>
             {
                 {
@@ -221,7 +286,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            const string namePart = "suffix";
+            const NamePart namePart = NamePart.Suffix;
             var data = new Dictionary<string, string>();
 
             // Act.
@@ -236,7 +301,7 @@ namespace DLP.Tests.Helpers
         {
             // Setup.
             var dataKey = Guid.NewGuid().ToString();
-            var namePart = Guid.NewGuid().ToString();
+            const NamePart namePart = NamePart.Undefined;
             var data = new Dictionary<string, string>();
 
             // Act.
