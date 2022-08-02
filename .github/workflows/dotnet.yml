@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -17,11 +16,10 @@ jobs:
       with:
         dotnet-version: 6.0.x
         include-prerelease: true
-    - name: Restore dependencies
-      run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: XUnit Viewer
-      uses: AutoModality/action-xunit-viewer@v1.0.1
+      run: dotnet build
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: dotnet test --verbosity normal
