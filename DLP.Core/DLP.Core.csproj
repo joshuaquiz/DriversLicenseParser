@@ -24,6 +24,11 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="DLP.Core\**" />
+    <EmbeddedResource Remove="DLP.Core\**" />
+    <None Remove="DLP.Core\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Serilog" Version="2.11.0" />
   </ItemGroup>
 </Project>
