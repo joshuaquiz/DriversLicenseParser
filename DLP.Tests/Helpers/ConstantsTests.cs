@@ -1,4 +1,5 @@
 ﻿using DLP.Core.Helpers;
+using FluentAssertions;
 using Xunit;
 
 namespace DLP.Tests.Helpers
@@ -7,20 +8,21 @@ namespace DLP.Tests.Helpers
     {
         [Fact]
         public static void LicenseFormatExceptionHelpUrlIsCorrect() =>
-            Assert.Equal(
-                "https://github.com/joshuaquiz/DriversLicenseParser/wiki/License-Data-Formatting",
-                Constants.LicenseFormatExceptionHelpUrl.ToString());
+            Constants.LicenseFormatExceptionHelpUrl
+                .ToString()
+                .Should()
+                .Be("https://github.com/joshuaquiz/DriversLicenseParser/wiki/License-Data-Formatting");
 
         [Fact]
         public static void InchesPerCentimeterIsCorrect() =>
-            Assert.Equal(
-                0.393701M,
-                Constants.InchesPerCentimeter);
+            Constants.InchesPerCentimeter
+                .Should()
+                .Be(0.393701M);
 
         [Fact]
         public static void ErrorMessagesLicenseFormatExceptionMessageIsCorrect() =>
-            Assert.Equal(
-                "The provided data could not be matched to a known format.",
-                Constants.ErrorMessages.LicenseFormatExceptionMessage);
+            Constants.ErrorMessages.LicenseFormatExceptionMessage
+                .Should()
+                .Be("The provided data could not be matched to a known format.");
     }
 }

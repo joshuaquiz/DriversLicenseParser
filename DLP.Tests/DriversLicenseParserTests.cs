@@ -5,6 +5,8 @@ using DLP.Core.Exceptions;
 using DLP.Core.Helpers;
 using DLP.Core.Interfaces;
 using DLP.Core.Models;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using Moq;
 using Xunit;
 
@@ -18,48 +20,58 @@ namespace DLP.Tests
         [InlineData("   ")]
         public static void ThrowsArgumentNullExceptionIfNullDataProvided(string data)
         {
-            // Setup.
+            // Arrange.
             var driversLicenseParser = new DriversLicenseParser(null);
 
             // Act.
-            var exception = Assert.Throws<ArgumentNullException>(() => driversLicenseParser.Parse(data));
+            var act = () => driversLicenseParser.Parse(data);
 
             // Assert.
-            Assert.Equal("Value cannot be null. (Parameter 'data')", exception.Message);
+            using (new AssertionScope())
+            {
+                act.Should()
+                    .Throw<ArgumentNullException>()
+                    .WithMessage("Value cannot be null. (Parameter 'data')");
+            }
         }
 
         [Fact]
         public static void ThrowsLicenseFormatExceptionIfNoProvidersFoundForData()
         {
-            // Setup.
+            // Arrange.
             var data = Guid.NewGuid().ToString();
             var driversLicenseParser = new DriversLicenseParser(null);
 
             // Act.
-            var exception = Assert.Throws<LicenseFormatException>(
-                () => driversLicenseParser.Parse(data));
+            var act = () => driversLicenseParser.Parse(data);
 
             // Assert.
-            Assert.Equal(Constants.ErrorMessages.LicenseFormatExceptionMessage, exception.Message);
-            Assert.Equal(data, exception.LicenseData);
-            Assert.Equal(Constants.LicenseFormatExceptionHelpUrl.ToString(), exception.HelpLink);
+            using (new AssertionScope())
+            {
+                var exception = act.Should()
+                    .Throw<LicenseFormatException>()
+                    .WithMessage(Constants.ErrorMessages.LicenseFormatExceptionMessage)
+                    .And;
+                exception.LicenseData.Should().Be(data);
+                exception.HelpLink.Should().Be(Constants.LicenseFormatExceptionHelpUrl.ToString());
+            }
         }
 
         [Fact]
         public static void ParsesDataCorrectly()
         {
-            // Setup.
+            // Arrange.
             var data = Guid.NewGuid().ToString();
             var id = Guid.NewGuid().ToString();
             var notTheParser = new Mock<IParseableLicense>(MockBehavior.Strict);
-            _ = notTheParser
+            notTheParser
                 .Setup(x => x.IsDataFromEntity(data))
                 .Returns(false);
             var theParser = new Mock<IParseableLicense>(MockBehavior.Strict);
-            _ = theParser
+            theParser
                 .Setup(x => x.IsDataFromEntity(data))
                 .Returns(true);
-            _ = theParser
+            theParser
                 .Setup(x => x.ParseData(data))
                 .Returns(
                     new DriversLicenseData
@@ -77,9 +89,12 @@ namespace DLP.Tests
             var result = driversLicenseParser.Parse(data);
 
             // Assert.
-            notTheParser.VerifyAll();
-            theParser.VerifyAll();
-            Assert.Equal(id, result.DocumentId);
+            using (new AssertionScope())
+            {
+                result.DocumentId.Should().Be(id);
+                notTheParser.VerifyAll();
+                theParser.VerifyAll();
+            }
         }
     }
 }

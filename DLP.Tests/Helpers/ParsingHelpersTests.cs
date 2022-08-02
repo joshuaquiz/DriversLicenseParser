@@ -1,6 +1,8 @@
 ﻿using DLP.Core.Helpers;
 using DLP.Core.Models.Enums;
 using DLP.Core.ParseableLicenses;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -12,7 +14,7 @@ namespace DLP.Tests.Helpers
         [Fact]
         public static void TryGetValueWorksWhenValueIsThere()
         {
-            // Setup.
+            // Arrange.
             var key = Guid.NewGuid().ToString();
             var value = Guid.NewGuid().ToString();
             var data = new Dictionary<string, string>
@@ -27,13 +29,16 @@ namespace DLP.Tests.Helpers
             var result = data.TryGetValue(key);
 
             // Assert.
-            Assert.Equal(value, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(value);
+            }
         }
 
         [Fact]
         public static void TryGetValueWorksWhenValueIsNotThere()
         {
-            // Setup.
+            // Arrange.
             var key = Guid.NewGuid().ToString();
             var data = new Dictionary<string, string>();
 
@@ -41,13 +46,16 @@ namespace DLP.Tests.Helpers
             var result = data.TryGetValue(key);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueHasSpaceInvalidNameTypeProvided()
         {
-            // Setup.
+            // Arrange.
             const NamePart namePart = NamePart.Undefined;
             const string value = "Jones ";
 
@@ -55,13 +63,16 @@ namespace DLP.Tests.Helpers
             var result = value.ParseDriverLicenseName(namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueHasCommaInvalidNameTypeProvided()
         {
-            // Setup.
+            // Arrange.
             const NamePart namePart = NamePart.Undefined;
             const string value = "Jones,";
 
@@ -69,13 +80,16 @@ namespace DLP.Tests.Helpers
             var result = value.ParseDriverLicenseName(namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndLastNameIsThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.LastName;
             var value = Guid.NewGuid().ToString();
@@ -91,13 +105,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Equal(value, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(value);
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndLastNameIsThereAndSuffixExists()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.LastName;
             const string lastName = "Jones";
@@ -114,13 +131,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Equal(lastName, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(lastName);
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndOnlyLastNameIsThere()
         {
-            // Setup.
+            // Arrange.
             const NamePart namePart = NamePart.LastName;
             const string value = "Jones ";
 
@@ -128,13 +148,16 @@ namespace DLP.Tests.Helpers
             var result = value.ParseDriverLicenseName(namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndLastNameIsNotThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.LastName;
             var data = new Dictionary<string, string>
@@ -149,13 +172,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndFirstNameIsThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.FirstName;
             var value = Guid.NewGuid().ToString();
@@ -171,13 +197,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Equal(value, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(value);
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndFirstNameIsNotThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.FirstName;
             var data = new Dictionary<string, string>
@@ -192,13 +221,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndMiddleNameIsThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.MiddleName;
             var value = Guid.NewGuid().ToString();
@@ -214,13 +246,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Equal(value, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(value);
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndMiddleNameIsNotThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.MiddleName;
             var data = new Dictionary<string, string>
@@ -235,13 +270,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndSuffixIsThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.Suffix;
             var value = Guid.NewGuid().ToString();
@@ -257,13 +295,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Equal(value, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(value);
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsThereAndSuffixIsNotThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.Suffix;
             var data = new Dictionary<string, string>
@@ -278,13 +319,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenValueIsNotThere()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.Suffix;
             var data = new Dictionary<string, string>();
@@ -293,13 +337,16 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDriverLicenseNameParsesNamePartCorrectlyWhenUnknownNamePartIsProvided()
         {
-            // Setup.
+            // Arrange.
             var dataKey = Guid.NewGuid().ToString();
             const NamePart namePart = NamePart.Undefined;
             var data = new Dictionary<string, string>();
@@ -308,176 +355,218 @@ namespace DLP.Tests.Helpers
             var result = data.ParseDriverLicenseName(dataKey, namePart);
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void GetLicenseVersionParsesCorrectlyWhenKnownVersionProvided()
         {
-            // Setup.
+            // Arrange.
             var versionString = new Michigan().IssuerIdentificationNumber + "01Data";
 
             // Act.
             var result = ParsingHelpers.GetLicenseVersion(versionString);
 
             // Assert.
-            Assert.Equal(LicenseVersion.Version1, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(LicenseVersion.Version1);
+            }
         }
 
         [Fact]
         public static void GetLicenseVersionParsesCorrectlyWhenUnknownVersionProvided()
         {
-            // Setup.
+            // Arrange.
             var versionString = new Michigan().IssuerIdentificationNumber + "10Data";
 
             // Act.
             var result = ParsingHelpers.GetLicenseVersion(versionString);
 
             // Assert.
-            Assert.Equal(LicenseVersion.UnknownVersion, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(LicenseVersion.UnknownVersion);
+            }
         }
 
         [Fact]
         public static void GetLicenseVersionParsesCorrectlyWhenInvalidDataIsProvided()
         {
-            // Setup.
+            // Arrange.
             var versionString = Guid.NewGuid().ToString();
 
             // Act.
             var result = ParsingHelpers.GetLicenseVersion(versionString);
 
             // Assert.
-            Assert.Equal(LicenseVersion.UnknownVersion, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(LicenseVersion.UnknownVersion);
+            }
         }
 
         [Fact]
         public static void TrimToLengthTrimsCorrectlyWhenStringIsLongerThanTrimLength()
         {
-            // Setup.
+            // Arrange.
             var data = Guid.NewGuid().ToString();
 
             // Act.
             var result = data.TrimToLength(5);
 
             // Assert.
-            Assert.Equal(data[..5], result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(data[..5]);
+            }
         }
 
         [Fact]
         public static void TrimToLengthTrimsCorrectlyWhenStringIsShorterThanTrimLength()
         {
-            // Setup.
+            // Arrange.
             var data = Guid.NewGuid().ToString();
 
             // Act.
             var result = data.TrimToLength(500);
 
             // Assert.
-            Assert.Equal(data, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(data);
+            }
         }
 
         [Fact]
         public static void RemoveFirstOccurrenceWorksCorrectlyWhenNullIsProvided()
         {
-            // Setup.
+            // Arrange.
             const string data = "data";
 
             // Act.
             var result = data.RemoveFirstOccurrence(null);
 
             // Assert.
-            Assert.Equal(data, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(data);
+            }
         }
 
         [Fact]
         public static void RemoveFirstOccurrenceWorksCorrectlyWhenEmptyStringIsProvided()
         {
-            // Setup.
+            // Arrange.
             const string data = "data";
 
             // Act.
             var result = data.RemoveFirstOccurrence(string.Empty);
 
             // Assert.
-            Assert.Equal(data, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(data);
+            }
         }
 
         [Fact]
         public static void RemoveFirstOccurrenceWorksCorrectlyWhenThereAreNoOccurrences()
         {
-            // Setup.
+            // Arrange.
             const string data = "data";
 
             // Act.
             var result = data.RemoveFirstOccurrence("5");
 
             // Assert.
-            Assert.Equal(data, result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(data);
+            }
         }
 
         [Fact]
         public static void RemoveFirstOccurrenceWorksCorrectlyWhenThereIsOneOccurrence()
         {
-            // Setup.
+            // Arrange.
             const string data = "d5ata";
 
             // Act.
             var result = data.RemoveFirstOccurrence("5");
 
             // Assert.
-            Assert.Equal("data", result);
+            using (new AssertionScope())
+            {
+                result.Should().Be("data");
+            }
         }
 
         [Fact]
         public static void RemoveFirstOccurrenceWorksCorrectlyWhenThereAreSeveralOccurrences()
         {
-            // Setup.
+            // Arrange.
             const string data = "5d5a5t5a5";
 
             // Act.
             var result = data.RemoveFirstOccurrence("5");
 
             // Assert.
-            Assert.Equal("d5a5t5a5", result);
+            using (new AssertionScope())
+            {
+                result.Should().Be("d5a5t5a5");
+            }
         }
 
         [Fact]
         public static void ParseDateTimeMonthDayYearWorksCorrectlyWhenNoValidDataIsGiven()
         {
-            // Setup.
+            // Arrange.
             var data = Guid.NewGuid().ToString();
 
             // Act.
             var result = data.ParseDateTimeMdyThenYmd();
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDateTimeMonthDayYearWorksCorrectlyWhenValidButBadlyFormattedDataIsGiven()
         {
-            // Setup.
+            // Arrange.
             const string data = "31012020";
 
             // Act.
             var result = data.ParseDateTimeMdyThenYmd();
 
             // Assert.
-            Assert.Null(result);
+            using (new AssertionScope())
+            {
+                result.Should().BeNull();
+            }
         }
 
         [Fact]
         public static void ParseDateTimeMonthDayYearWorksCorrectlyWhenValidFormattedDataIsGiven()
         {
-            // Setup.
+            // Arrange.
             const string data = "05202021";
 
             // Act.
             var result = data.ParseDateTimeMdyThenYmd();
 
             // Assert.
-            Assert.Equal(new DateTimeOffset(2021, 05, 20,0, 0, 0, new TimeSpan()), result);
+            using (new AssertionScope())
+            {
+                result.Should().Be(new DateTimeOffset(2021, 05, 20, 0, 0, 0, new TimeSpan()));
+            }
         }
 
         [Theory]
@@ -487,9 +576,7 @@ namespace DLP.Tests.Helpers
         [InlineData(null, IssuingCountry.Unknown)]
         [InlineData("lol", IssuingCountry.Unknown)]
         public static void ParseIssuingCountryWorksCorrectly(string input, IssuingCountry expectedResult) =>
-            Assert.Equal(
-                expectedResult,
-                input.ParseIssuingCountry());
+            input.ParseIssuingCountry().Should().Be(expectedResult);
 
         [Theory]
         [InlineData("T", Truncation.Truncated)]
@@ -498,9 +585,7 @@ namespace DLP.Tests.Helpers
         [InlineData(null, Truncation.Unknown)]
         [InlineData("lol", Truncation.Unknown)]
         public static void ParseTruncationWorksCorrectly(string input, Truncation expectedResult) =>
-            Assert.Equal(
-                expectedResult,
-                input.ParseTruncation());
+            input.ParseTruncation().Should().Be(expectedResult);
 
         [Theory]
         [InlineData("1", Gender.Male)]
@@ -509,9 +594,7 @@ namespace DLP.Tests.Helpers
         [InlineData(null, Gender.Unknown)]
         [InlineData("lol", Gender.Unknown)]
         public static void ParseGenderWorksCorrectly(string input, Gender expectedResult) =>
-            Assert.Equal(
-                expectedResult,
-                input.ParseGender());
+            input.ParseGender().Should().Be(expectedResult);
 
         [Theory]
         [InlineData("BLK", EyeColor.Black)]
@@ -527,9 +610,7 @@ namespace DLP.Tests.Helpers
         [InlineData(null, EyeColor.Unknown)]
         [InlineData("lol", EyeColor.Unknown)]
         public static void ParseEyeColorWorksCorrectly(string input, EyeColor expectedResult) =>
-            Assert.Equal(
-                expectedResult,
-                input.ParseEyeColor());
+            input.ParseEyeColor().Should().Be(expectedResult);
 
         [Theory]
         [InlineData("JR", NameSuffix.Junior)]
@@ -556,9 +637,7 @@ namespace DLP.Tests.Helpers
         [InlineData(null, NameSuffix.Unknown)]
         [InlineData("lol", NameSuffix.Unknown)]
         public static void ParseNameSuffixWorksCorrectly(string input, NameSuffix expectedResult) =>
-            Assert.Equal(
-                expectedResult,
-                input.ParseNameSuffix());
+            input.ParseNameSuffix().Should().Be(expectedResult);
 
         [Theory]
         [InlineData("BAL", HairColor.Bald)]
@@ -573,27 +652,26 @@ namespace DLP.Tests.Helpers
         [InlineData(null, HairColor.Unknown)]
         [InlineData("lol", HairColor.Unknown)]
         public static void ParseHairColorWorksCorrectly(string input, HairColor expectedResult) =>
-            Assert.Equal(
-                expectedResult,
-                input.ParseHairColor());
+            input.ParseHairColor().Should().Be(expectedResult);
 
         [Theory]
         [InlineData(null, null)]
         [InlineData("", null)]
         [InlineData("   ", null)]
         [InlineData("lol", null)]
-        [InlineData("80", 80)]
-        [InlineData("80 in", 80)]
-        [InlineData("80IN", 80)]
-        [InlineData("80cm", 31.49608)]
-        [InlineData("80 CM", 31.49608)]
-        [InlineData("506", 66)]
-        [InlineData("5-10", 70)]
+        [InlineData("80", 80D)]
+        [InlineData("80 in", 80D)]
+        [InlineData("80IN", 80D)]
+        [InlineData("80cm", 31.49608D)]
+        [InlineData("80 CM", 31.49608D)]
+        [InlineData("506", 66D)]
+        [InlineData("5-10", 70D)]
         public static void ParseHeightInInchesWorksCorrectly(string input, double? expectedResult) =>
-            Assert.Equal(
-                expectedResult == null
-                    ? (decimal?)null
-                    : Convert.ToDecimal(expectedResult),
-                input.ParseHeightInInches());
+            input.ParseHeightInInches()
+                .Should()
+                .Be(
+                    expectedResult == null
+                        ? null
+                        : Convert.ToDecimal(expectedResult));
     }
 }

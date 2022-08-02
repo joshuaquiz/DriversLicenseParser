@@ -1,6 +1,8 @@
 ﻿using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using DLP.Core.ParseableLicenses;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -13,22 +15,17 @@ namespace DLP.Tests.ParseableLicenses
         [Fact]
         public static void ValidateStateLicenseData()
         {
-            // Setup.
+            // Arrange.
             var state = new Utah();
 
             // Assert.
-            Assert.Equal(
-                "Utah",
-                state.FullName);
-            Assert.Equal(
-                "UT",
-                state.Abbreviation);
-            Assert.Equal(
-                IssuingCountry.UnitedStates,
-                state.Country);
-            Assert.Equal(
-                636040,
-                state.IssuerIdentificationNumber);
+            using (new AssertionScope())
+            {
+                state.FullName.Should().Be("Utah");
+                state.Abbreviation.Should().Be("UT");
+                state.Country.Should().Be(IssuingCountry.UnitedStates);
+                state.IssuerIdentificationNumber.Should().Be(636040);
+            }
         }
 
         [Theory]
@@ -36,9 +33,7 @@ namespace DLP.Tests.ParseableLicenses
         [InlineData("ha636040ha", true)]
         [InlineData("636140", false)]
         public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string input, bool expected) =>
-            Assert.Equal(
-                expected,
-                new Utah().IsDataFromEntity(input));
+            new Utah().IsDataFromEntity(input).Should().Be(expected);
 
         public static IEnumerable<object[]> GetDataSets() =>
             new List<object[]>
@@ -85,35 +80,38 @@ namespace DLP.Tests.ParseableLicenses
         public static void ParseData(string data, DriversLicenseData expected)
         {
             var driversLicenseData = new Utah().ParseData(HttpUtility.UrlDecode(data));
-            Assert.Equal(expected.FirstName, driversLicenseData.FirstName);
-            Assert.Equal(expected.MiddleName, driversLicenseData.MiddleName);
-            Assert.Equal(expected.LastName, driversLicenseData.LastName);
-            Assert.Equal(expected.DateOfBirth, driversLicenseData.DateOfBirth);
-            Assert.Equal(expected.StreetAddress, driversLicenseData.StreetAddress);
-            Assert.Equal(expected.SecondStreetAddress, driversLicenseData.SecondStreetAddress);
-            Assert.Equal(expected.City, driversLicenseData.City);
-            Assert.Equal(expected.State, driversLicenseData.State);
-            Assert.Equal(expected.PostalCode, driversLicenseData.PostalCode);
-            Assert.Equal(expected.IssuingCountry, driversLicenseData.IssuingCountry);
-            Assert.Equal(expected.DocumentId, driversLicenseData.DocumentId);
-            Assert.Equal(expected.AuditInformation, driversLicenseData.AuditInformation);
-            Assert.Equal(expected.FirstNameAlias, driversLicenseData.FirstNameAlias);
-            Assert.Equal(expected.LastNameAlias, driversLicenseData.LastNameAlias);
-            Assert.Equal(expected.SuffixAlias, driversLicenseData.SuffixAlias);
-            Assert.Equal(expected.PlaceOfBirth, driversLicenseData.PlaceOfBirth);
-            Assert.Equal(expected.CustomerId, driversLicenseData.CustomerId);
-            Assert.Equal(expected.EyeColor, driversLicenseData.EyeColor);
-            Assert.Equal(expected.ExpirationDate, driversLicenseData.ExpirationDate);
-            Assert.Equal(expected.IssueDate, driversLicenseData.IssueDate);
-            Assert.Equal(expected.HairColor, driversLicenseData.HairColor);
-            Assert.Equal(expected.InventoryControl, driversLicenseData.InventoryControl);
-            Assert.Equal(expected.FirstNameTruncated, driversLicenseData.FirstNameTruncated);
-            Assert.Equal(expected.LastNameTruncated, driversLicenseData.LastNameTruncated);
-            Assert.Equal(expected.MiddleNameTruncated, driversLicenseData.MiddleNameTruncated);
-            Assert.Equal(expected.Gender, driversLicenseData.Gender);
-            Assert.Equal(expected.Height, driversLicenseData.Height);
-            Assert.Equal(expected.NameSuffix, driversLicenseData.NameSuffix);
-            Assert.Equal(expected.LicenseVersion, driversLicenseData.LicenseVersion);
+            using (new AssertionScope())
+            {
+                expected.FirstName.Should().Be(driversLicenseData.FirstName);
+                expected.MiddleName.Should().Be(driversLicenseData.MiddleName);
+                expected.LastName.Should().Be(driversLicenseData.LastName);
+                expected.DateOfBirth.Should().Be(driversLicenseData.DateOfBirth);
+                expected.StreetAddress.Should().Be(driversLicenseData.StreetAddress);
+                expected.SecondStreetAddress.Should().Be(driversLicenseData.SecondStreetAddress);
+                expected.City.Should().Be(driversLicenseData.City);
+                expected.State.Should().Be(driversLicenseData.State);
+                expected.PostalCode.Should().Be(driversLicenseData.PostalCode);
+                expected.IssuingCountry.Should().Be(driversLicenseData.IssuingCountry);
+                expected.DocumentId.Should().Be(driversLicenseData.DocumentId);
+                expected.AuditInformation.Should().Be(driversLicenseData.AuditInformation);
+                expected.FirstNameAlias.Should().Be(driversLicenseData.FirstNameAlias);
+                expected.LastNameAlias.Should().Be(driversLicenseData.LastNameAlias);
+                expected.SuffixAlias.Should().Be(driversLicenseData.SuffixAlias);
+                expected.PlaceOfBirth.Should().Be(driversLicenseData.PlaceOfBirth);
+                expected.CustomerId.Should().Be(driversLicenseData.CustomerId);
+                expected.EyeColor.Should().Be(driversLicenseData.EyeColor);
+                expected.ExpirationDate.Should().Be(driversLicenseData.ExpirationDate);
+                expected.IssueDate.Should().Be(driversLicenseData.IssueDate);
+                expected.HairColor.Should().Be(driversLicenseData.HairColor);
+                expected.InventoryControl.Should().Be(driversLicenseData.InventoryControl);
+                expected.FirstNameTruncated.Should().Be(driversLicenseData.FirstNameTruncated);
+                expected.LastNameTruncated.Should().Be(driversLicenseData.LastNameTruncated);
+                expected.MiddleNameTruncated.Should().Be(driversLicenseData.MiddleNameTruncated);
+                expected.Gender.Should().Be(driversLicenseData.Gender);
+                expected.Height.Should().Be(driversLicenseData.Height);
+                expected.NameSuffix.Should().Be(driversLicenseData.NameSuffix);
+                expected.LicenseVersion.Should().Be(driversLicenseData.LicenseVersion);
+            }
         }
     }
 }

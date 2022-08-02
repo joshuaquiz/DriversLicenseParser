@@ -1,5 +1,7 @@
 ﻿using DLP.Core.Exceptions;
 using DLP.Core.Helpers;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using System;
 using Xunit;
 
@@ -10,44 +12,53 @@ namespace DLP.Tests.Exceptions
         [Fact]
         public static void MessageIsCorrect()
         {
-            // Setup.
+            // Arrange.
             var licenseFormatException = new LicenseFormatException(null);
 
             // Assert.
-            Assert.Equal(
-                Constants.ErrorMessages.LicenseFormatExceptionMessage,
-                licenseFormatException.Message);
+            using (new AssertionScope())
+            {
+                Constants.ErrorMessages.LicenseFormatExceptionMessage
+                    .Should()
+                    .Be(licenseFormatException.Message);
+            }
         }
 
         [Fact]
         public static void HelpLinkIsCorrect()
         {
-            // Setup.
+            // Arrange.
             var licenseFormatException = new LicenseFormatException(null);
 
             // Assert.
-            Assert.Equal(
-                Constants.LicenseFormatExceptionHelpUrl.ToString(),
-                licenseFormatException.HelpLink);
+            using (new AssertionScope())
+            {
+                Constants.LicenseFormatExceptionHelpUrl.ToString()
+                    .Should()
+                    .Be(licenseFormatException.HelpLink);
+            }
         }
 
         [Fact]
         public static void LicenseDataIsCorrect()
         {
-            // Setup.
+            // Arrange.
             var licenseData = Guid.NewGuid().ToString();
             var licenseFormatException = new LicenseFormatException(licenseData);
 
             // Assert.
-            Assert.Equal(
-                licenseData,
-                licenseFormatException.LicenseData);
+            using (new AssertionScope())
+            {
+                licenseFormatException.LicenseData
+                    .Should()
+                    .Be(licenseData);
+            }
         }
 
         [Fact]
         public static void ToStringIsCorrect()
         {
-            // Setup.
+            // Arrange.
             var licenseData = Guid.NewGuid().ToString();
             var licenseFormatException = new LicenseFormatException(licenseData);
 
@@ -55,9 +66,12 @@ namespace DLP.Tests.Exceptions
             var result = licenseFormatException.ToString();
 
             // Assert.
-            Assert.Equal(
-                $"{Constants.ErrorMessages.LicenseFormatExceptionMessage}{Environment.NewLine}License Data: {licenseData}{Environment.NewLine}",
-                result);
+            using (new AssertionScope())
+            {
+                result
+                    .Should()
+                    .Be($"{Constants.ErrorMessages.LicenseFormatExceptionMessage}{Environment.NewLine}License Data: {licenseData}{Environment.NewLine}");
+            }
         }
     }
 }
