@@ -3,31 +3,30 @@ using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 
-namespace DLP.Core.ParseableLicenses
+namespace DLP.Core.ParseableLicenses;
+
+/// <summary>
+/// Represents a license from the US state of Utah.
+/// </summary>
+public sealed class Utah : IParseableLicense
 {
-    /// <summary>
-    /// Represents a license from the US state of Utah.
-    /// </summary>
-    public sealed class Utah : IParseableLicense
-    {
-        /// <inheritdoc />
-        public string FullName => "Utah";
+    /// <inheritdoc />
+    public string FullName => "Utah";
 
-        /// <inheritdoc />
-        public string Abbreviation => "UT";
+    /// <inheritdoc />
+    public string Abbreviation => "UT";
 
-        /// <inheritdoc />
-        public IssuingCountry Country => IssuingCountry.UnitedStates;
+    /// <inheritdoc />
+    public IssuingCountry Country => IssuingCountry.UnitedStates;
 
-        /// <inheritdoc />
-        public int IssuerIdentificationNumber => 636040;
+    /// <inheritdoc />
+    public int IssuerIdentificationNumber => 636040;
 
-        /// <inheritdoc />
-        public bool IsDataFromEntity(string data) =>
-            data.Contains(IssuerIdentificationNumber.ToString());
+    /// <inheritdoc />
+    public bool IsDataFromEntity(string data) =>
+        data.Contains(IssuerIdentificationNumber.ToString());
 
-        /// <inheritdoc />
-        public DriversLicenseData ParseData(string data) =>
-            ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
-    }
+    /// <inheritdoc />
+    public DriversLicenseData ParseData(string data) =>
+        ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
 }

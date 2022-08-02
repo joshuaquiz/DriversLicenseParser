@@ -3,28 +3,27 @@ using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 
-namespace DLP.Core.ParseableLicenses
+namespace DLP.Core.ParseableLicenses;
+
+public sealed class Louisiana : IParseableLicense
 {
-    public sealed class Louisiana : IParseableLicense
-    {
-        /// <inheritdoc />
-        public string FullName => "Louisiana";
+    /// <inheritdoc />
+    public string FullName => "Louisiana";
 
-        /// <inheritdoc />
-        public string Abbreviation => "LA";
+    /// <inheritdoc />
+    public string Abbreviation => "LA";
 
-        /// <inheritdoc />
-        public IssuingCountry Country => IssuingCountry.UnitedStates;
+    /// <inheritdoc />
+    public IssuingCountry Country => IssuingCountry.UnitedStates;
 
-        /// <inheritdoc />
-        public int IssuerIdentificationNumber => 636007;
+    /// <inheritdoc />
+    public int IssuerIdentificationNumber => 636007;
 
-        /// <inheritdoc />
-        public bool IsDataFromEntity(string data) =>
-            data.Contains(IssuerIdentificationNumber.ToString());
+    /// <inheritdoc />
+    public bool IsDataFromEntity(string data) =>
+        data.Contains(IssuerIdentificationNumber.ToString());
 
-        /// <inheritdoc />
-        public DriversLicenseData ParseData(string data) =>
-            ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
-    }
+    /// <inheritdoc />
+    public DriversLicenseData ParseData(string data) =>
+        ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
 }

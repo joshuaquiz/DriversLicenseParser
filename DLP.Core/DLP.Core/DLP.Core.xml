@@ -1972,6 +1972,11 @@
         <member name="M:DLP.Core.ParseableLicenses.VirginIslands.ParseData(System.String)">
             <inheritdoc />
         </member>
+        <member name="T:DLP.Core.ParseableLicenses.Washington">
+            <summary>
+            Represents a license from the US state of Washington.
+            </summary>
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Washington.FullName">
             <inheritdoc />
         </member>
