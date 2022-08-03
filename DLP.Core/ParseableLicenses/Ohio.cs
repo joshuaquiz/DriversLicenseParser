@@ -26,16 +26,16 @@ public sealed class Ohio : IParseableLicense
     public int IssuerIdentificationNumber => 636023;
 
     /// <inheritdoc />
-    public bool IsDataFromEntity(string data) =>
-        data.Contains(IssuerIdentificationNumber.ToString());
+    public bool IsDataFromEntity(string? data) =>
+        data?.Contains(IssuerIdentificationNumber.ToString()) == true;
 
     /// <inheritdoc />
-    public DriversLicenseData ParseData(string data) =>
-        data.Contains("^")
+    public DriversLicenseData ParseData(string? data) =>
+        data?.Contains('^') == true
             ? ParseFlatOhioLicense(data)
             : ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
 
-    private DriversLicenseData ParseFlatOhioLicense(string data)
+    private DriversLicenseData ParseFlatOhioLicense(string? data)
     {
         var license = new DriversLicenseData
         {
@@ -44,9 +44,9 @@ public sealed class Ohio : IParseableLicense
             LicenseVersion = LicenseVersion.UnknownVersion
         };
         data = data.RemoveFirstOccurrence(license.State);
-        var dataParts = data.Split('^');
-        license.City = dataParts.FirstOrDefault();
-        var namePart = dataParts.ElementAtOrDefault(1) ?? string.Empty;
+        var dataParts = data?.Split('^');
+        license.City = dataParts?.FirstOrDefault();
+        var namePart = dataParts?.ElementAtOrDefault(1) ?? string.Empty;
         var nameParts = namePart.Split('$', StringSplitOptions.RemoveEmptyEntries);
         switch (nameParts.Length)
         {
@@ -67,15 +67,15 @@ public sealed class Ohio : IParseableLicense
                 break;
         }
 
-        string documentIdAndOtherData;
-        if (dataParts.Length == 4)
+        string? documentIdAndOtherData;
+        if (dataParts?.Length == 4)
         {
             license.StreetAddress = dataParts.ElementAtOrDefault(2);
             documentIdAndOtherData = dataParts.ElementAtOrDefault(3) ?? string.Empty;
         }
         else
         {
-            var dataText = dataParts.ElementAtOrDefault(2);
+            var dataText = dataParts?.ElementAtOrDefault(2);
             var rawStreetAddress = dataText?[
                 ..dataText.IndexOf(
                     IssuerIdentificationNumber.ToString(),
@@ -84,20 +84,20 @@ public sealed class Ohio : IParseableLicense
             documentIdAndOtherData = dataText.RemoveFirstOccurrence(rawStreetAddress);
         }
 
-        var documentIdAndOtherDataParts = documentIdAndOtherData.Split('=');
-        license.InventoryControl = documentIdAndOtherDataParts.FirstOrDefault();
+        var documentIdAndOtherDataParts = documentIdAndOtherData?.Split('=');
+        license.InventoryControl = documentIdAndOtherDataParts?.FirstOrDefault();
         license.CustomerId = documentIdAndOtherDataParts
-            .FirstOrDefault()
+            ?.FirstOrDefault()
             ?.RemoveFirstOccurrence(IssuerIdentificationNumber.ToString());
-        var remainingData = documentIdAndOtherDataParts.ElementAtOrDefault(1);
+        var remainingData = documentIdAndOtherDataParts?.ElementAtOrDefault(1);
         var startIndex = 0;
-        license.ExpirationDate = DateTimeOffset.ParseExact(remainingData?.SubstringSafe(startIndex, 4), "yyMM", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+        license.ExpirationDate = DateTimeOffset.ParseExact(remainingData?.SubstringSafe(startIndex, 4) ?? string.Empty, "yyMM", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
         startIndex += 4;
-        license.DateOfBirth = DateTimeOffset.ParseExact(remainingData?.SubstringSafe(startIndex, 8), "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+        license.DateOfBirth = DateTimeOffset.ParseExact(remainingData?.SubstringSafe(startIndex, 8) ?? string.Empty, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
         startIndex += 8;
         var unknownFieldOne = remainingData?.SubstringSafe(startIndex, 2);
         startIndex += 2;
-        var remainingDataParts = remainingData?[startIndex..].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var remainingDataParts = remainingData?[startIndex..]?.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         license.PostalCode = remainingDataParts?.FirstOrDefault();
         if (license.PostalCode is {Length: > 5})
         {

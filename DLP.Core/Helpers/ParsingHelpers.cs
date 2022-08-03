@@ -21,9 +21,9 @@ public static class ParsingHelpers
     /// <param name="data">The dictionary to look through.</param>
     /// <param name="key">The key to check the dictionary for.</param>
     /// <returns><see cref="string"/></returns>
-    public static string TryGetValue(this IReadOnlyDictionary<string, string> data, string key) =>
+    public static string? TryGetValue(this IReadOnlyDictionary<string, string?> data, string key) =>
         data.TryGetValue(key, out var value)
-            ? value.Trim()
+            ? value?.Trim()
             : null;
 
     /// <summary>
@@ -35,7 +35,7 @@ public static class ParsingHelpers
     /// <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
     /// <returns><see cref="string"/></returns>
     /// <returns></returns>
-    public static string ParseDriverLicenseName(this IReadOnlyDictionary<string, string> data, string dataKey, NamePart namePart) =>
+    public static string? ParseDriverLicenseName(this IReadOnlyDictionary<string, string?> data, string dataKey, NamePart namePart) =>
         ParseDriverLicenseName(data.TryGetValue(dataKey), namePart);
 
     /// <summary>
@@ -46,15 +46,15 @@ public static class ParsingHelpers
     /// <param name="namePart">The part of the name to extract (valid values are firstName, middleName, lastName, suffix)</param>
     /// <returns><see cref="string"/></returns>
     /// <returns></returns>
-    public static string ParseDriverLicenseName(this string driverLicenseName, NamePart namePart)
+    public static string? ParseDriverLicenseName(this string? driverLicenseName, NamePart namePart)
     {
         if (!string.IsNullOrWhiteSpace(driverLicenseName) && driverLicenseName.Contains(' ') && !driverLicenseName.Contains(','))
         {
             var nameParts = driverLicenseName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             return namePart switch
             {
-                NamePart.FirstName => nameParts?.Length >= 1 ? nameParts[0] : null,
-                NamePart.MiddleName => nameParts?.Length switch
+                NamePart.FirstName => nameParts.Length >= 1 ? nameParts[0] : null,
+                NamePart.MiddleName => nameParts.Length switch
                 {
                     3 =>
                         nameParts[1],
@@ -64,7 +64,7 @@ public static class ParsingHelpers
                         string.Join(" ", nameParts[1..^2]),
                     _ => null
                 },
-                NamePart.LastName => nameParts?.Length switch
+                NamePart.LastName => nameParts.Length switch
                 {
                     2 =>
                         nameParts[1],
@@ -78,7 +78,7 @@ public static class ParsingHelpers
                         nameParts[^2],
                     _ => null
                 },
-                NamePart.Suffix => nameParts?.Length switch
+                NamePart.Suffix => nameParts.Length switch
                 {
                     >= 3 when nameParts.LastOrDefault()?.ParseNameSuffix() != NameSuffix.Unknown =>
                         nameParts.Last(),
@@ -107,11 +107,11 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="data">The license data.</param>
     /// <returns><see cref="LicenseVersion"/></returns>
-    public static LicenseVersion GetLicenseVersion(string data)
+    public static LicenseVersion GetLicenseVersion(string? data)
     {
         try
         {
-            var versionInt = int.Parse(Regex.Match(data, "\\d{6}(\\d{2})\\w+").Groups[1].Value);
+            var versionInt = int.Parse(Regex.Match(data!, "\\d{6}(\\d{2})\\w+").Groups[1].Value);
             return (LicenseVersion) Enum.Parse(typeof(LicenseVersion), $"Version{versionInt}");
         }
         catch (Exception e)
@@ -147,10 +147,12 @@ public static class ParsingHelpers
     /// <param name="startingIndex">The index to start at.</param>
     /// <param name="length">The length to trim to.</param>
     /// <returns><see cref="string"/></returns>
-    public static string SubstringSafe(this string s, int startingIndex, int length) =>
-        s.Length <= startingIndex + length
-            ? s[startingIndex..]
-            : s.Substring(startingIndex, length);
+    public static string SubstringSafe(this string? s, int startingIndex, int length) =>
+        string.IsNullOrWhiteSpace(s)
+            ? string.Empty
+            : s.Length <= startingIndex + length
+                ? s[startingIndex..]
+                : s.Substring(startingIndex, length);
 
     /// <summary>
     /// Removes the first occurrence of the value.
@@ -158,9 +160,10 @@ public static class ParsingHelpers
     /// <param name="haystack">Data to search in.</param>
     /// <param name="needle">What to look for.</param>
     /// <returns><see cref="string"/></returns>
-    public static string RemoveFirstOccurrence(this string haystack, string needle)
+    public static string? RemoveFirstOccurrence(this string? haystack, string? needle)
     {
-        if (string.IsNullOrEmpty(needle))
+        if (string.IsNullOrEmpty(needle)
+            || string.IsNullOrWhiteSpace(haystack))
         {
             return haystack;
         }
@@ -180,7 +183,7 @@ public static class ParsingHelpers
     /// </remarks>
     /// <param name="zip">The zip with possible trailing 0s.</param>
     /// <returns>string</returns>
-    public static string TrimTrailingZerosFromZipCode(this string zip) =>
+    public static string? TrimTrailingZerosFromZipCode(this string? zip) =>
         zip is { Length: 9 } && zip.EndsWith("0000")
             ? zip[..5]
             : zip;
@@ -192,7 +195,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="DateTimeOffset"/></returns>
-    public static DateTimeOffset? ParseDateTimeMdyThenYmd(this string s) =>
+    public static DateTimeOffset? ParseDateTimeMdyThenYmd(this string? s) =>
         DateTimeOffset.TryParseExact(
             s,
             new []
@@ -212,7 +215,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="IssuingCountry"/></returns>
-    public static IssuingCountry ParseIssuingCountry(this string s) =>
+    public static IssuingCountry ParseIssuingCountry(this string? s) =>
         s switch
         {
             "USA" => IssuingCountry.UnitedStates,
@@ -225,7 +228,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="Truncation"/></returns>
-    public static Truncation ParseTruncation(this string s) =>
+    public static Truncation ParseTruncation(this string? s) =>
         s switch
         {
             "T" => Truncation.Truncated,
@@ -238,7 +241,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="Gender"/></returns>
-    public static Gender ParseGender(this string s) =>
+    public static Gender ParseGender(this string? s) =>
         s switch
         {
             "1" => Gender.Male,
@@ -251,7 +254,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="EyeColor"/></returns>
-    public static EyeColor ParseEyeColor(this string s) =>
+    public static EyeColor ParseEyeColor(this string? s) =>
         s switch
         {
             "BLK" => EyeColor.Black,
@@ -271,7 +274,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="NameSuffix"/></returns>
-    public static NameSuffix ParseNameSuffix(this string s) =>
+    public static NameSuffix ParseNameSuffix(this string? s) =>
         s switch
         {
             "JR" => NameSuffix.Junior,
@@ -302,7 +305,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="HairColor"/></returns>
-    public static HairColor ParseHairColor(this string s) =>
+    public static HairColor ParseHairColor(this string? s) =>
         s switch
         {
             "BAL" => HairColor.Bald,
@@ -322,7 +325,7 @@ public static class ParsingHelpers
     /// </summary>
     /// <param name="s">The text to attempt to parse.</param>
     /// <returns><see cref="decimal"/></returns>
-    public static decimal? ParseHeightInInches(this string s)
+    public static decimal? ParseHeightInInches(this string? s)
     {
         try
         {
@@ -332,14 +335,16 @@ public static class ParsingHelpers
             }
 
             s = s.ToUpperInvariant().Trim();
-            if (s.Contains("CM"))
+            if (s.Contains("CM")
+                && decimal.TryParse(s.RemoveFirstOccurrence("CM")?.Trim(), out var parsedCm))
             {
-                return decimal.Parse(s.RemoveFirstOccurrence("CM").Trim()) * Constants.InchesPerCentimeter;
+                return parsedCm * Constants.InchesPerCentimeter;
             }
 
-            if (s.Contains("IN"))
+            if (s.Contains("IN")
+                && decimal.TryParse(s.RemoveFirstOccurrence("IN")?.Trim(), out var parsedId))
             {
-                return decimal.Parse(s.RemoveFirstOccurrence("IN").Trim());
+                return parsedId;
             }
 
             var matches = Regex.Match(s, "^([1-9]{1})-?((?:0[0-9])|(?:1[012]))$");
@@ -373,9 +378,9 @@ public static class ParsingHelpers
     /// <param name="splitUpData">The raw data split per this versions rules.</param>
     /// <returns><see cref="DriversLicenseData"/></returns>
     public static DriversLicenseData BasicDriversLicenseParser(
-        string data,
+        string? data,
         IssuingCountry defaultIssuingCountry,
-        out IReadOnlyDictionary<string, string> splitUpData)
+        out IReadOnlyDictionary<string, string?> splitUpData)
     {
         var driversLicenseData = GetLicenseVersion(data) switch
         {
@@ -392,5 +397,48 @@ public static class ParsingHelpers
             ? defaultIssuingCountry
             : driversLicenseData.IssuingCountry;
         return driversLicenseData;
+    }
+
+    /// <summary>
+    /// Splits the license data string into the different parts.
+    /// </summary>
+    /// <param name="s">The string pulled from the barcode.</param>
+    /// <returns><see cref="IReadOnlyDictionary{TKey,TValue}"/></returns>
+    public static IReadOnlyDictionary<string, string?> SplitLicenseString(string? s)
+    {
+        var data = new Dictionary<string, string?>();
+        if (string.IsNullOrWhiteSpace(s))
+        {
+            return data;
+        }
+
+        var dl = Regex.Match(s, "DL([a-zA-Z0-9]+)(DL[a-zA-Z0-9]+(?:\r|\n)?|D\\w{2}[a-zA-Z0-9]+)");
+        if (dl.Success)
+        {
+            var ending = dl.Groups[2].Value.Trim() == "DL"
+                ? "DL"
+                : null;
+            var dlValue = dl.Groups[1].Value.EndsWith("DL")
+                ? dl.Groups[1].Value[..^2]
+                : dl.Groups[1].Value;
+            s = s.Replace(
+                "DL" + dl.Groups[1].Value + ending,
+                Environment.NewLine + "DL_" + dlValue + Environment.NewLine);
+        }
+
+        return s
+            .Split('\r', '\n')
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Select(x =>
+                new
+                {
+                    Key = x.StartsWith("ANSI")
+                    ? "ANSI"
+                    : x.StartsWith("AAMVA")
+                        ? "AAMVA"
+                        : x.SubstringSafe(0, 3),
+                    Value = x
+                })
+            .ToDictionary(x => x.Key, x => x.Value.RemoveFirstOccurrence(x.Key)?.Trim());
     }
 }

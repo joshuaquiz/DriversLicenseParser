@@ -17,7 +17,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var key = Guid.NewGuid().ToString();
         var value = Guid.NewGuid().ToString();
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 key,
@@ -40,7 +40,7 @@ public static class ParsingHelpersTests
     {
         // Arrange.
         var key = Guid.NewGuid().ToString();
-        var data = new Dictionary<string, string>();
+        var data = new Dictionary<string, string?>();
 
         // Act.
         var result = data.TryGetValue(key);
@@ -93,7 +93,7 @@ public static class ParsingHelpersTests
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.LastName;
         var value = Guid.NewGuid().ToString();
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -119,7 +119,7 @@ public static class ParsingHelpersTests
         const NamePart namePart = NamePart.LastName;
         const string lastName = "Jones";
         const string value = "Jim " + lastName + " II";
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -160,7 +160,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.LastName;
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -185,7 +185,7 @@ public static class ParsingHelpersTests
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.FirstName;
         var value = Guid.NewGuid().ToString();
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -209,7 +209,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.FirstName;
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -234,7 +234,7 @@ public static class ParsingHelpersTests
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.MiddleName;
         var value = Guid.NewGuid().ToString();
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -258,7 +258,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.MiddleName;
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -283,7 +283,7 @@ public static class ParsingHelpersTests
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.Suffix;
         var value = Guid.NewGuid().ToString();
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -307,7 +307,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.Suffix;
-        var data = new Dictionary<string, string>
+        var data = new Dictionary<string, string?>
         {
             {
                 dataKey,
@@ -331,7 +331,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.Suffix;
-        var data = new Dictionary<string, string>();
+        var data = new Dictionary<string, string?>();
 
         // Act.
         var result = data.ParseDriverLicenseName(dataKey, namePart);
@@ -349,7 +349,7 @@ public static class ParsingHelpersTests
         // Arrange.
         var dataKey = Guid.NewGuid().ToString();
         const NamePart namePart = NamePart.Undefined;
-        var data = new Dictionary<string, string>();
+        var data = new Dictionary<string, string?>();
 
         // Act.
         var result = data.ParseDriverLicenseName(dataKey, namePart);

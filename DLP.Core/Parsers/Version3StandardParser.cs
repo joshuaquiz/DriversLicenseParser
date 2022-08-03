@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using DLP.Core.Helpers;
+﻿using DLP.Core.Helpers;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using System.Collections.Generic;
+// ReSharper disable UnusedMember.Global
 
 namespace DLP.Core.Parsers;
 
@@ -18,21 +18,10 @@ public static class Version3StandardParser
     /// <param name="splitUpData">The raw data split per this versions rules.</param>
     /// <returns><see cref="DriversLicenseData"/></returns>
     public static DriversLicenseData ParseDriversLicenseData(
-        string data,
-        out IReadOnlyDictionary<string, string> splitUpData)
+        string? data,
+        out IReadOnlyDictionary<string, string?> splitUpData)
     {
-        splitUpData = data
-            .Split('\r', '\n')
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
-        if (splitUpData["ANS"].Contains(Version3StandardMarkers.LastNameMarker))
-        {
-            splitUpData = new Dictionary<string, string>(splitUpData)
-            {
-                [Version3StandardMarkers.LastNameMarker] = splitUpData["ANS"].Split(Version3StandardMarkers.LastNameMarker)[1]
-            };
-        }
-
+        splitUpData = ParsingHelpers.SplitLicenseString(data);
         return new DriversLicenseData
         {
             // Pulling the "Last" name because the first name is where the last name should be.
@@ -157,17 +146,17 @@ public static class Version3StandardParser
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string MiddleNameTruncatedMarker = null;
+        public const string MiddleNameTruncatedMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string FirstNameTruncatedMarker = null;
+        public const string FirstNameTruncatedMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string LastNameTruncatedMarker = null;
+        public const string LastNameTruncatedMarker = null!;
 
         /// <summary>
         /// DAH

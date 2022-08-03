@@ -24,11 +24,11 @@ public sealed class Wyoming : IParseableLicense
     public int IssuerIdentificationNumber => 636060;
 
     /// <inheritdoc />
-    public bool IsDataFromEntity(string data) =>
-        data.Contains(IssuerIdentificationNumber.ToString());
+    public bool IsDataFromEntity(string? data) =>
+        data?.Contains(IssuerIdentificationNumber.ToString()) == true;
 
     /// <inheritdoc />
-    public DriversLicenseData ParseData(string data)
+    public DriversLicenseData ParseData(string? data)
     {
         var driversLicenseData = ParsingHelpers.BasicDriversLicenseParser(
             data,
@@ -36,10 +36,10 @@ public sealed class Wyoming : IParseableLicense
             out _);
         if (driversLicenseData.LicenseVersion == LicenseVersion.Version4)
         {
-            if (driversLicenseData.FirstName.Contains(" ")
+            if (driversLicenseData.FirstName?.Contains(' ') == true
                 && string.IsNullOrWhiteSpace(driversLicenseData.MiddleName))
             {
-                var firstSpaceIndex = driversLicenseData.FirstName.IndexOf(" ", StringComparison.InvariantCultureIgnoreCase);
+                var firstSpaceIndex = driversLicenseData.FirstName.IndexOf(' ', StringComparison.InvariantCultureIgnoreCase);
                 driversLicenseData.MiddleName = driversLicenseData.FirstName[firstSpaceIndex..].Trim();
                 driversLicenseData.FirstName = driversLicenseData.FirstName.Remove(firstSpaceIndex);
             }

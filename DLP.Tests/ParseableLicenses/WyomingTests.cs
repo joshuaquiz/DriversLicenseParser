@@ -32,7 +32,7 @@ public static class WyomingTests
     [InlineData("636060", true)]
     [InlineData("ha636060ha", true)]
     [InlineData("636140", false)]
-    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string input, bool expected) =>
+    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string? input, bool expected) =>
         new Wyoming().IsDataFromEntity(input).Should().Be(expected);
 
     public static IEnumerable<object[]> GetDataSets() =>

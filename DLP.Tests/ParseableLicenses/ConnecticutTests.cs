@@ -10,37 +10,37 @@ using Xunit;
 
 namespace DLP.Tests.ParseableLicenses;
 
-public static class IllinoisTests
+public static class ConnecticutTests
 {
     [Fact]
-    public static void ValidateStateLicenseData()
+    public static void ValidateOhioLicenseData()
     {
         // Arrange.
-        var state = new Illinois();
+        var state = new Connecticut();
 
         // Assert.
         using (new AssertionScope())
         {
-            state.FullName.Should().Be("Illinois");
-            state.Abbreviation.Should().Be("IL");
+            state.FullName.Should().Be("Connecticut");
+            state.Abbreviation.Should().Be("CT");
             state.Country.Should().Be(IssuingCountry.UnitedStates);
-            state.IssuerIdentificationNumber.Should().Be(636035);
+            state.IssuerIdentificationNumber.Should().Be(636006);
         }
     }
 
     [Theory]
-    [InlineData("636035", true)]
-    [InlineData("ha636035ha", true)]
-    [InlineData("636135", false)]
+    [InlineData("636006", true)]
+    [InlineData("ha636006ha", true)]
+    [InlineData("636125", false)]
     public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string? input, bool expected) =>
-        new Illinois().IsDataFromEntity(input).Should().Be(expected);
+        new Connecticut().IsDataFromEntity(input).Should().Be(expected);
 
     public static IEnumerable<object[]> GetDataSets() =>
         new List<object[]>
         {
             new object[]
             {
-                "%40%0A%0DANSI%206360350201DL00290190DLDAADOE,JOHN,CHESTER%0ADAQ123456789%0ADBA20181224%0ADBB20100428%0ADAG1234 FAKE BLVD%0ADAIMYCITY%0ADAJIL%0ADAK442240000%20%20%0ADARD%0ADAS********%20%20%0ADAT*****%0ADBD20140529%0ADBCF%0ADAU503%0ADAW125%0ADAYBLU%0A%0D",
+                "%40%0A%1E%0DAAMVA6360060101DL00290175DAADOE%2CJOHN%2CCHESTER%0ADAG1234 FAKE BLVD%0ADAIMYCITY%0ADAJCT%0ADAK44224+++++%0ADAQ123456789%0ADARD+%0ADAS++++++++%0ADAT++++%0ADBA20210701%0ADBB20100428%0ADBC2%0ADBD20150618%0ADAU507%0ADAYHAZ%0ADBF00%0ADBHN%0D",
                 new DriversLicenseData
                 {
                     FirstName = "JOHN",
@@ -50,7 +50,7 @@ public static class IllinoisTests
                     StreetAddress = "1234 FAKE BLVD",
                     SecondStreetAddress = null,
                     City = "MYCITY",
-                    State = "IL",
+                    State = "CT",
                     PostalCode = "44224",
                     IssuingCountry = IssuingCountry.UnitedStates,
                     DocumentId = null,
@@ -59,24 +59,24 @@ public static class IllinoisTests
                     LastNameAlias = null,
                     SuffixAlias = null,
                     PlaceOfBirth = null,
-                    CustomerId = "123456789",
-                    EyeColor = EyeColor.Blue,
-                    ExpirationDate = new DateTimeOffset(2018, 12, 24, 0, 0, 0, TimeSpan.Zero),
-                    IssueDate = new DateTimeOffset(2014, 5, 29, 0, 0, 0, TimeSpan.Zero),
+                    CustomerId = null,
+                    EyeColor = EyeColor.Hazel,
+                    ExpirationDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero),
+                    IssueDate = new DateTimeOffset(2015, 6, 18, 0, 0, 0, TimeSpan.Zero),
                     HairColor = HairColor.Unknown,
-                    InventoryControl = "00290190",
+                    InventoryControl = "00290175",
                     FirstNameTruncated = Truncation.Unknown,
                     LastNameTruncated = Truncation.Unknown,
                     MiddleNameTruncated = Truncation.Unknown,
-                    Gender = Gender.Unknown,
-                    Height = 63,
+                    Gender = Gender.Female,
+                    Height = 67,
                     NameSuffix = NameSuffix.Unknown,
-                    LicenseVersion = LicenseVersion.Version2
+                    LicenseVersion = LicenseVersion.Version1
                 }
             },
             new object[]
             {
-                "%40%0A%1C%0DANSI+6360350201DL00290190DLDAADOE%2CJOHN%2CCHESTER%0ADAQ123456789%0ADBA20181224%0ADBB20100428%0ADAG1234 FAKE BLVD%0ADAIMYCITY%0ADAJIL%0ADAK442240000++%0ADARD%0ADAS********++%0ADAT*****%0ADBD20140529%0ADBCF%0ADAU503%0ADAW125%0ADAYBLU%0A%0D",
+                "%40%0A%0DAAMVA6360060101DL00290175DAADOE,JOHN,CHESTER%0ADAG1234 FAKE BLVD%0ADAIMYCITY%0ADAJCT%0ADAK44224%20%20%20%20%20%20%0ADAQ123456789%0ADARD%20%20%20%0ADAS%20%20%20%20%20%20%20%20%20%20%0ADAT%20%20%20%20%20%0ADBA20210701%0ADBB20100428%0ADBC2%0ADBD20150618%0ADAU507%0ADAYHAZ%0ADBF00%0ADBHN%0D",
                 new DriversLicenseData
                 {
                     FirstName = "JOHN",
@@ -86,7 +86,7 @@ public static class IllinoisTests
                     StreetAddress = "1234 FAKE BLVD",
                     SecondStreetAddress = null,
                     City = "MYCITY",
-                    State = "IL",
+                    State = "CT",
                     PostalCode = "44224",
                     IssuingCountry = IssuingCountry.UnitedStates,
                     DocumentId = null,
@@ -95,19 +95,19 @@ public static class IllinoisTests
                     LastNameAlias = null,
                     SuffixAlias = null,
                     PlaceOfBirth = null,
-                    CustomerId = "123456789",
-                    EyeColor = EyeColor.Blue,
-                    ExpirationDate = new DateTimeOffset(2018, 12, 24, 0, 0, 0, TimeSpan.Zero),
-                    IssueDate = new DateTimeOffset(2014, 5, 29, 0, 0, 0, TimeSpan.Zero),
+                    CustomerId = null,
+                    EyeColor = EyeColor.Hazel,
+                    ExpirationDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero),
+                    IssueDate = new DateTimeOffset(2015, 6, 18, 0, 0, 0, TimeSpan.Zero),
                     HairColor = HairColor.Unknown,
-                    InventoryControl = "00290190",
+                    InventoryControl = "00290175",
                     FirstNameTruncated = Truncation.Unknown,
                     LastNameTruncated = Truncation.Unknown,
                     MiddleNameTruncated = Truncation.Unknown,
-                    Gender = Gender.Unknown,
-                    Height = 63,
+                    Gender = Gender.Female,
+                    Height = 67,
                     NameSuffix = NameSuffix.Unknown,
-                    LicenseVersion = LicenseVersion.Version2
+                    LicenseVersion = LicenseVersion.Version1
                 }
             }
         };
@@ -115,7 +115,7 @@ public static class IllinoisTests
     [Theory, MemberData(nameof(GetDataSets))]
     public static void ParseData(string data, DriversLicenseData expected)
     {
-        var driversLicenseData = new Illinois().ParseData(HttpUtility.UrlDecode(data));
+        var driversLicenseData = new Connecticut().ParseData(HttpUtility.UrlDecode(data));
         using (new AssertionScope())
         {
             driversLicenseData.FirstName.Should().Be(expected.FirstName);

@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using DLP.Core.Helpers;
+﻿using DLP.Core.Helpers;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using System.Collections.Generic;
+// ReSharper disable UnusedMember.Global
 
 namespace DLP.Core.Parsers;
 
@@ -18,13 +18,10 @@ public static class Version1StandardParser
     /// <param name="splitUpData">The raw data split per this versions rules.</param>
     /// <returns><see cref="DriversLicenseData"/></returns>
     public static DriversLicenseData ParseDriversLicenseData(
-        string data,
-        out IReadOnlyDictionary<string, string> splitUpData)
+        string? data,
+        out IReadOnlyDictionary<string, string?> splitUpData)
     {
-        splitUpData = data
-            .Split('\r', '\n')
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
+        splitUpData = ParsingHelpers.SplitLicenseString(data);
         return new DriversLicenseData
         {
             FirstName = splitUpData.TryGetValue(Version1StandardMarkers.FirstNameMarker)
@@ -51,6 +48,7 @@ public static class Version1StandardParser
             SuffixAlias = splitUpData.TryGetValue(Version1StandardMarkers.SuffixAliasMarker),
             NameSuffix = (splitUpData.TryGetValue(Version1StandardMarkers.NameSuffixMarker)
                           ?? splitUpData.ParseDriverLicenseName(Version1StandardMarkers.DriverLicenseNameMarker, NamePart.Suffix)).ParseNameSuffix(),
+            InventoryControl = splitUpData.TryGetValue(Version1StandardMarkers.InventoryControlMarker),
             LicenseVersion = LicenseVersion.Version1
         };
     }
@@ -141,27 +139,27 @@ public static class Version1StandardParser
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string DocumentIdMarker = null;
+        public const string DocumentIdMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string IssuingCountryMarker = null;
+        public const string IssuingCountryMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string MiddleNameTruncatedMarker = null;
+        public const string MiddleNameTruncatedMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string FirstNameTruncatedMarker = null;
+        public const string FirstNameTruncatedMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string LastNameTruncatedMarker = null;
+        public const string LastNameTruncatedMarker = null!;
 
         /// <summary>
         /// DAH
@@ -176,17 +174,17 @@ public static class Version1StandardParser
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string PlaceOfBirthMarker = null;
+        public const string PlaceOfBirthMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string AuditInformationMarker = null;
+        public const string AuditInformationMarker = null!;
 
         /// <summary>
-        /// Not used in this version.
+        /// DL_
         /// </summary>
-        public const string InventoryControlMarker = null;
+        public const string InventoryControlMarker = "DL_";
 
         /// <summary>
         /// DBO

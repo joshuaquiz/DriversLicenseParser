@@ -2,7 +2,6 @@
 using DLP.Core.Interfaces;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
-using System;
 
 namespace DLP.Core.ParseableLicenses;
 
@@ -24,33 +23,21 @@ public sealed class Pennsylvania : IParseableLicense
     public int IssuerIdentificationNumber => 636025;
 
     /// <inheritdoc />
-    public bool IsDataFromEntity(string data) =>
-        data.Contains(IssuerIdentificationNumber.ToString());
+    public bool IsDataFromEntity(string? data) =>
+        data?.Contains(IssuerIdentificationNumber.ToString()) == true;
 
     /// <inheritdoc />
-    public DriversLicenseData ParseData(string data)
+    public DriversLicenseData ParseData(string? data)
     {
         var licenseData = ParsingHelpers.BasicDriversLicenseParser(
             data,
             Country,
             out var splitUpData);
-        if (splitUpData.TryGetValue("ANS", out var ansiData))
-        {
-            var indexOfDl = ansiData.IndexOf("DL", StringComparison.InvariantCultureIgnoreCase);
-            licenseData.InventoryControl = ansiData[2..indexOfDl];
-            var indexOfD = ansiData.IndexOf("D", indexOfDl + 1, StringComparison.InvariantCultureIgnoreCase);
-            licenseData.AuditInformation = ansiData[(indexOfDl + 2)..indexOfD];
-            licenseData.CustomerId = ansiData[(ansiData.IndexOf("DAQ", StringComparison.InvariantCultureIgnoreCase) + 3)..];
-        }
-        else if (splitUpData.TryGetValue("AAM", out var aamvaData))
-        {
-            var indexOfDl = aamvaData.IndexOf("DL", StringComparison.InvariantCultureIgnoreCase);
-            licenseData.InventoryControl = aamvaData[2..indexOfDl];
-            var indexOfD = aamvaData.IndexOf("D", indexOfDl + 1, StringComparison.InvariantCultureIgnoreCase);
-            licenseData.AuditInformation = aamvaData[(indexOfDl + 2)..indexOfD];
-            licenseData.CustomerId = aamvaData[(aamvaData.IndexOf("DAQ", StringComparison.InvariantCultureIgnoreCase) + 3)..];
-        }
-
+        licenseData.CustomerId = splitUpData["DAQ"];
+        licenseData.AuditInformation = splitUpData["DL_"];
+        licenseData.InventoryControl = splitUpData.ContainsKey("ANSI")
+            ? splitUpData["ANSI"]
+            : splitUpData["AAMVA"];
         return licenseData;
     }
 }

@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using DLP.Core.Helpers;
+﻿using DLP.Core.Helpers;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using System.Collections.Generic;
+// ReSharper disable UnusedMember.Global
 
 namespace DLP.Core.Parsers;
 
@@ -18,14 +18,11 @@ public static class Version2StandardParser
     /// <param name="splitUpData">The raw data split per this versions rules.</param>
     /// <returns><see cref="DriversLicenseData"/></returns>
     public static DriversLicenseData ParseDriversLicenseData(
-        string data,
-        out IReadOnlyDictionary<string, string> splitUpData)
+        string? data,
+        out IReadOnlyDictionary<string, string?> splitUpData)
     {
-        splitUpData = data
-            .Split('\r', '\n')
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
-        return new DriversLicenseData
+        splitUpData = ParsingHelpers.SplitLicenseString(data);
+        var driversLicenseData = new DriversLicenseData
         {
             FirstName = splitUpData.TryGetValue(Version2StandardMarkers.FirstNameMarker),
             LastName = splitUpData.TryGetValue(Version2StandardMarkers.LastNameMarker),
@@ -51,8 +48,18 @@ public static class Version2StandardParser
             LastNameAlias = splitUpData.TryGetValue(Version2StandardMarkers.LastNameAliasMarker),
             FirstNameAlias = splitUpData.TryGetValue(Version2StandardMarkers.FirstNameAliasMarker),
             NameSuffix = splitUpData.TryGetValue(Version2StandardMarkers.NameSuffixMarker).ParseNameSuffix(),
+            InventoryControl = splitUpData.TryGetValue(Version2StandardMarkers.InventoryControlMarker),
             LicenseVersion = LicenseVersion.Version2
         };
+        if (string.IsNullOrWhiteSpace(driversLicenseData.LastName)
+            && splitUpData.TryGetValue(Version2StandardMarkers.DriverLicenseNameMarker, out var nameData))
+        {
+            driversLicenseData.FirstName = nameData.ParseDriverLicenseName(NamePart.FirstName);
+            driversLicenseData.MiddleName = nameData.ParseDriverLicenseName(NamePart.MiddleName);
+            driversLicenseData.LastName = nameData.ParseDriverLicenseName(NamePart.LastName);
+        }
+
+        return driversLicenseData;
     }
 
     /// <summary>
@@ -176,17 +183,17 @@ public static class Version2StandardParser
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string PlaceOfBirthMarker = null;
+        public const string PlaceOfBirthMarker = null!;
 
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string AuditInformationMarker = null;
+        public const string AuditInformationMarker = null!;
 
         /// <summary>
-        /// Not used in this version.
+        /// DL_
         /// </summary>
-        public const string InventoryControlMarker = null;
+        public const string InventoryControlMarker = "DL_";
 
         /// <summary>
         /// DBN
@@ -201,7 +208,7 @@ public static class Version2StandardParser
         /// <summary>
         /// Not used in this version.
         /// </summary>
-        public const string SuffixAliasMarker = null;
+        public const string SuffixAliasMarker = null!;
 
         /// <summary>
         /// DCU

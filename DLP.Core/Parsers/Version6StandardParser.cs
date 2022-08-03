@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using DLP.Core.Helpers;
+﻿using DLP.Core.Helpers;
 using DLP.Core.Models;
 using DLP.Core.Models.Enums;
 using System.Collections.Generic;
@@ -9,13 +8,10 @@ namespace DLP.Core.Parsers;
 public static class Version6StandardParser
 {
     public static DriversLicenseData ParseDriversLicenseData(
-        string data,
-        out IReadOnlyDictionary<string, string> splitUpData)
+        string? data,
+        out IReadOnlyDictionary<string, string?> splitUpData)
     {
-        splitUpData = data
-            .Split('\r', '\n')
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .ToDictionary(x => x.TrimToLength(3), x => x.RemoveFirstOccurrence(x.TrimToLength(3)));
+        splitUpData = ParsingHelpers.SplitLicenseString(data);
         return new DriversLicenseData
         {
             FirstName = splitUpData.TryGetValue(Version6StandardMarkers.FirstNameMarker),

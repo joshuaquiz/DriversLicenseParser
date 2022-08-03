@@ -32,7 +32,7 @@ public static class NorthCarolinaTests
     [InlineData("636004", true)]
     [InlineData("ha636004ha", true)]
     [InlineData("636014", false)]
-    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string input, bool expected) =>
+    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string? input, bool expected) =>
         new NorthCarolina().IsDataFromEntity(input).Should().Be(expected);
 
     public static IEnumerable<object[]> GetDataSets() =>
@@ -64,7 +64,7 @@ public static class NorthCarolinaTests
                     ExpirationDate = new DateTimeOffset(2023, 6, 19, 0, 0, 0, TimeSpan.Zero),
                     IssueDate = new DateTimeOffset(2015, 6, 22, 0, 0, 0, TimeSpan.Zero),
                     HairColor = HairColor.Brown,
-                    InventoryControl = null,
+                    InventoryControl = "00280195",
                     FirstNameTruncated = Truncation.Unknown,
                     LastNameTruncated = Truncation.Unknown,
                     MiddleNameTruncated = Truncation.Unknown,

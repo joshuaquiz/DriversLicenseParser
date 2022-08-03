@@ -20,10 +20,10 @@ public sealed class Alberta : IParseableLicense
     public int IssuerIdentificationNumber => 604432;
 
     /// <inheritdoc />
-    public bool IsDataFromEntity(string data) =>
-        data.Contains(IssuerIdentificationNumber.ToString());
+    public bool IsDataFromEntity(string? data) =>
+        data?.Contains(IssuerIdentificationNumber.ToString()) == true;
 
     /// <inheritdoc />
-    public DriversLicenseData ParseData(string data) =>
+    public DriversLicenseData ParseData(string? data) =>
         ParsingHelpers.BasicDriversLicenseParser(data, Country, out _);
 }

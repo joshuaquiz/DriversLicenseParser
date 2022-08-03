@@ -10,7 +10,7 @@ using Xunit;
 
 namespace DLP.Tests.ParseableLicenses;
 
-public static class ValidateStateLicenseData
+public static class PennsylvaniaTests
 {
     [Fact]
     public static void ValidateOhioLicenseData()
@@ -32,7 +32,7 @@ public static class ValidateStateLicenseData
     [InlineData("636025", true)]
     [InlineData("ha636025ha", true)]
     [InlineData("636125", false)]
-    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string input, bool expected) =>
+    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string? input, bool expected) =>
         new Pennsylvania().IsDataFromEntity(input).Should().Be(expected);
 
     public static IEnumerable<object[]> GetDataSets() =>

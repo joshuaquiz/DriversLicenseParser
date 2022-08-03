@@ -36,12 +36,12 @@ public interface IParseableLicense
     /// </summary>
     /// <param name="data">The license data.</param>
     /// <returns>bool</returns>
-    public bool IsDataFromEntity(string data);
+    public bool IsDataFromEntity(string? data);
 
     /// <summary>
     /// Parses the string into a <see cref="DriversLicenseData"/>.
     /// </summary>
     /// <param name="data">The license data.</param>
     /// <returns><see cref="DriversLicenseData"/></returns>
-    public DriversLicenseData ParseData(string data);
+    public DriversLicenseData ParseData(string? data);
 }

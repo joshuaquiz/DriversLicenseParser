@@ -24,11 +24,11 @@ public sealed class Washington : IParseableLicense
     public int IssuerIdentificationNumber => 636045;
 
     /// <inheritdoc />
-    public bool IsDataFromEntity(string data) =>
-        data.Contains(IssuerIdentificationNumber.ToString());
+    public bool IsDataFromEntity(string? data) =>
+        data?.Contains(IssuerIdentificationNumber.ToString()) == true;
 
     /// <inheritdoc />
-    public DriversLicenseData ParseData(string data)
+    public DriversLicenseData ParseData(string? data)
     {
         var driversLicenseData = ParsingHelpers.BasicDriversLicenseParser(
             data,
@@ -38,8 +38,8 @@ public sealed class Washington : IParseableLicense
         {
             if (splitUpData.TryGetValue(Version3StandardParser.Version3StandardMarkers.FirstNameMarker, out var firstName))
             {
-                var nameParts = firstName.Split(' ');
-                if (nameParts.Length == 2)
+                var nameParts = firstName?.Split(' ');
+                if (nameParts?.Length == 2)
                 {
                     driversLicenseData.FirstName = nameParts[0];
                     driversLicenseData.MiddleName = nameParts[1];

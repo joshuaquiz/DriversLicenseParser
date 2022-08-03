@@ -32,7 +32,7 @@ public static class OhioTests
     [InlineData("636023", true)]
     [InlineData("ha636023ha", true)]
     [InlineData("636123", false)]
-    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string input, bool expected) =>
+    public static void IsDataFromEntityCorrectlyDetectsEntitiesData(string? input, bool expected) =>
         new Ohio().IsDataFromEntity(input).Should().Be(expected);
 
     public static IEnumerable<object[]> GetDataSets() =>
