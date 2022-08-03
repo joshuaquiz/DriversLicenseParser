@@ -384,6 +384,7 @@ public static class ParsingHelpers
     {
         var driversLicenseData = GetLicenseVersion(data) switch
         {
+            LicenseVersion.Version1 => Version1StandardParser.ParseDriversLicenseData(data, out splitUpData),
             LicenseVersion.Version2 => Version2StandardParser.ParseDriversLicenseData(data, out splitUpData),
             LicenseVersion.Version3 => Version3StandardParser.ParseDriversLicenseData(data, out splitUpData),
             LicenseVersion.Version4 => Version4StandardParser.ParseDriversLicenseData(data, out splitUpData),
@@ -391,7 +392,8 @@ public static class ParsingHelpers
             LicenseVersion.Version6 => Version6StandardParser.ParseDriversLicenseData(data, out splitUpData),
             LicenseVersion.Version7 => Version7StandardParser.ParseDriversLicenseData(data, out splitUpData),
             LicenseVersion.Version8 => Version8StandardParser.ParseDriversLicenseData(data, out splitUpData),
-            _ => Version1StandardParser.ParseDriversLicenseData(data, out splitUpData)
+            LicenseVersion.Version9 => Version9StandardParser.ParseDriversLicenseData(data, out splitUpData),
+            _ => UnknownVersionStandardParser.ParseDriversLicenseData(data, out splitUpData)
         };
         driversLicenseData.IssuingCountry = driversLicenseData.IssuingCountry == IssuingCountry.Unknown
             ? defaultIssuingCountry

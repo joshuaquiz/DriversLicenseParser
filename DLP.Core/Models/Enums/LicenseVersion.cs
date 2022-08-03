@@ -11,6 +11,7 @@
 /// - Version 6<br />
 /// - Version 7<br />
 /// - Version 8<br />
+/// - Version 9<br />
 /// </summary>
 public enum LicenseVersion
 {
@@ -57,5 +58,10 @@ public enum LicenseVersion
     /// <summary>
     /// Version 8.
     /// </summary>
-    Version8
+    Version8,
+
+    /// <summary>
+    /// Version 9.
+    /// </summary>
+    Version9
 }

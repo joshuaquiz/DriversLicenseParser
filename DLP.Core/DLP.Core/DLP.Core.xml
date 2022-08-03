@@ -609,6 +609,7 @@
             - Version 6<br />
             - Version 7<br />
             - Version 8<br />
+            - Version 9<br />
             </summary>
         </member>
         <member name="F:DLP.Core.Models.Enums.LicenseVersion.UnknownVersion">
@@ -654,6 +655,11 @@
         <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version8">
             <summary>
             Version 8.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Models.Enums.LicenseVersion.Version9">
+            <summary>
+            Version 9.
             </summary>
         </member>
         <member name="T:DLP.Core.Models.Enums.NamePart">
@@ -2113,6 +2119,172 @@
         </member>
         <member name="M:DLP.Core.ParseableLicenses.Yukon.ParseData(System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:DLP.Core.Parsers.UnknownVersionStandardParser">
+            <summary>
+            Represents an AAMVA license with an unknown version.
+            </summary>
+        </member>
+        <member name="M:DLP.Core.Parsers.UnknownVersionStandardParser.ParseDriversLicenseData(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String}@)">
+            <summary>
+            Parses an AAMVA license with an unknown version.
+            </summary>
+            <param name="data">The incoming raw data.</param>
+            <param name="splitUpData">The raw data split per this versions rules.</param>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
+        </member>
+        <member name="T:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers">
+            <summary>
+            AAMVA Version 1 license data codes
+            </summary>
+            <remarks>
+            These codes are used to mark where in the text data a certain field starts.
+            </remarks>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.DriverLicenseNameMarker">
+            <summary>
+            DAA
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.FirstNameMarker">
+            <summary>
+            DAC
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.LastNameMarker">
+            <summary>
+            DAB
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.MiddleNameMarker">
+            <summary>
+            DAD
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.ExpirationDateMarker">
+            <summary>
+            DBA
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.IssueDateMarker">
+            <summary>
+            DBD
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.DateOfBirthMarker">
+            <summary>
+            DBB
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.GenderMarker">
+            <summary>
+            DBC
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.EyeColorMarker">
+            <summary>
+            DAY
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.HeightMarker">
+            <summary>
+            DAU
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.StreetAddressMarker">
+            <summary>
+            DAG
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.CityMarker">
+            <summary>
+            DAI
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.StateMarker">
+            <summary>
+            DAJ
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.PostalCodeMarker">
+            <summary>
+            DAK
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.CustomerIdMarker">
+            <summary>
+            DBJ
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.DocumentIdMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.IssuingCountryMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.MiddleNameTruncatedMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.FirstNameTruncatedMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.LastNameTruncatedMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.SecondStreetAddressMarker">
+            <summary>
+            DAH
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.HairColorMarker">
+            <summary>
+            DAZ
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.PlaceOfBirthMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.AuditInformationMarker">
+            <summary>
+            Not used in this version.
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.InventoryControlMarker">
+            <summary>
+            DL_
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.LastNameAliasMarker">
+            <summary>
+            DBO
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.FirstNameAliasMarker">
+            <summary>
+            DBP
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.SuffixAliasMarker">
+            <summary>
+            DBR
+            </summary>
+        </member>
+        <member name="F:DLP.Core.Parsers.UnknownVersionStandardParser.Version1StandardMarkers.NameSuffixMarker">
+            <summary>
+            DBN
+            </summary>
         </member>
         <member name="T:DLP.Core.Parsers.Version1StandardParser">
             <summary>
