@@ -63,5 +63,5 @@ public enum EyeColor
     /// <summary>
     /// Dichromatic eye color.
     /// </summary>
-    Dichromatic,
+    Dichromatic
 }

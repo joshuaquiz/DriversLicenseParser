@@ -19,7 +19,7 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>aamva drivers-licenses</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>5.4.0</VersionPrefix>
+    <VersionPrefix>0.0.1</VersionPrefix>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>DLP.Core\DLP.Core.xml</DocumentationFile>
