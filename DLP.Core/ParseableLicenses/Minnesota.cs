@@ -5,6 +5,9 @@ using DLP.Core.Models.Enums;
 
 namespace DLP.Core.ParseableLicenses;
 
+/// <summary>
+/// Represents a license from the US state of Minnesota.
+/// </summary>
 public sealed class Minnesota : IParseableLicense
 {
     /// <inheritdoc />

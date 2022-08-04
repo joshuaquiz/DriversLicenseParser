@@ -89,7 +89,7 @@ public static class ParsingHelpers
         }
         else
         {
-            var nameParts = driverLicenseName?.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var nameParts = driverLicenseName?.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             return namePart switch
             {
                 NamePart.FirstName => nameParts?.Length >= 2 ? nameParts[1] : null,

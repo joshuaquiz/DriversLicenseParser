@@ -1352,6 +1352,11 @@
         <member name="M:DLP.Core.ParseableLicenses.Michigan.ParseData(System.String)">
             <inheritdoc />
         </member>
+        <member name="T:DLP.Core.ParseableLicenses.Minnesota">
+            <summary>
+            Represents a license from the US state of Minnesota.
+            </summary>
+        </member>
         <member name="P:DLP.Core.ParseableLicenses.Minnesota.FullName">
             <inheritdoc />
         </member>
@@ -1721,6 +1726,11 @@
         </member>
         <member name="M:DLP.Core.ParseableLicenses.Ontario.ParseData(System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:DLP.Core.ParseableLicenses.Oregon">
+            <summary>
+            Represents a license from the US state of Oregon.
+            </summary>
         </member>
         <member name="P:DLP.Core.ParseableLicenses.Oregon.FullName">
             <inheritdoc />
