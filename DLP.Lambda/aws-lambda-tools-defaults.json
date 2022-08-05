@@ -1,0 +1,28 @@
+
+{
+    "Information" : [
+        "This file provides default values for the deployment wizard inside Visual Studio and the AWS Lambda commands added to the .NET Core CLI.",
+        "To learn more about the Lambda commands with the .NET Core CLI execute the following command at the command line in the project root directory.",
+        "dotnet lambda help",
+        "All the command line options for the Lambda command can be specified in this file."
+    ],
+    "configuration" : "Release",
+    "package-type"  : "Zip",
+    "function-memory-size" : 256,
+    "function-timeout"     : 30,
+    "image-command"        : "DLP.Lambda::DLP.Lambda.Function::FunctionHandler",
+    "docker-host-build-output-dir" : "./bin/Release/lambda-publish",
+    "region"                       : "us-east-1",
+    "profile"                      : "personal-account",
+    "framework"                    : "net6.0",
+    "function-name"                : "DriversLicenseParser",
+    "function-handler"             : "DLP.Lambda::DLP.Lambda.Function::Post",
+    "function-role"                : "arn:aws:iam::525722201980:role/lambda_exec_DriversLicenseParser",
+    "function-runtime"             : "dotnet6",
+    "function-architecture"        : "arm64",
+    "tracing-mode"                 : "PassThrough",
+    "environment-variables"        : "",
+    "dockerfile"                   : "Dockerfile",
+    "image-tag"                    : "",
+    "function-description"         : ""
+}

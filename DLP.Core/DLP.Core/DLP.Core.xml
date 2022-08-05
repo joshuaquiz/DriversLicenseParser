@@ -16,13 +16,7 @@
             <param name="parseableLicenses">All parseable licenses.</param>
         </member>
         <member name="M:DLP.Core.DriversLicenseParser.Parse(System.String)">
-            <summary>
-            Attempts to parse the license data.
-            </summary>
-            <param name="data">The license data.</param>
-            <exception cref="T:System.ArgumentNullException">Thrown if the provided data is empty or null.</exception>
-            <exception cref="T:DLP.Core.Exceptions.LicenseFormatException">Thrown if the data could not be matched to any known format.</exception>
-            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
+            <inheritdoc />
         </member>
         <member name="T:DLP.Core.Exceptions.LicenseFormatException">
             <summary>
@@ -222,6 +216,32 @@
             </summary>
             <param name="s">The string pulled from the barcode.</param>
             <returns><see cref="T:System.Collections.Generic.IReadOnlyDictionary`2"/></returns>
+        </member>
+        <member name="T:DLP.Core.Helpers.StartupExtensions">
+            <summary>
+            Startup extensions.
+            </summary>
+        </member>
+        <member name="M:DLP.Core.Helpers.StartupExtensions.AddDriversLicenseParsing(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds <see cref="T:DLP.Core.Interfaces.IDriversLicenseParser"/> and its dependencies to the tree.
+            </summary>
+            <param name="provider"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DLP.Core.Interfaces.IDriversLicenseParser">
+            <summary>
+            Drivers license parser.
+            </summary>
+        </member>
+        <member name="M:DLP.Core.Interfaces.IDriversLicenseParser.Parse(System.String)">
+            <summary>
+            Attempts to parse the license data.
+            </summary>
+            <param name="data">The license data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if the provided data is empty or null.</exception>
+            <exception cref="T:DLP.Core.Exceptions.LicenseFormatException">Thrown if the data could not be matched to any known format.</exception>
+            <returns><see cref="T:DLP.Core.Models.DriversLicenseData"/></returns>
         </member>
         <member name="T:DLP.Core.Interfaces.IParseableLicense">
             <summary>

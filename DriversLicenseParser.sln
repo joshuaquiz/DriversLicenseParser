@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLP.Lambda", "DLP.Lambda\DLP.Lambda.csproj", "{452B8610-9F9A-4D42-962B-117D2C35F326}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{0E64B24A-2995-4DD6-B899-06075D67DB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E64B24A-2995-4DD6-B899-06075D67DB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E64B24A-2995-4DD6-B899-06075D67DB9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452B8610-9F9A-4D42-962B-117D2C35F326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452B8610-9F9A-4D42-962B-117D2C35F326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452B8610-9F9A-4D42-962B-117D2C35F326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452B8610-9F9A-4D42-962B-117D2C35F326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

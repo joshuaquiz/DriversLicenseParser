@@ -10,7 +10,7 @@ namespace DLP.Core;
 /// <summary>
 /// Drivers license parser entry point.
 /// </summary>
-public sealed class DriversLicenseParser
+public sealed class DriversLicenseParser : IDriversLicenseParser
 {
     private readonly IReadOnlyCollection<IParseableLicense>? _parseableLicenses;
 
@@ -23,13 +23,7 @@ public sealed class DriversLicenseParser
         _parseableLicenses = parseableLicenses?.ToList();
     }
 
-    /// <summary>
-    /// Attempts to parse the license data.
-    /// </summary>
-    /// <param name="data">The license data.</param>
-    /// <exception cref="ArgumentNullException">Thrown if the provided data is empty or null.</exception>
-    /// <exception cref="LicenseFormatException">Thrown if the data could not be matched to any known format.</exception>
-    /// <returns><see cref="DriversLicenseData"/></returns>
+    /// <inheritdoc />
     public DriversLicenseData Parse(string? data)
     {
         if (string.IsNullOrWhiteSpace(data))

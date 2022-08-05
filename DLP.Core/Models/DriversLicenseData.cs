@@ -6,7 +6,7 @@ namespace DLP.Core.Models;
 /// <summary>
 /// Represents data parsed from a drivers license.
 /// </summary>
-public sealed class DriversLicenseData
+public sealed record DriversLicenseData
 {
     /// <summary>
     /// Customer First Name
