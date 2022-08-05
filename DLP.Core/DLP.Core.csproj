@@ -20,7 +20,7 @@
     <PackageProjectUrl>https://github.com/joshuaquiz/DriversLicenseParser</PackageProjectUrl>
     <PackageTags>aamva drivers-licenses</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
     <ApplicationIcon>driving-license.ico</ApplicationIcon>

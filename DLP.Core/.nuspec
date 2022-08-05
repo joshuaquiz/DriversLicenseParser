@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>DriversLicenseParser</id>
-        <version>0.0.1</version>
+        <version>1.0.0</version>
         <description>Parses drivers licenses data scanned from barcode</description>
         <authors>Joshua Galloway</authors>
         <projectUrl>https://github.com/joshuaquiz/DriversLicenseParser</projectUrl>
@@ -17,5 +17,4 @@
         <repository type="git" url="https://github.com/joshuaquiz/DriversLicenseParser.git" branch="main" />
         <title>Drivers License Parser</title>
     </metadata>
-    <!-- Optional 'files' node -->
 </package>
