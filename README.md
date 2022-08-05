@@ -14,3 +14,6 @@ For more information about formatting, data, questions, etc [visit the wiki](htt
 Credit to [@ksoftllc](https://github.com/ksoftllc) and his Swift library that I used to copy some of the parts that I did not have examples for - https://github.com/ksoftllc/license-parser
 
 Driving license icons created by [Freepik - Flaticon](https://www.flaticon.com/free-icons/driving-license)
+
+# Support
+If you want to support my work click here: [Sponsor joshuaquiz](https://github.com/sponsors/joshuaquiz)
