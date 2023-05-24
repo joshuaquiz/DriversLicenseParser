@@ -229,35 +229,36 @@ public static class DriversLicenseDataTests
         // Assert.
         using (new AssertionScope())
         {
-            driversLicenseData.FirstName.Should().Be(firstName);
-            driversLicenseData.LastName.Should().Be(lastName);
-            driversLicenseData.MiddleName.Should().Be(middleName);
-            driversLicenseData.ExpirationDate.Should().Be(expirationDate);
-            driversLicenseData.IssueDate.Should().Be(issueDate);
-            driversLicenseData.DateOfBirth.Should().Be(dateOfBirth);
-            driversLicenseData.Gender.Should().Be(gender);
-            driversLicenseData.EyeColor.Should().Be(eyeColor);
-            driversLicenseData.HairColor.Should().Be(hairColor);
-            driversLicenseData.Height.Should().Be(height);
-            driversLicenseData.StreetAddress.Should().Be(streetAddress);
-            driversLicenseData.SecondStreetAddress.Should().Be(secondStreetAddress);
-            driversLicenseData.City.Should().Be(city);
-            driversLicenseData.State.Should().Be(state);
-            driversLicenseData.PostalCode.Should().Be(postalCode);
-            driversLicenseData.CustomerId.Should().Be(customerId);
-            driversLicenseData.DocumentId.Should().Be(documentId);
-            driversLicenseData.IssuingCountry.Should().Be(issuingCountry);
-            driversLicenseData.MiddleNameTruncated.Should().Be(middleNameTruncated);
-            driversLicenseData.FirstNameTruncated.Should().Be(firstNameTruncated);
-            driversLicenseData.LastNameTruncated.Should().Be(lastNameTruncated);
-            driversLicenseData.PlaceOfBirth.Should().Be(placeOfBirth);
-            driversLicenseData.AuditInformation.Should().Be(auditInformation);
-            driversLicenseData.InventoryControl.Should().Be(inventoryControl);
-            driversLicenseData.LastNameAlias.Should().Be(lastNameAlias);
-            driversLicenseData.FirstNameAlias.Should().Be(firstNameAlias);
-            driversLicenseData.SuffixAlias.Should().Be(suffixAlias);
-            driversLicenseData.NameSuffix.Should().Be(nameSuffix);
-            driversLicenseData.LicenseVersion.Should().Be(licenseVersion);
+            driversLicenseData?.Should().NotBeNull();
+            driversLicenseData?.FirstName.Should().Be(firstName);
+            driversLicenseData?.LastName.Should().Be(lastName);
+            driversLicenseData?.MiddleName.Should().Be(middleName);
+            driversLicenseData?.ExpirationDate.Should().Be(expirationDate);
+            driversLicenseData?.IssueDate.Should().Be(issueDate);
+            driversLicenseData?.DateOfBirth.Should().Be(dateOfBirth);
+            driversLicenseData?.Gender.Should().Be(gender);
+            driversLicenseData?.EyeColor.Should().Be(eyeColor);
+            driversLicenseData?.HairColor.Should().Be(hairColor);
+            driversLicenseData?.Height.Should().Be(height);
+            driversLicenseData?.StreetAddress.Should().Be(streetAddress);
+            driversLicenseData?.SecondStreetAddress.Should().Be(secondStreetAddress);
+            driversLicenseData?.City.Should().Be(city);
+            driversLicenseData?.State.Should().Be(state);
+            driversLicenseData?.PostalCode.Should().Be(postalCode);
+            driversLicenseData?.CustomerId.Should().Be(customerId);
+            driversLicenseData?.DocumentId.Should().Be(documentId);
+            driversLicenseData?.IssuingCountry.Should().Be(issuingCountry);
+            driversLicenseData?.MiddleNameTruncated.Should().Be(middleNameTruncated);
+            driversLicenseData?.FirstNameTruncated.Should().Be(firstNameTruncated);
+            driversLicenseData?.LastNameTruncated.Should().Be(lastNameTruncated);
+            driversLicenseData?.PlaceOfBirth.Should().Be(placeOfBirth);
+            driversLicenseData?.AuditInformation.Should().Be(auditInformation);
+            driversLicenseData?.InventoryControl.Should().Be(inventoryControl);
+            driversLicenseData?.LastNameAlias.Should().Be(lastNameAlias);
+            driversLicenseData?.FirstNameAlias.Should().Be(firstNameAlias);
+            driversLicenseData?.SuffixAlias.Should().Be(suffixAlias);
+            driversLicenseData?.NameSuffix.Should().Be(nameSuffix);
+            driversLicenseData?.LicenseVersion.Should().Be(licenseVersion);
         }
     }
 }
