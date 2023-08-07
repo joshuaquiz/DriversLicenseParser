@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_DriversLicenseParser_1691446107303-pr-trigger-input-set
+  identifier: Build_DriversLicenseParser_1691446107303prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_DriversLicenseParser_1691446107303
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
