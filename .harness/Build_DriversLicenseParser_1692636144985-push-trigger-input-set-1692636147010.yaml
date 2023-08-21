@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_DriversLicenseParser_1692636144985-push-trigger-input-set
+  identifier: Build_DriversLicenseParser_1692636144985pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_DriversLicenseParser_1692636144985
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
